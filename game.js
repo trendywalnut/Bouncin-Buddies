@@ -33,7 +33,7 @@ firstScene.preload = function() {
     this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
     //this.load.image('guy_blue', 'assets/guy_idle_blue.png');
     //this.load.image('guy_red', 'assets/guy_idle_red.png');
-    this.load.image('sky', 'assets/sky.png');
+    this.load.image('sky', 'assets/background.png');
     this.load.image('platform', 'assets/platform.png');
 }
 
