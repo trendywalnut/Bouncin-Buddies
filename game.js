@@ -20,6 +20,13 @@ var player_red;
 var player_blue;
 var platforms;
 var player_red_jump = false;
+var balloons;
+
+var score = 0;
+var scoreText;
+
+var timer;
+var total = 0;
 
 var wKey;
 var aKey;
@@ -31,7 +38,7 @@ var jumpSpeed = 450;
 firstScene.preload = function() {
     this.load.spritesheet('guy_red', 'assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
     this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
-    //this.load.image('guy_blue', 'assets/guy_idle_blue.png');
+    this.load.image('balloon', 'assets/balloon.png');
     //this.load.image('guy_red', 'assets/guy_idle_red.png');
     this.load.image('sky', 'assets/background.png');
     this.load.image('platform', 'assets/platform.png');
@@ -101,11 +108,36 @@ firstScene.create = function() {
         repeat: -1
     });
     
+    //balloon group
+    balloons = this.physics.add.group({
+        key: 'balloon',
+        repeat: 11,
+        setXY: {x: 12, y: 0, stepX: 70}
+    });
+    
+    balloons.children.iterate(function(child){
+        child.setScale(0.5);
+        child.setVelocity(0, Phaser.Math.Between(-1000, 100));
+        child.allowGravity = false;
+    })
+    
+    //text
+    scoreText = this.add.text(16,16, 'Score: 0', {fontSize: '32px', fill: '#000'});
+    
     
     
     //Collide Player with Platforms
     this.physics.add.collider(player_red, platforms);
     this.physics.add.collider(player_blue, platforms);
+    
+    this.physics.add.collider(balloons, platforms);
+    
+    //player colliders with balloons
+    //this.physics.add.collider(player_red, balloons, hitBalloon, null, this);
+    //this.physics.add.collider(player_blue, balloons, hitBalloon, null, this);
+    
+    //spawn balloons
+    //game.time.events.repeat(Phaser.Timer.SECOND * 2, 10, spawnBalloon, this);
     
     // Input Events
     cursors = this.input.keyboard.createCursorKeys();
@@ -114,11 +146,12 @@ firstScene.create = function() {
     this.wKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     this.aKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     this.dKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+
+
 }
 
 firstScene.update = function() {
     playerMovement();
-    
     
 }
 
@@ -168,4 +201,17 @@ function playerMovement () {
     if (!player_blue.body.touching.down){
         player_blue.anims.play('blue_jump', true);
     } */
+}
+
+function hitBalloon(player, balloon){
+    balloon.setVelocityY(-100);
+    
+    score += 1;
+    scoreText.setText('Score:' + score);
+    
+}
+
+function spawnBalloon(){
+    total++;
+    
 }
