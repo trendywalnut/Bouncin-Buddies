@@ -51,15 +51,14 @@ firstScene.create = function() {
     
     platforms.create(400, 568, 'ground').setScale(1).refreshBody();
     
-    platforms.create(600, 400, 'platform');
-    platforms.create(50, 250, 'platform');
-    platforms.create(750, 220, 'platform');
+    platforms.create(700, 500, 'platform');
+    platforms.create(75, 500, 'platform');
     
-    player_red = this.physics.add.sprite(100, 450, 'guy_red').setScale(0.2);
+    player_red = this.physics.add.sprite(100, 375, 'guy_red').setScale(0.2);
     player_red.setBounce(0.1);
     player_red.setCollideWorldBounds(true);
     
-    player_blue = this.physics.add.sprite(700, 450, 'guy_blue').setScale(0.2);
+    player_blue = this.physics.add.sprite(700, 375, 'guy_blue').setScale(0.2);
     player_blue.setBounce(0.1);
     player_blue.setCollideWorldBounds(true);
     
@@ -120,11 +119,12 @@ firstScene.create = function() {
     
     balloons.children.iterate(function(child){
         child.setScale(0.5);
-        child.setVelocity(0, Phaser.Math.Between(-100, 100));
+        child.setVelocity(Phaser.Math.Between(-200, 200), 20);
+        child.setMass(0.3);
         child.allowGravity = true;
         child.setBounce(0.9);
-        child.setMass(0.3);
-        
+        child.setGravity(0, 0.1);
+        child.setCollideWorldBounds(true);
     })
         
     //text
