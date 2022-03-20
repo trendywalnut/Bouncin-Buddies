@@ -84,9 +84,6 @@ firstScene.create = function() {
         repeat: -1
     });
     
-    
-    
-    
     this.anims.create({
         key: 'blue_idle',
         frames: [ { key: 'guy_blue', frame: 0}],
@@ -107,6 +104,13 @@ firstScene.create = function() {
         frames: [ { key: 'guy_blue', frame: 2}],
         frameRate: 10,
         repeat: -1
+    });
+    
+    //Create Balloon Timer
+    var timer = firstScene.time.addEvent({
+        delay: 5000,
+        callback: spawnBalloon,
+        loop: true
     });
     
     //balloon group
@@ -217,5 +221,13 @@ function hitBalloon(player, balloon){
 
 function spawnBalloon(){
     total++;
-    
+    var x = Phaser.Math.Between(0, 800);
+    var balloon = balloons.create(x, 0, 'balloon');
+    balloon.setScale(0.5);
+    balloon.setVelocity(Phaser.Math.Between(-200, 200), 20);
+    balloon.setMass(0.3);
+    balloon.allowGravity = true;
+    balloon.setBounce(0.9);
+    balloon.setGravity(0, 0.1);
+    balloon.setCollideWorldBounds(true);    
 }
