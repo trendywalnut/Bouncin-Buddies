@@ -140,7 +140,7 @@ firstScene.create = function() {
     this.physics.add.collider(player_red, platforms);
     this.physics.add.collider(player_blue, platforms);
     
-    this.physics.add.collider(balloons, platforms);
+    this.physics.add.collider(balloons, platforms, popBalloon, null, this);
     
     //player colliders with balloons
     this.physics.add.collider(player_red, balloons, hitBalloon, null, this);
@@ -212,10 +212,16 @@ function playerMovement () {
 }
 
 function hitBalloon(player, balloon){
-    balloon.setVelocityY(-100);
+    balloon.setVelocityY(-400);
+    player.setVelocityY(200);
     
     score += 1;
     scoreText.setText('Score:' + score);
+    
+}
+
+function popBalloon(balloon, ground){
+    balloon.destroy();
     
 }
 
