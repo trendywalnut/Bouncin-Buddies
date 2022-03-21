@@ -26,13 +26,16 @@ var score = 0;
 var scoreText;
 
 var timer;
-var total = 0;
+var total = 1;
 
 var keys;
 var cursors;
 
 var playerSpeed = 270;
 var jumpSpeed = 450;
+
+var lost = false;
+var loseText;
 
 firstScene.preload = function() {
     this.load.spritesheet('guy_red', 'assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
@@ -45,6 +48,7 @@ firstScene.preload = function() {
 }
 
 firstScene.create = function() {
+    
     this.add.image(400, 300, 'sky');
     
     platforms = this.physics.add.staticGroup();
@@ -61,6 +65,20 @@ firstScene.create = function() {
     player_blue = this.physics.add.sprite(700, 375, 'guy_blue').setScale(0.2);
     player_blue.setBounce(0.1);
     player_blue.setCollideWorldBounds(true);
+    
+    //loseText
+    loseText = this.add.text(
+            400, 
+            200, 
+            "You Lose...", 
+            {
+                fontSize: 50,
+                color: "#000000",
+                fontStyle: "bold"
+            }
+        ).setOrigin(0.5);
+    
+    loseText.visible = false;
     
     this.anims.create({
         key: 'red_idle',
@@ -107,7 +125,7 @@ firstScene.create = function() {
     });
     
     //Create Balloon Timer
-    var timer = firstScene.time.addEvent({
+    timer = firstScene.time.addEvent({
         delay: 5000,
         callback: spawnBalloon,
         loop: true
@@ -116,7 +134,7 @@ firstScene.create = function() {
     //balloon group
     balloons = this.physics.add.group({
         key: 'balloon',
-        repeat: 3,
+        repeat: 0,
         setXY: {x: 12, y: 0, stepX: 70}
     });
     
@@ -132,9 +150,7 @@ firstScene.create = function() {
     })
         
     //text
-    scoreText = this.add.text(16,16, 'Score: 0', {fontSize: '32px', fill: '#000'});
-    
-    
+    scoreText = this.add.text(16,16, 'Score: 0', {fontSize: '32px', fill: '#000'}); 
     
     //Collide Player with Platforms
     this.physics.add.collider(player_red, platforms);
@@ -161,7 +177,6 @@ firstScene.create = function() {
 
 firstScene.update = function() {
     playerMovement();
-    
 }
 
 function playerMovement () {
@@ -221,8 +236,12 @@ function hitBalloon(player, balloon){
 }
 
 function popBalloon(balloon, ground){
+    total -= 1;
+    if (total <= 0) {
+        loseText.visible = true;
+        timer.remove();
+    }
     balloon.destroy();
-    
 }
 
 function spawnBalloon(){
