@@ -31,7 +31,7 @@ var total = 0;
 var keys;
 var cursors;
 
-var playerSpeed = 250;
+var playerSpeed = 270;
 var jumpSpeed = 450;
 
 firstScene.preload = function() {
