@@ -7,7 +7,7 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y:600 },
+            gravity: { y:100 },
             debug: false
         }
     },
@@ -49,11 +49,12 @@ firstScene.preload = function() {
     this.load.image('platform', 'assets/platform_grass.png');
     this.load.image('ground', 'assets/foreground_grass.png');
     
-    this.load.audio('bgmusic', ['assets/bgmusic.mp3']);
-    this.load.audio('jump', ['assets/jump.mp3']);
-    this.load.audio('error', ['assets/error.mp3']);
-    this.load.audio('fart', ['assets/fart.mp3']);
-    this.load.audio('pop', ['assets/pop.mp3']);
+    this.load.audio('bgmusic', ['assets/bgmusic.wav']);
+    this.load.audio('jump', ['assets/jump.wav']);
+    this.load.audio('error', ['assets/error.wav']);
+    this.load.audio('bump', ['assets/bump.wav']);
+    this.load.audio('pop', ['assets/pop.wav']);
+    this.load.audio('balloonspawn', ['assets/balloonspawn.wav']);
 }
 
 firstScene.create = function() {
@@ -70,10 +71,12 @@ firstScene.create = function() {
     player_red = this.physics.add.sprite(100, 375, 'guy_red').setScale(0.2);
     player_red.setBounce(0.1);
     player_red.setCollideWorldBounds(true);
+    player_red.setGravityY(599);
     
     player_blue = this.physics.add.sprite(700, 375, 'guy_blue').setScale(0.2);
     player_blue.setBounce(0.1);
     player_blue.setCollideWorldBounds(true);
+    player_blue.setGravityY(599);
     
     //loseText
     loseText = this.add.text(
@@ -137,9 +140,10 @@ firstScene.create = function() {
     bgmusic = this.sound.add('bgmusic', {loop: true});
     bgmusic.play();
     popSFX = this.sound.add('pop', {loop: false});
-    fart = this.sound.add('fart', {loop: false});
+    bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
     error = this.sound.add('error', {loop: false});
     jump = this.sound.add('jump', {loop: false});
+    balloonSpawn = this.sound.add('balloonspawn', {loop: false});
     
     //Create Balloon Timer
     timer = firstScene.time.addEvent({
@@ -152,7 +156,8 @@ firstScene.create = function() {
     balloons = this.physics.add.group({
         key: 'balloon',
         repeat: 0,
-        setXY: {x: 12, y: 0, stepX: 70}
+        setXY: {x: 12, y: 0, stepX: 70},
+        mass: 0.3
     });
     
     
@@ -161,8 +166,16 @@ firstScene.create = function() {
         child.setVelocity(Phaser.Math.Between(-200, 200), 20);
         child.setMass(0.3);
         child.allowGravity = true;
-        child.setBounce(0.9);
-        child.setGravity(0, 0.1);
+        child.setBounce(0.2);
+        child.setGravityY(1);
+        child.useDamping = true;
+        child.allowDrag = true;
+        child.allowRotation = true;
+        child.setAngularAcceleration(1);
+        child.isCircle = true;
+        child.setCircle(20);
+        child.setMaxSpeed = 2;
+        
         child.setCollideWorldBounds(true);
     })
     
@@ -181,8 +194,8 @@ firstScene.create = function() {
     this.physics.add.collider(player_red, balloons, hitBalloon, null, this);
     this.physics.add.collider(player_blue, balloons, hitBalloon, null, this);
     
-    //spawn balloons
-    //game.time.events.repeat(Phaser.Timer.SECOND * 2, 10, spawnBalloon, this);
+    //let balloons collide with each other
+    this.physics.add.collider(balloons, balloons);
     
     // Input Events
     cursors = this.input.keyboard.createCursorKeys();
@@ -247,10 +260,10 @@ function playerMovement () {
 }
 
 function hitBalloon(player, balloon){
-    balloon.setVelocityY(-400);
+    //balloon.setVelocityY(-260);
     player.setVelocityY(200);
     
-    popSFX.play();
+    bump.play();
     
     score += 1;
     scoreText.setText('Score:' + score);
@@ -263,8 +276,10 @@ function popBalloon(balloon, ground){
         loseText.visible = true;
         timer.remove();
         error.play();
+        popSFX.play();
+        bgmusic.stop();
     }else{
-        fart.play();
+        popSFX.play();
     }
     balloon.destroy();
 }
@@ -277,7 +292,18 @@ function spawnBalloon(){
     balloon.setVelocity(Phaser.Math.Between(-200, 200), 20);
     balloon.setMass(0.3);
     balloon.allowGravity = true;
-    balloon.setBounce(0.9);
-    balloon.setGravity(0, 0.1);
-    balloon.setCollideWorldBounds(true);    
+    balloon.setBounce(0.2);
+    balloon.setGravityY(1);
+    balloon.useDamping = true;
+    balloon.allowDrag = true;
+    balloon.allowRotation = true;
+    balloon.setAngularAcceleration(1.5);
+    balloon.isCircle = true;
+    balloon.setCircle(20, 27, 37);
+    balloon.setMaxSpeed = 2;
+        
+    balloon.setCollideWorldBounds(true);  
+    
+    //play SFX
+    balloonSpawn.play();
 }
