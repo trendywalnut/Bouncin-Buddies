@@ -37,6 +37,9 @@ var jumpSpeed = 450;
 var lost = false;
 var loseText;
 
+//var bgmusic;
+//var popSFX;
+
 firstScene.preload = function() {
     this.load.spritesheet('guy_red', 'assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
     this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
@@ -45,6 +48,12 @@ firstScene.preload = function() {
     this.load.image('sky', 'assets/background_sky2d.png');
     this.load.image('platform', 'assets/platform_grass.png');
     this.load.image('ground', 'assets/foreground_grass.png');
+    
+    this.load.audio('bgmusic', ['assets/bgmusic.mp3']);
+    this.load.audio('jump', ['assets/jump.mp3']);
+    this.load.audio('error', ['assets/error.mp3']);
+    this.load.audio('fart', ['assets/fart.mp3']);
+    this.load.audio('pop', ['assets/pop.mp3']);
 }
 
 firstScene.create = function() {
@@ -124,6 +133,14 @@ firstScene.create = function() {
         repeat: -1
     });
     
+    //audio
+    bgmusic = this.sound.add('bgmusic', {loop: true});
+    bgmusic.play();
+    popSFX = this.sound.add('pop', {loop: false});
+    fart = this.sound.add('fart', {loop: false});
+    error = this.sound.add('error', {loop: false});
+    jump = this.sound.add('jump', {loop: false});
+    
     //Create Balloon Timer
     timer = firstScene.time.addEvent({
         delay: 5000,
@@ -148,6 +165,8 @@ firstScene.create = function() {
         child.setGravity(0, 0.1);
         child.setCollideWorldBounds(true);
     })
+    
+    
         
     //text
     scoreText = this.add.text(16,16, 'Score: 0', {fontSize: '32px', fill: '#000'}); 
@@ -171,8 +190,7 @@ firstScene.create = function() {
     
     //Second Player Keys
     keys = this.input.keyboard.addKeys('A,W,S,D');
-
-
+    
 }
 
 firstScene.update = function() {
@@ -196,6 +214,7 @@ function playerMovement () {
         player_red.anims.play('red_idle', true);
     }
     if (keys.W.isDown && player_red.body.touching.down) {
+        jump.play();
         player_red.setVelocityY(-jumpSpeed);
         //player_red.anims.play('jump', true);
     }
@@ -219,6 +238,7 @@ function playerMovement () {
         player_blue.anims.play('blue_idle', true);
     }
     if (cursors.up.isDown && player_blue.body.touching.down) {
+        jump.play();
         player_blue.setVelocityY(-jumpSpeed);
     } 
     if (!player_blue.body.touching.down){
@@ -230,6 +250,8 @@ function hitBalloon(player, balloon){
     balloon.setVelocityY(-400);
     player.setVelocityY(200);
     
+    popSFX.play();
+    
     score += 1;
     scoreText.setText('Score:' + score);
     
@@ -240,6 +262,9 @@ function popBalloon(balloon, ground){
     if (total <= 0) {
         loseText.visible = true;
         timer.remove();
+        error.play();
+    }else{
+        fart.play();
     }
     balloon.destroy();
 }
