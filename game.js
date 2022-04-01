@@ -48,7 +48,7 @@ var firstScene = new Phaser.Class({
                 loseText = this.add.text(
                         400, 
                         200, 
-                        "You Lose...", 
+                        "You Lose...lvl1", 
                         {
                             fontSize: 50,
                             color: "#000000",
@@ -168,11 +168,17 @@ var firstScene = new Phaser.Class({
 
 
                 //Second Player Keys
-                keys = this.input.keyboard.addKeys('A,W,S,D');
+                keys = this.input.keyboard.addKeys('A,W,S,D,space');
     
 
         },
         update: function(){
+            if(lost == true){
+                if(keys.space.isDown){
+                    
+                    this.scene.start('levelselect')
+                }
+            }
             playerMovement();
         }
     });
@@ -183,20 +189,14 @@ var secondScene = new Phaser.Class({
             Phaser.Scene.call(this,{key:'secondScene'});
         },
         preload: function(){
-            this.load.spritesheet('guy_red', 'assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
-            this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
+            
             this.load.image('balloon', 'assets/balloon.png');
-            //this.load.image('guy_red', 'assets/guy_idle_red.png');
+            ;
             this.load.image('sky', 'assets/background_sky2d.png');
             this.load.image('platform', 'assets/platform_grass.png');
             this.load.image('ground', 'assets/foreground_grass.png');
     
-            this.load.audio('bgmusic', ['assets/bgmusic.wav']);
-            this.load.audio('jump', ['assets/jump.wav']);
-            this.load.audio('error', ['assets/error.wav']);
-            this.load.audio('bump', ['assets/bump.wav']);
-            this.load.audio('pop', ['assets/pop.wav']);
-            this.load.audio('balloonspawn', ['assets/balloonspawn.wav']);
+            
             
         },
         create: function(){
@@ -225,7 +225,7 @@ var secondScene = new Phaser.Class({
                 loseText = this.add.text(
                         400, 
                         200, 
-                        "You Lose...", 
+                        "You Lose...lvl2", 
                         {
                             fontSize: 50,
                             color: "#000000",
@@ -345,11 +345,17 @@ var secondScene = new Phaser.Class({
 
 
                 //Second Player Keys
-                keys = this.input.keyboard.addKeys('A,W,S,D');
+                keys = this.input.keyboard.addKeys('A,W,S,D,space');
     
 
         },
         update: function(){
+            if(lost == true){
+                if(keys.space.isDown){
+                    
+                    this.scene.start('levelselect')
+                }
+            }
             playerMovement();
         }
     });
@@ -360,20 +366,14 @@ var thirdScene = new Phaser.Class({
             Phaser.Scene.call(this,{key:'thirdScene'});
         },
         preload: function(){
-            this.load.spritesheet('guy_red', 'assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
-            this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
+            
             this.load.image('balloon', 'assets/balloon.png');
             //this.load.image('guy_red', 'assets/guy_idle_red.png');
             this.load.image('sky', 'assets/background_sky2d.png');
             this.load.image('platform', 'assets/platform_grass.png');
             this.load.image('ground', 'assets/foreground_grass.png');
     
-            this.load.audio('bgmusic', ['assets/bgmusic.wav']);
-            this.load.audio('jump', ['assets/jump.wav']);
-            this.load.audio('error', ['assets/error.wav']);
-            this.load.audio('bump', ['assets/bump.wav']);
-            this.load.audio('pop', ['assets/pop.wav']);
-            this.load.audio('balloonspawn', ['assets/balloonspawn.wav']);
+            
             
         },
         create: function(){
@@ -402,7 +402,7 @@ var thirdScene = new Phaser.Class({
                 loseText = this.add.text(
                         400, 
                         200, 
-                        "You Lose...", 
+                        "You Lose...lvl3", 
                         {
                             fontSize: 50,
                             color: "#000000",
@@ -522,11 +522,17 @@ var thirdScene = new Phaser.Class({
 
 
                 //Second Player Keys
-                keys = this.input.keyboard.addKeys('A,W,S,D');
+                keys = this.input.keyboard.addKeys('A,W,S,D,space');
     
 
         },
         update: function(){
+            if(lost == true){
+                if(keys.space.isDown){
+                    
+                    this.scene.start('levelselect')
+                }
+            }
             playerMovement();
         }
     });
@@ -537,20 +543,14 @@ var fourthScene = new Phaser.Class({
             Phaser.Scene.call(this,{key:'fourthScene'});
         },
         preload: function(){
-            this.load.spritesheet('guy_red', 'assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
-            this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
+            
             this.load.image('balloon', 'assets/balloon.png');
             //this.load.image('guy_red', 'assets/guy_idle_red.png');
             this.load.image('sky', 'assets/background_sky2d.png');
             this.load.image('platform', 'assets/platform_grass.png');
             this.load.image('ground', 'assets/foreground_grass.png');
     
-            this.load.audio('bgmusic', ['assets/bgmusic.wav']);
-            this.load.audio('jump', ['assets/jump.wav']);
-            this.load.audio('error', ['assets/error.wav']);
-            this.load.audio('bump', ['assets/bump.wav']);
-            this.load.audio('pop', ['assets/pop.wav']);
-            this.load.audio('balloonspawn', ['assets/balloonspawn.wav']);
+            
             
         },
         create: function(){
@@ -579,7 +579,7 @@ var fourthScene = new Phaser.Class({
                 loseText = this.add.text(
                         400, 
                         200, 
-                        "You Lose...", 
+                        "You Lose...lvl4", 
                         {
                             fontSize: 50,
                             color: "#000000",
@@ -699,11 +699,17 @@ var fourthScene = new Phaser.Class({
 
 
                 //Second Player Keys
-                keys = this.input.keyboard.addKeys('A,W,S,D');
+                keys = this.input.keyboard.addKeys('A,W,S,D,space');
     
 
         },
         update: function(){
+            if(lost == true){
+                if(keys.space.isDown){
+                    
+                    this.scene.start('levelselect')
+                }
+            }
             playerMovement();
         }
     });
@@ -714,20 +720,14 @@ var fifthScene = new Phaser.Class({
             Phaser.Scene.call(this,{key:'fifthScene'});
         },
         preload: function(){
-            this.load.spritesheet('guy_red', 'assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
-            this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
+            
             this.load.image('balloon', 'assets/balloon.png');
-            //this.load.image('guy_red', 'assets/guy_idle_red.png');
+            
             this.load.image('sky', 'assets/background_sky2d.png');
             this.load.image('platform', 'assets/platform_grass.png');
             this.load.image('ground', 'assets/foreground_grass.png');
     
-            this.load.audio('bgmusic', ['assets/bgmusic.wav']);
-            this.load.audio('jump', ['assets/jump.wav']);
-            this.load.audio('error', ['assets/error.wav']);
-            this.load.audio('bump', ['assets/bump.wav']);
-            this.load.audio('pop', ['assets/pop.wav']);
-            this.load.audio('balloonspawn', ['assets/balloonspawn.wav']);
+           
             
         },
         create: function(){
@@ -756,7 +756,7 @@ var fifthScene = new Phaser.Class({
                 loseText = this.add.text(
                         400, 
                         200, 
-                        "You Lose...", 
+                        "You Lose...lvl5", 
                         {
                             fontSize: 50,
                             color: "#000000",
@@ -876,11 +876,17 @@ var fifthScene = new Phaser.Class({
 
 
                 //Second Player Keys
-                keys = this.input.keyboard.addKeys('A,W,S,D,SPACEBAR');
+                keys = this.input.keyboard.addKeys('A,W,S,D,space');
     
 
         },
         update: function(){
+            if(lost == true){
+                if(keys.space.isDown){
+                    
+                    this.scene.start('levelselect')
+                }
+            }
             playerMovement();
         }
     });
@@ -895,7 +901,7 @@ var levelselect = new Phaser.Class({
             this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
             this.load.image('balloon', 'assets/balloon.png');
             //this.load.image('guy_red', 'assets/guy_idle_red.png');
-            //this.load.image('sky', 'assets/background_sky2d.png');
+            this.load.image('sky', 'assets/background_sky2d.png');
             this.load.image('platform', 'assets/platform_grass.png');
             this.load.image('ground', 'assets/foreground_grass.png');
     
@@ -909,39 +915,37 @@ var levelselect = new Phaser.Class({
         },
         create: function(){
             
-    
+                lost = false
                 this.add.image(400, 300, 'sky');
 
                 platforms = this.physics.add.staticGroup();
 
                 platforms.create(400, 568, 'ground').setScale(1).refreshBody();
 
-                platforms.create(700, 500, 'platform');
-                platforms.create(75, 500, 'platform');
+                lvl1 = this.physics.add.staticGroup();
+                lvl1.create(800/6,350,'baka')
+                lvl2 = this.physics.add.staticGroup();
+                lvl2.create(2*800/6,350,'baka')
+                lvl3 = this.physics.add.staticGroup();
+                lvl3.create(3*800/6,350,'baka')
+                lvl4 = this.physics.add.staticGroup();
+                lvl4.create(4*800/6,350,'baka')
+                lvl5 = this.physics.add.staticGroup();
+                lvl5.create(5*800/6,350,'baka')
 
-                player_red = this.physics.add.sprite(100, 375, 'guy_red').setScale(0.2);
+                player_red = this.physics.add.sprite(100, 400, 'guy_red').setScale(0.2);
                 player_red.setBounce(0.1);
                 player_red.setCollideWorldBounds(true);
                 player_red.setGravityY(599);
 
-                player_blue = this.physics.add.sprite(700, 375, 'guy_blue').setScale(0.2);
+                player_blue = this.physics.add.sprite(700, 400, 'guy_blue').setScale(0.2);
                 player_blue.setBounce(0.1);
                 player_blue.setCollideWorldBounds(true);
                 player_blue.setGravityY(599);
 
-                //loseText
-                loseText = this.add.text(
-                        400, 
-                        200, 
-                        "You Lose...", 
-                        {
-                            fontSize: 50,
-                            color: "#000000",
-                            fontStyle: "bold"
-                        }
-                    ).setOrigin(0.5);
+               
 
-                loseText.visible = false;
+                
 
                 this.anims.create({
                     key: 'red_idle',
@@ -989,46 +993,11 @@ var levelselect = new Phaser.Class({
 
                 //audio
                 bgmusic = this.sound.add('bgmusic', {loop: true});
-                bgmusic.play();
-                popSFX = this.sound.add('pop', {loop: false});
+                //bgmusic.play();
+                
                 bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
-                error = this.sound.add('error', {loop: false});
+                
                 jump = this.sound.add('jump', {loop: false});
-                balloonSpawn = this.sound.add('balloonspawn', {loop: false});
-
-                //Create Balloon Timer
-                timer = this.time.addEvent({
-                    delay: 5000,
-                    callback: spawnBalloon,
-                    loop: true
-                });
-
-                //balloon group
-                balloons = this.physics.add.group({
-                    key: 'balloon',
-                    repeat: 0,
-                    setXY: {x: 12, y: 0, stepX: 70},
-                    mass: 0.3
-                });
-
-
-                balloons.children.iterate(function(child){
-                    child.setScale(0.5);
-                    child.setVelocity(Phaser.Math.Between(-200, 200), 20);
-                    child.setMass(0.3);
-                    child.allowGravity = true;
-                    child.setBounce(0.2);
-                    child.setGravityY(1);
-                    child.useDamping = true;
-                    child.allowDrag = true;
-                    child.allowRotation = true;
-                    child.setAngularAcceleration(1);
-                    child.isCircle = true;
-                    child.setCircle(20);
-                    child.setMaxSpeed = 2;
-
-                    child.setCollideWorldBounds(true);
-                })
 
 
 
@@ -1039,21 +1008,54 @@ var levelselect = new Phaser.Class({
                 this.physics.add.collider(player_red, platforms);
                 this.physics.add.collider(player_blue, platforms);
 
-                this.physics.add.collider(balloons, platforms, popBalloon, null, this);
-
-                //player colliders with balloons
-                this.physics.add.collider(player_red, balloons, hitBalloon, null, this);
-                this.physics.add.collider(player_blue, balloons, hitBalloon, null, this);
-
-                //let balloons collide with each other
-                this.physics.add.collider(balloons, balloons);
+                this.physics.add.collider(lvl1,player_red, function(){
+                    this.scene.start('firstScene')
+                    }
+                , null, this);
+                this.physics.add.collider(lvl1,player_blue, function(){
+                    this.scene.start('firstScene')
+                    }
+                , null, this);
+                this.physics.add.collider(lvl2,player_red, function(){
+                    this.scene.start('secondScene')
+                    }
+                , null, this);
+                this.physics.add.collider(lvl2,player_blue, function(){
+                    this.scene.start('secondScene')
+                    }
+                , null, this);
+                this.physics.add.collider(lvl3,player_red, function(){
+                    this.scene.start('thirdScene')
+                    }
+                , null, this);
+                this.physics.add.collider(lvl3,player_blue, function(){
+                    this.scene.start('thirdScene')
+                    }
+                , null, this);
+                this.physics.add.collider(lvl4,player_red, function(){
+                    this.scene.start('fourthScene')
+                    }
+                , null, this);
+                this.physics.add.collider(lvl4,player_blue, function(){
+                    this.scene.start('fourthScene')
+                    }
+                , null, this);
+                this.physics.add.collider(lvl5,player_red, function(){
+                    this.scene.start('fifthScene')
+                    }
+                , null, this);
+                this.physics.add.collider(lvl5,player_blue, function(){
+                    this.scene.start('fifthScene')
+                    }
+                , null, this);
+                
 
                 // Input Events
                 cursors = this.input.keyboard.createCursorKeys();
 
 
                 //Second Player Keys
-                keys = this.input.keyboard.addKeys('A,W,S,D');
+                keys = this.input.keyboard.addKeys('A,W,S,D,space');
     
 
         },
@@ -1073,7 +1075,7 @@ let config = {
         }
         
     },
-    scene: [firstScene,secondScene,thirdScene,fourthScene,fifthScene,levelselect]
+    scene: [levelselect,firstScene,secondScene,thirdScene,fourthScene,fifthScene]
 };
 
 let game = new Phaser.Game(config);
@@ -1108,11 +1110,7 @@ if(true){
 
 
 function playerMovement () {
-    if(lost == true){
-        if(keys.A.isDown){
-            levelselect()
-        }
-    }
+    
     // Red Movement
     if (keys.A.isDown) {
         player_red.setVelocityX(-playerSpeed);
