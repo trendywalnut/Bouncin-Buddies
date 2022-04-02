@@ -13,6 +13,9 @@ var firstScene = new Phaser.Class({
             this.load.image('sky', 'assets/background_sky2d.png');
             this.load.image('platform', 'assets/platform_grass.png');
             this.load.image('ground', 'assets/foreground_grass.png');
+            
+            this.load.image('speedboost', 'assets/speedboost.png');
+            this.load.image('coin', 'assets/coin.png');
     
             this.load.audio('bgmusic', ['assets/bgmusic.wav']);
             this.load.audio('jump', ['assets/jump.wav']);
@@ -48,7 +51,7 @@ var firstScene = new Phaser.Class({
                 loseText = this.add.text(
                         400, 
                         200, 
-                        "You Lose...lvl1", 
+                        "You Lose...lvl: 1", 
                         {
                             fontSize: 50,
                             color: "#000000",
@@ -58,43 +61,38 @@ var firstScene = new Phaser.Class({
 
                 loseText.visible = false;
 
+                //red anims
                 this.anims.create({
                     key: 'red_idle',
                     frames: [ { key: 'guy_red', frame: 0}],
                     frameRate: 10,
                     repeat: -1
                 });
-
-
                 this.anims.create({
                     key: 'red_move',
                     frames: [ { key: 'guy_red', frame: 1}],
                     frameRate: 10,
                     repeat: -1
                 });
-
                 this.anims.create({
                     key: 'red_jump',
                     frames: [ { key: 'guy_red', frame: 2}],
                     frameRate: 10,
                     repeat: -1
                 });
-
+                //blue anims
                 this.anims.create({
                     key: 'blue_idle',
                     frames: [ { key: 'guy_blue', frame: 0}],
                     frameRate: 10,
                     repeat: -1
                 });
-
-
                 this.anims.create({
                     key: 'blue_move',
                     frames: [ { key: 'guy_blue', frame: 1}],
                     frameRate: 10,
                     repeat: -1
                 });
-
                 this.anims.create({
                     key: 'blue_jump',
                     frames: [ { key: 'guy_blue', frame: 2}],
@@ -117,6 +115,14 @@ var firstScene = new Phaser.Class({
                     callback: spawnBalloon,
                     loop: true
                 });
+            
+                //create powerup timer
+                powerupSpawnTimer = this.time.addEvent({
+                    delay: 15000,
+                    callback: spawnPowerup,
+                    loop: true
+                });
+                
 
                 //balloon group
                 balloons = this.physics.add.group({
@@ -125,8 +131,7 @@ var firstScene = new Phaser.Class({
                     setXY: {x: 12, y: 0, stepX: 70},
                     mass: 0.3
                 });
-
-
+                
                 balloons.children.iterate(function(child){
                     child.setScale(0.5);
                     child.setVelocity(Phaser.Math.Between(-200, 200), 20);
@@ -144,8 +149,58 @@ var firstScene = new Phaser.Class({
 
                     child.setCollideWorldBounds(true);
                 })
+            
+                //speedboost group
+                speedboosts = this.physics.add.group({
+                    key: 'speedboost',
+                    repeat: 0,
+                    setXY: {x: 12, y: 0, stepX: 70},
+                    mass: 0.3
+                });
 
+                speedboosts.children.iterate(function(child){
+                    child.setScale(0.02);
+                    child.setVelocity(Phaser.Math.Between(-200, 200), 20);
+                    child.setMass(0.3);
+                    child.allowGravity = true;
+                    child.setBounce(0.2);
+                    child.setGravityY(1);
+                    child.useDamping = true;
+                    child.allowDrag = true;
+                    child.allowRotation = true;
+                    child.setAngularAcceleration(1);
+                    child.isCircle = true;
+                    child.setCircle(20);
+                    child.setMaxSpeed = 2;
 
+                    child.setCollideWorldBounds(true); 
+                })
+            
+                //coin group
+                coins = this.physics.add.group({
+                    key: 'coin',
+                    repeat: 0,
+                    setXY: {x: 12, y: 0, stepX: 70},
+                    mass: 0.3
+                });
+            
+                coins.children.iterate(function(child){
+                    child.setScale(0.2);
+                    child.setVelocity(Phaser.Math.Between(-200, 200), 20);
+                    child.setMass(0.3);
+                    child.allowGravity = true;
+                    child.setBounce(0.2);
+                    child.setGravityY(1);
+                    child.useDamping = true;
+                    child.allowDrag = true;
+                    child.allowRotation = true;
+                    child.setAngularAcceleration(1);
+                    child.isCircle = true;
+                    child.setCircle(20);
+                    child.setMaxSpeed = 2;
+
+                    child.setCollideWorldBounds(true);
+                })
 
                 //text
                 scoreText = this.add.text(16,16, 'Score: 0', {fontSize: '32px', fill: '#000'}); 
@@ -153,15 +208,27 @@ var firstScene = new Phaser.Class({
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
                 this.physics.add.collider(player_blue, platforms);
-
+            
+                //balloons and powerups collide with platforms
                 this.physics.add.collider(balloons, platforms, popBalloon, null, this);
+                this.physics.add.collider(speedboosts, platforms);
+                this.physics.add.collider(coins, platforms);
+                
 
                 //player colliders with balloons
                 this.physics.add.collider(player_red, balloons, hitBalloon, null, this);
                 this.physics.add.collider(player_blue, balloons, hitBalloon, null, this);
+            
+                //player colliders with speedboost
+                this.physics.add.collider(player_red, speedboosts, speedBoost, null, this);
+                this.physics.add.collider(player_blue, speedboosts, speedBoost, null, this);
+                    
+                //player colliders with coin
+                this.physics.add.collider(player_red, coins, coinGet, null, this);
+                this.physics.add.collider(player_blue, coins, coinGet, null, this);
 
                 //let balloons collide with each other
-                this.physics.add.collider(balloons, balloons);
+                //this.physics.add.collider(balloons, balloons);
 
                 // Input Events
                 cursors = this.input.keyboard.createCursorKeys();
@@ -225,7 +292,7 @@ var secondScene = new Phaser.Class({
                 loseText = this.add.text(
                         400, 
                         200, 
-                        "You Lose...lvl2", 
+                        "You Lose...lvl: 1", 
                         {
                             fontSize: 50,
                             color: "#000000",
@@ -235,43 +302,38 @@ var secondScene = new Phaser.Class({
 
                 loseText.visible = false;
 
+                //red anims
                 this.anims.create({
                     key: 'red_idle',
                     frames: [ { key: 'guy_red', frame: 0}],
                     frameRate: 10,
                     repeat: -1
                 });
-
-
                 this.anims.create({
                     key: 'red_move',
                     frames: [ { key: 'guy_red', frame: 1}],
                     frameRate: 10,
                     repeat: -1
                 });
-
                 this.anims.create({
                     key: 'red_jump',
                     frames: [ { key: 'guy_red', frame: 2}],
                     frameRate: 10,
                     repeat: -1
                 });
-
+                //blue anims
                 this.anims.create({
                     key: 'blue_idle',
                     frames: [ { key: 'guy_blue', frame: 0}],
                     frameRate: 10,
                     repeat: -1
                 });
-
-
                 this.anims.create({
                     key: 'blue_move',
                     frames: [ { key: 'guy_blue', frame: 1}],
                     frameRate: 10,
                     repeat: -1
                 });
-
                 this.anims.create({
                     key: 'blue_jump',
                     frames: [ { key: 'guy_blue', frame: 2}],
@@ -294,6 +356,14 @@ var secondScene = new Phaser.Class({
                     callback: spawnBalloon,
                     loop: true
                 });
+            
+                //create powerup timer
+                powerupSpawnTimer = this.time.addEvent({
+                    delay: 15000,
+                    callback: spawnPowerup,
+                    loop: true
+                });
+                
 
                 //balloon group
                 balloons = this.physics.add.group({
@@ -302,8 +372,7 @@ var secondScene = new Phaser.Class({
                     setXY: {x: 12, y: 0, stepX: 70},
                     mass: 0.3
                 });
-
-
+                
                 balloons.children.iterate(function(child){
                     child.setScale(0.5);
                     child.setVelocity(Phaser.Math.Between(-200, 200), 20);
@@ -321,8 +390,58 @@ var secondScene = new Phaser.Class({
 
                     child.setCollideWorldBounds(true);
                 })
+            
+                //speedboost group
+                speedboosts = this.physics.add.group({
+                    key: 'speedboost',
+                    repeat: 0,
+                    setXY: {x: 12, y: 0, stepX: 70},
+                    mass: 0.3
+                });
 
+                speedboosts.children.iterate(function(child){
+                    child.setScale(0.02);
+                    child.setVelocity(Phaser.Math.Between(-200, 200), 20);
+                    child.setMass(0.3);
+                    child.allowGravity = true;
+                    child.setBounce(0.2);
+                    child.setGravityY(1);
+                    child.useDamping = true;
+                    child.allowDrag = true;
+                    child.allowRotation = true;
+                    child.setAngularAcceleration(1);
+                    child.isCircle = true;
+                    child.setCircle(20);
+                    child.setMaxSpeed = 2;
 
+                    child.setCollideWorldBounds(true); 
+                })
+            
+                //coin group
+                coins = this.physics.add.group({
+                    key: 'coin',
+                    repeat: 0,
+                    setXY: {x: 12, y: 0, stepX: 70},
+                    mass: 0.3
+                });
+            
+                coins.children.iterate(function(child){
+                    child.setScale(0.2);
+                    child.setVelocity(Phaser.Math.Between(-200, 200), 20);
+                    child.setMass(0.3);
+                    child.allowGravity = true;
+                    child.setBounce(0.2);
+                    child.setGravityY(1);
+                    child.useDamping = true;
+                    child.allowDrag = true;
+                    child.allowRotation = true;
+                    child.setAngularAcceleration(1);
+                    child.isCircle = true;
+                    child.setCircle(20);
+                    child.setMaxSpeed = 2;
+
+                    child.setCollideWorldBounds(true);
+                })
 
                 //text
                 scoreText = this.add.text(16,16, 'Score: 0', {fontSize: '32px', fill: '#000'}); 
@@ -330,15 +449,27 @@ var secondScene = new Phaser.Class({
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
                 this.physics.add.collider(player_blue, platforms);
-
+            
+                //balloons and powerups collide with platforms
                 this.physics.add.collider(balloons, platforms, popBalloon, null, this);
+                this.physics.add.collider(speedboosts, platforms);
+                this.physics.add.collider(coins, platforms);
+                
 
                 //player colliders with balloons
                 this.physics.add.collider(player_red, balloons, hitBalloon, null, this);
                 this.physics.add.collider(player_blue, balloons, hitBalloon, null, this);
+            
+                //player colliders with speedboost
+                this.physics.add.collider(player_red, speedboosts, speedBoost, null, this);
+                this.physics.add.collider(player_blue, speedboosts, speedBoost, null, this);
+                    
+                //player colliders with coin
+                this.physics.add.collider(player_red, coins, coinGet, null, this);
+                this.physics.add.collider(player_blue, coins, coinGet, null, this);
 
                 //let balloons collide with each other
-                this.physics.add.collider(balloons, balloons);
+                //this.physics.add.collider(balloons, balloons);
 
                 // Input Events
                 cursors = this.input.keyboard.createCursorKeys();
@@ -402,7 +533,7 @@ var thirdScene = new Phaser.Class({
                 loseText = this.add.text(
                         400, 
                         200, 
-                        "You Lose...lvl3", 
+                        "You Lose...lvl: 1", 
                         {
                             fontSize: 50,
                             color: "#000000",
@@ -412,43 +543,38 @@ var thirdScene = new Phaser.Class({
 
                 loseText.visible = false;
 
+                //red anims
                 this.anims.create({
                     key: 'red_idle',
                     frames: [ { key: 'guy_red', frame: 0}],
                     frameRate: 10,
                     repeat: -1
                 });
-
-
                 this.anims.create({
                     key: 'red_move',
                     frames: [ { key: 'guy_red', frame: 1}],
                     frameRate: 10,
                     repeat: -1
                 });
-
                 this.anims.create({
                     key: 'red_jump',
                     frames: [ { key: 'guy_red', frame: 2}],
                     frameRate: 10,
                     repeat: -1
                 });
-
+                //blue anims
                 this.anims.create({
                     key: 'blue_idle',
                     frames: [ { key: 'guy_blue', frame: 0}],
                     frameRate: 10,
                     repeat: -1
                 });
-
-
                 this.anims.create({
                     key: 'blue_move',
                     frames: [ { key: 'guy_blue', frame: 1}],
                     frameRate: 10,
                     repeat: -1
                 });
-
                 this.anims.create({
                     key: 'blue_jump',
                     frames: [ { key: 'guy_blue', frame: 2}],
@@ -471,6 +597,14 @@ var thirdScene = new Phaser.Class({
                     callback: spawnBalloon,
                     loop: true
                 });
+            
+                //create powerup timer
+                powerupSpawnTimer = this.time.addEvent({
+                    delay: 15000,
+                    callback: spawnPowerup,
+                    loop: true
+                });
+                
 
                 //balloon group
                 balloons = this.physics.add.group({
@@ -479,8 +613,7 @@ var thirdScene = new Phaser.Class({
                     setXY: {x: 12, y: 0, stepX: 70},
                     mass: 0.3
                 });
-
-
+                
                 balloons.children.iterate(function(child){
                     child.setScale(0.5);
                     child.setVelocity(Phaser.Math.Between(-200, 200), 20);
@@ -498,8 +631,58 @@ var thirdScene = new Phaser.Class({
 
                     child.setCollideWorldBounds(true);
                 })
+            
+                //speedboost group
+                speedboosts = this.physics.add.group({
+                    key: 'speedboost',
+                    repeat: 0,
+                    setXY: {x: 12, y: 0, stepX: 70},
+                    mass: 0.3
+                });
 
+                speedboosts.children.iterate(function(child){
+                    child.setScale(0.02);
+                    child.setVelocity(Phaser.Math.Between(-200, 200), 20);
+                    child.setMass(0.3);
+                    child.allowGravity = true;
+                    child.setBounce(0.2);
+                    child.setGravityY(1);
+                    child.useDamping = true;
+                    child.allowDrag = true;
+                    child.allowRotation = true;
+                    child.setAngularAcceleration(1);
+                    child.isCircle = true;
+                    child.setCircle(20);
+                    child.setMaxSpeed = 2;
 
+                    child.setCollideWorldBounds(true); 
+                })
+            
+                //coin group
+                coins = this.physics.add.group({
+                    key: 'coin',
+                    repeat: 0,
+                    setXY: {x: 12, y: 0, stepX: 70},
+                    mass: 0.3
+                });
+            
+                coins.children.iterate(function(child){
+                    child.setScale(0.2);
+                    child.setVelocity(Phaser.Math.Between(-200, 200), 20);
+                    child.setMass(0.3);
+                    child.allowGravity = true;
+                    child.setBounce(0.2);
+                    child.setGravityY(1);
+                    child.useDamping = true;
+                    child.allowDrag = true;
+                    child.allowRotation = true;
+                    child.setAngularAcceleration(1);
+                    child.isCircle = true;
+                    child.setCircle(20);
+                    child.setMaxSpeed = 2;
+
+                    child.setCollideWorldBounds(true);
+                })
 
                 //text
                 scoreText = this.add.text(16,16, 'Score: 0', {fontSize: '32px', fill: '#000'}); 
@@ -507,15 +690,27 @@ var thirdScene = new Phaser.Class({
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
                 this.physics.add.collider(player_blue, platforms);
-
+            
+                //balloons and powerups collide with platforms
                 this.physics.add.collider(balloons, platforms, popBalloon, null, this);
+                this.physics.add.collider(speedboosts, platforms);
+                this.physics.add.collider(coins, platforms);
+                
 
                 //player colliders with balloons
                 this.physics.add.collider(player_red, balloons, hitBalloon, null, this);
                 this.physics.add.collider(player_blue, balloons, hitBalloon, null, this);
+            
+                //player colliders with speedboost
+                this.physics.add.collider(player_red, speedboosts, speedBoost, null, this);
+                this.physics.add.collider(player_blue, speedboosts, speedBoost, null, this);
+                    
+                //player colliders with coin
+                this.physics.add.collider(player_red, coins, coinGet, null, this);
+                this.physics.add.collider(player_blue, coins, coinGet, null, this);
 
                 //let balloons collide with each other
-                this.physics.add.collider(balloons, balloons);
+                //this.physics.add.collider(balloons, balloons);
 
                 // Input Events
                 cursors = this.input.keyboard.createCursorKeys();
@@ -579,7 +774,7 @@ var fourthScene = new Phaser.Class({
                 loseText = this.add.text(
                         400, 
                         200, 
-                        "You Lose...lvl4", 
+                        "You Lose...lvl: 1", 
                         {
                             fontSize: 50,
                             color: "#000000",
@@ -589,43 +784,38 @@ var fourthScene = new Phaser.Class({
 
                 loseText.visible = false;
 
+                //red anims
                 this.anims.create({
                     key: 'red_idle',
                     frames: [ { key: 'guy_red', frame: 0}],
                     frameRate: 10,
                     repeat: -1
                 });
-
-
                 this.anims.create({
                     key: 'red_move',
                     frames: [ { key: 'guy_red', frame: 1}],
                     frameRate: 10,
                     repeat: -1
                 });
-
                 this.anims.create({
                     key: 'red_jump',
                     frames: [ { key: 'guy_red', frame: 2}],
                     frameRate: 10,
                     repeat: -1
                 });
-
+                //blue anims
                 this.anims.create({
                     key: 'blue_idle',
                     frames: [ { key: 'guy_blue', frame: 0}],
                     frameRate: 10,
                     repeat: -1
                 });
-
-
                 this.anims.create({
                     key: 'blue_move',
                     frames: [ { key: 'guy_blue', frame: 1}],
                     frameRate: 10,
                     repeat: -1
                 });
-
                 this.anims.create({
                     key: 'blue_jump',
                     frames: [ { key: 'guy_blue', frame: 2}],
@@ -648,6 +838,14 @@ var fourthScene = new Phaser.Class({
                     callback: spawnBalloon,
                     loop: true
                 });
+            
+                //create powerup timer
+                powerupSpawnTimer = this.time.addEvent({
+                    delay: 15000,
+                    callback: spawnPowerup,
+                    loop: true
+                });
+                
 
                 //balloon group
                 balloons = this.physics.add.group({
@@ -656,8 +854,7 @@ var fourthScene = new Phaser.Class({
                     setXY: {x: 12, y: 0, stepX: 70},
                     mass: 0.3
                 });
-
-
+                
                 balloons.children.iterate(function(child){
                     child.setScale(0.5);
                     child.setVelocity(Phaser.Math.Between(-200, 200), 20);
@@ -675,8 +872,58 @@ var fourthScene = new Phaser.Class({
 
                     child.setCollideWorldBounds(true);
                 })
+            
+                //speedboost group
+                speedboosts = this.physics.add.group({
+                    key: 'speedboost',
+                    repeat: 0,
+                    setXY: {x: 12, y: 0, stepX: 70},
+                    mass: 0.3
+                });
 
+                speedboosts.children.iterate(function(child){
+                    child.setScale(0.02);
+                    child.setVelocity(Phaser.Math.Between(-200, 200), 20);
+                    child.setMass(0.3);
+                    child.allowGravity = true;
+                    child.setBounce(0.2);
+                    child.setGravityY(1);
+                    child.useDamping = true;
+                    child.allowDrag = true;
+                    child.allowRotation = true;
+                    child.setAngularAcceleration(1);
+                    child.isCircle = true;
+                    child.setCircle(20);
+                    child.setMaxSpeed = 2;
 
+                    child.setCollideWorldBounds(true); 
+                })
+            
+                //coin group
+                coins = this.physics.add.group({
+                    key: 'coin',
+                    repeat: 0,
+                    setXY: {x: 12, y: 0, stepX: 70},
+                    mass: 0.3
+                });
+            
+                coins.children.iterate(function(child){
+                    child.setScale(0.2);
+                    child.setVelocity(Phaser.Math.Between(-200, 200), 20);
+                    child.setMass(0.3);
+                    child.allowGravity = true;
+                    child.setBounce(0.2);
+                    child.setGravityY(1);
+                    child.useDamping = true;
+                    child.allowDrag = true;
+                    child.allowRotation = true;
+                    child.setAngularAcceleration(1);
+                    child.isCircle = true;
+                    child.setCircle(20);
+                    child.setMaxSpeed = 2;
+
+                    child.setCollideWorldBounds(true);
+                })
 
                 //text
                 scoreText = this.add.text(16,16, 'Score: 0', {fontSize: '32px', fill: '#000'}); 
@@ -684,15 +931,27 @@ var fourthScene = new Phaser.Class({
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
                 this.physics.add.collider(player_blue, platforms);
-
+            
+                //balloons and powerups collide with platforms
                 this.physics.add.collider(balloons, platforms, popBalloon, null, this);
+                this.physics.add.collider(speedboosts, platforms);
+                this.physics.add.collider(coins, platforms);
+                
 
                 //player colliders with balloons
                 this.physics.add.collider(player_red, balloons, hitBalloon, null, this);
                 this.physics.add.collider(player_blue, balloons, hitBalloon, null, this);
+            
+                //player colliders with speedboost
+                this.physics.add.collider(player_red, speedboosts, speedBoost, null, this);
+                this.physics.add.collider(player_blue, speedboosts, speedBoost, null, this);
+                    
+                //player colliders with coin
+                this.physics.add.collider(player_red, coins, coinGet, null, this);
+                this.physics.add.collider(player_blue, coins, coinGet, null, this);
 
                 //let balloons collide with each other
-                this.physics.add.collider(balloons, balloons);
+                //this.physics.add.collider(balloons, balloons);
 
                 // Input Events
                 cursors = this.input.keyboard.createCursorKeys();
@@ -756,7 +1015,7 @@ var fifthScene = new Phaser.Class({
                 loseText = this.add.text(
                         400, 
                         200, 
-                        "You Lose...lvl5", 
+                        "You Lose...lvl: 1", 
                         {
                             fontSize: 50,
                             color: "#000000",
@@ -766,43 +1025,38 @@ var fifthScene = new Phaser.Class({
 
                 loseText.visible = false;
 
+                //red anims
                 this.anims.create({
                     key: 'red_idle',
                     frames: [ { key: 'guy_red', frame: 0}],
                     frameRate: 10,
                     repeat: -1
                 });
-
-
                 this.anims.create({
                     key: 'red_move',
                     frames: [ { key: 'guy_red', frame: 1}],
                     frameRate: 10,
                     repeat: -1
                 });
-
                 this.anims.create({
                     key: 'red_jump',
                     frames: [ { key: 'guy_red', frame: 2}],
                     frameRate: 10,
                     repeat: -1
                 });
-
+                //blue anims
                 this.anims.create({
                     key: 'blue_idle',
                     frames: [ { key: 'guy_blue', frame: 0}],
                     frameRate: 10,
                     repeat: -1
                 });
-
-
                 this.anims.create({
                     key: 'blue_move',
                     frames: [ { key: 'guy_blue', frame: 1}],
                     frameRate: 10,
                     repeat: -1
                 });
-
                 this.anims.create({
                     key: 'blue_jump',
                     frames: [ { key: 'guy_blue', frame: 2}],
@@ -825,6 +1079,14 @@ var fifthScene = new Phaser.Class({
                     callback: spawnBalloon,
                     loop: true
                 });
+            
+                //create powerup timer
+                powerupSpawnTimer = this.time.addEvent({
+                    delay: 15000,
+                    callback: spawnPowerup,
+                    loop: true
+                });
+                
 
                 //balloon group
                 balloons = this.physics.add.group({
@@ -833,8 +1095,7 @@ var fifthScene = new Phaser.Class({
                     setXY: {x: 12, y: 0, stepX: 70},
                     mass: 0.3
                 });
-
-
+                
                 balloons.children.iterate(function(child){
                     child.setScale(0.5);
                     child.setVelocity(Phaser.Math.Between(-200, 200), 20);
@@ -852,8 +1113,58 @@ var fifthScene = new Phaser.Class({
 
                     child.setCollideWorldBounds(true);
                 })
+            
+                //speedboost group
+                speedboosts = this.physics.add.group({
+                    key: 'speedboost',
+                    repeat: 0,
+                    setXY: {x: 12, y: 0, stepX: 70},
+                    mass: 0.3
+                });
 
+                speedboosts.children.iterate(function(child){
+                    child.setScale(0.02);
+                    child.setVelocity(Phaser.Math.Between(-200, 200), 20);
+                    child.setMass(0.3);
+                    child.allowGravity = true;
+                    child.setBounce(0.2);
+                    child.setGravityY(1);
+                    child.useDamping = true;
+                    child.allowDrag = true;
+                    child.allowRotation = true;
+                    child.setAngularAcceleration(1);
+                    child.isCircle = true;
+                    child.setCircle(20);
+                    child.setMaxSpeed = 2;
 
+                    child.setCollideWorldBounds(true); 
+                })
+            
+                //coin group
+                coins = this.physics.add.group({
+                    key: 'coin',
+                    repeat: 0,
+                    setXY: {x: 12, y: 0, stepX: 70},
+                    mass: 0.3
+                });
+            
+                coins.children.iterate(function(child){
+                    child.setScale(0.2);
+                    child.setVelocity(Phaser.Math.Between(-200, 200), 20);
+                    child.setMass(0.3);
+                    child.allowGravity = true;
+                    child.setBounce(0.2);
+                    child.setGravityY(1);
+                    child.useDamping = true;
+                    child.allowDrag = true;
+                    child.allowRotation = true;
+                    child.setAngularAcceleration(1);
+                    child.isCircle = true;
+                    child.setCircle(20);
+                    child.setMaxSpeed = 2;
+
+                    child.setCollideWorldBounds(true);
+                })
 
                 //text
                 scoreText = this.add.text(16,16, 'Score: 0', {fontSize: '32px', fill: '#000'}); 
@@ -861,15 +1172,27 @@ var fifthScene = new Phaser.Class({
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
                 this.physics.add.collider(player_blue, platforms);
-
+            
+                //balloons and powerups collide with platforms
                 this.physics.add.collider(balloons, platforms, popBalloon, null, this);
+                this.physics.add.collider(speedboosts, platforms);
+                this.physics.add.collider(coins, platforms);
+                
 
                 //player colliders with balloons
                 this.physics.add.collider(player_red, balloons, hitBalloon, null, this);
                 this.physics.add.collider(player_blue, balloons, hitBalloon, null, this);
+            
+                //player colliders with speedboost
+                this.physics.add.collider(player_red, speedboosts, speedBoost, null, this);
+                this.physics.add.collider(player_blue, speedboosts, speedBoost, null, this);
+                    
+                //player colliders with coin
+                this.physics.add.collider(player_red, coins, coinGet, null, this);
+                this.physics.add.collider(player_blue, coins, coinGet, null, this);
 
                 //let balloons collide with each other
-                this.physics.add.collider(balloons, balloons);
+                //this.physics.add.collider(balloons, balloons);
 
                 // Input Events
                 cursors = this.input.keyboard.createCursorKeys();
@@ -904,6 +1227,9 @@ var levelselect = new Phaser.Class({
             this.load.image('sky', 'assets/background_sky2d.png');
             this.load.image('platform', 'assets/platform_grass.png');
             this.load.image('ground', 'assets/foreground_grass.png');
+            
+            this.load.image('speedboost', 'assets/speedboost.png');
+            this.load.image('coin', 'assets/coin.png');
     
             this.load.audio('bgmusic', ['assets/bgmusic.wav']);
             this.load.audio('jump', ['assets/jump.wav']);
@@ -1087,12 +1413,17 @@ if(true){
     var platforms;
     var player_red_jump = false;
     var balloons;
+    var speedboosts;
+    var coins;
+    var spawnedCoinGroup = false;
 
     var score = 0;
     var scoreText;
 
     var timer;
-    var total = 1;
+    var totalBalloons = 1;
+    
+    var powerupSpawnTimer;
 
     var keys;
     var cursors;
@@ -1171,8 +1502,8 @@ function hitBalloon(player, balloon){
 }
 
 function popBalloon(balloon, ground){
-    total -= 1;
-    if (total <= 0) {
+    totalBalloons -= 1;
+    if (totalBalloons <= 0) {
         loseText.visible = true;
         lost = true;
         timer.remove();
@@ -1186,7 +1517,7 @@ function popBalloon(balloon, ground){
 }
 
 function spawnBalloon(){
-    total++;
+    totalBalloons++;
     var x = Phaser.Math.Between(0, 800);
     var balloon = balloons.create(x, 0, 'balloon');
     balloon.setScale(0.5);
@@ -1207,4 +1538,66 @@ function spawnBalloon(){
     
     //play SFX
     balloonSpawn.play();
+}
+
+function spawnPowerup(){
+    var powerup = Phaser.Math.Between(0,1);
+    var x = Phaser.Math.Between(0,800);
+    if(powerup == 0){
+        var speedboost = speedboosts.create(x, 0, 'speedboost');
+        speedboost.setScale(0.02);
+        speedboost.setVelocity(Phaser.Math.Between(-200, 200), 20);
+        speedboost.setMass(0.3);
+        speedboost.allowGravity = true;
+        speedboost.setBounce(0.2);
+        speedboost.setGravityY(1);
+        speedboost.useDamping = true;
+        speedboost.allowDrag = true;
+        speedboost.allowRotation = true;
+        speedboost.setAngularAcceleration(1);
+        speedboost.isCircle = true;
+        speedboost.setCircle(20);
+        speedboost.setMaxSpeed = 2;
+
+        speedboost.setCollideWorldBounds(true);
+    } else if (powerup == 1){
+        var coin = coins.create(x, 0, 'coin');
+        coin.setScale(0.2);
+        coin.setVelocity(Phaser.Math.Between(-200, 200), 20);
+        coin.setMass(0.3);
+        coin.allowGravity = true;
+        coin.setBounce(0.2);
+        coin.setGravityY(1);
+        coin.useDamping = true;
+        coin.allowDrag = true;
+        coin.allowRotation = true;
+        coin.setAngularAcceleration(1);
+        coin.isCircle = true;
+        coin.setCircle(20);
+        coin.setMaxSpeed = 2;
+        
+        coin.setCollideWorldBounds(true);
+    }
+    
+}
+
+function speedBoost(player, speedboost){
+    //var balloonCount = totalBalloons;
+    playerSpeed = 450;
+    speedboost.destroy();
+    powerupTimer = this.time.addEvent({
+        delay: 4000,
+        callback: resetPowerups,
+        loop: false
+    });
+}
+
+function coinGet(player, coin){
+    score += 10;
+    scoreText.setText('Score:' + score);
+    coin.destroy();
+}
+
+function resetPowerups(){
+    playerSpeed = 270;
 }
