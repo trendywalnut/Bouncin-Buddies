@@ -747,10 +747,10 @@ var fourthScene = new Phaser.Class({
         },
         preload: function(){
             
-            this.load.image('balloon', 'assets/balloon.png');
+            //this.load.image('balloon', 'assets/balloon.png');
             //this.load.image('guy_red', 'assets/guy_idle_red.png');
-            this.load.image('sky', 'assets/background_sky2d.png');
-            this.load.image('platform', 'assets/platform_grass.png');   
+            //this.load.image('sky', 'assets/background_sky2d.png');
+            //this.load.image('platform', 'assets/platform_grass.png');   
             
             
         },
@@ -1253,7 +1253,9 @@ var levelselect = new Phaser.Class({
             this.load.audio('error', ['assets/error.wav']);
             this.load.audio('bump', ['assets/bump.wav']);
             this.load.audio('pop', ['assets/pop.wav']);
+            this.load.audio('speedboostSFX', ['assets/item_speedup.wav']);
             this.load.audio('balloonspawn', ['assets/balloonspawn.wav']);
+            this.load.audio('bonuspointSFX', ['assets/item_pointbonus.wav']);
             
         },
         create: function(){
@@ -1341,6 +1343,8 @@ var levelselect = new Phaser.Class({
                 bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
                 
                 jump = this.sound.add('jump', {loop: false});
+                speedboostSFX = this.sound.add('speedboostSFX', {loop: false});
+                bonuspointSFX = this.sound.add('bonuspointSFX', {loop: false});
 
 
 
@@ -1601,6 +1605,7 @@ function spawnPowerup(){
 function speedBoost(player, speedboost){
     //var balloonCount = totalBalloons;
     playerSpeed = 450;
+    speedboostSFX.play();
     speedboost.destroy();
     powerupTimer = this.time.addEvent({
         delay: 4000,
@@ -1611,6 +1616,7 @@ function speedBoost(player, speedboost){
 
 function coinGet(player, coin){
     score += 10;
+    bonuspointSFX.play();
     scoreText.setText('Score:' + score);
     coin.destroy();
 }
