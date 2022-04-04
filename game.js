@@ -262,6 +262,8 @@ var secondScene = new Phaser.Class({
             this.load.image('sky', 'assets/background_sky2d.png');
             this.load.image('platform', 'assets/platform_grass.png');
             this.load.image('ground', 'assets/foreground_grass.png');
+            this.load.image('tree_trunk', 'assets/tree_trunk.png');
+            this.load.image('tree_leaves', 'assets/tree_leaves.png');
     
             
             
@@ -272,11 +274,11 @@ var secondScene = new Phaser.Class({
                 this.add.image(400, 300, 'sky');
 
                 platforms = this.physics.add.staticGroup();
+                tree = this.physics.add.staticGroup();
 
                 platforms.create(400, 568, 'ground').setScale(1).refreshBody();
-
-                platforms.create(700, 500, 'platform');
-                platforms.create(75, 500, 'platform');
+                tree.create(400, 375, 'tree_trunk').setScale(1.75);
+                tree.create(400, 150, 'tree_leaves').setScale(1.75);
 
                 player_red = this.physics.add.sprite(100, 375, 'guy_red').setScale(0.2);
                 player_red.setBounce(0.1);
@@ -451,6 +453,9 @@ var secondScene = new Phaser.Class({
                 this.physics.add.collider(player_blue, platforms);
             
                 //collide players with tree
+                this.physics.add.collider(player_red, tree);
+                this.physics.add.collider(player_blue, tree);
+                this.physics.add.collider(balloons, tree);
                 
             
                 //balloons and powerups collide with platforms
