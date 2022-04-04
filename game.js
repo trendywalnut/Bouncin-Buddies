@@ -450,6 +450,9 @@ var secondScene = new Phaser.Class({
                 this.physics.add.collider(player_red, platforms);
                 this.physics.add.collider(player_blue, platforms);
             
+                //collide players with tree
+                
+            
                 //balloons and powerups collide with platforms
                 this.physics.add.collider(balloons, platforms, popBalloon, null, this);
                 this.physics.add.collider(speedboosts, platforms);
@@ -1225,8 +1228,18 @@ var levelselect = new Phaser.Class({
             this.load.image('balloon', 'assets/balloon.png');
             //this.load.image('guy_red', 'assets/guy_idle_red.png');
             this.load.image('sky', 'assets/background_sky2d.png');
+            this.load.image('volcano', 'assets/background_volcano.png');
+            
             this.load.image('platform', 'assets/platform_grass.png');
+            this.load.image('volcano_boulder', 'assets/volcano_boulder.png');
             this.load.image('ground', 'assets/foreground_grass.png');
+            this.load.image('ground_volcano', 'assets/foreground_volcano.png');
+            
+            this.load.image('treetrunk', 'assets/tree_trunk.png');
+            this.load.image('treeleaves', 'assets/tree_leaves.png');
+            
+            this.load.image('spikepole', 'assets/spikepole.png');
+            this.load.image('spikebottom', 'assets/spikeplatform_bottom.png');
             
             this.load.image('speedboost', 'assets/speedboost.png');
             this.load.image('coin', 'assets/coin.png');
