@@ -1272,11 +1272,11 @@ var levelselect = new Phaser.Class({
                 lvl2 = this.physics.add.staticGroup();
                 lvl2.create(2*800/6,350,'baka')
                 lvl3 = this.physics.add.staticGroup();
-                lvl3.create(3*800/6,350,'baka')
+                //lvl3.create(3*800/6,350,'baka')
                 lvl4 = this.physics.add.staticGroup();
                 lvl4.create(4*800/6,350,'baka')
                 lvl5 = this.physics.add.staticGroup();
-                lvl5.create(5*800/6,350,'baka')
+                //lvl5.create(5*800/6,350,'baka')
 
                 player_red = this.physics.add.sprite(100, 400, 'guy_red').setScale(0.2);
                 player_red.setBounce(0.1);
