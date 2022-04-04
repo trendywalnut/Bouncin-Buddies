@@ -750,23 +750,22 @@ var fourthScene = new Phaser.Class({
             this.load.image('balloon', 'assets/balloon.png');
             //this.load.image('guy_red', 'assets/guy_idle_red.png');
             this.load.image('sky', 'assets/background_sky2d.png');
-            this.load.image('platform', 'assets/platform_grass.png');
-            this.load.image('ground', 'assets/foreground_grass.png');
-    
+            this.load.image('platform', 'assets/platform_grass.png');   
             
             
         },
         create: function(){
             
     
-                this.add.image(400, 300, 'sky');
+                this.add.image(400, 300, 'volcano');
 
                 platforms = this.physics.add.staticGroup();
 
-                platforms.create(400, 568, 'ground').setScale(1).refreshBody();
+                platforms.create(400, 568, 'ground_volcano').setScale(1).refreshBody();
 
-                platforms.create(700, 500, 'platform');
-                platforms.create(75, 500, 'platform');
+                platforms.create(700, 500, 'volcano_boulder');
+                platforms.create(75, 500, 'volcano_boulder');
+                platforms.create(400, 350, 'spikepole');
 
                 player_red = this.physics.add.sprite(100, 375, 'guy_red').setScale(0.2);
                 player_red.setBounce(0.1);
