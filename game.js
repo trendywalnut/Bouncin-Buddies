@@ -246,7 +246,9 @@ var firstScene = new Phaser.Class({
                     this.scene.start('levelselect')
                 }
             }
-            playerMovement();
+            else{
+                playerMovement();
+            }
         }
     });
 var secondScene = new Phaser.Class({
@@ -495,7 +497,9 @@ var secondScene = new Phaser.Class({
                     this.scene.start('levelselect')
                 }
             }
-            playerMovement();
+            else{
+                playerMovement();
+            }
         }
     });
 var thirdScene = new Phaser.Class({
@@ -736,7 +740,9 @@ var thirdScene = new Phaser.Class({
                     this.scene.start('levelselect')
                 }
             }
-            playerMovement();
+            else{
+                playerMovement();
+            }
         }
     });
 var fourthScene = new Phaser.Class({
@@ -976,7 +982,9 @@ var fourthScene = new Phaser.Class({
                     this.scene.start('levelselect')
                 }
             }
-            playerMovement();
+            else{
+                playerMovement();
+            }
         }
     });
 var fifthScene = new Phaser.Class({
@@ -1217,7 +1225,9 @@ var fifthScene = new Phaser.Class({
                     this.scene.start('levelselect')
                 }
             }
-            playerMovement();
+            else{
+                playerMovement();
+            }
         }
     });
 var levelselect = new Phaser.Class({
