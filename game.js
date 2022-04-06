@@ -6,23 +6,7 @@ var firstScene = new Phaser.Class({
             Phaser.Scene.call(this,{key:'firstScene'});
         },
         preload: function(){
-            this.load.spritesheet('guy_red', 'assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
-            this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
-            this.load.image('balloon', 'assets/balloon.png');
-            //this.load.image('guy_red', 'assets/guy_idle_red.png');
-            this.load.image('sky', 'assets/background_sky2d.png');
-            this.load.image('platform', 'assets/platform_grass.png');
-            this.load.image('ground', 'assets/foreground_grass.png');
             
-            this.load.image('speedboost', 'assets/speedboost.png');
-            this.load.image('coin', 'assets/coin.png');
-    
-            this.load.audio('bgmusic', ['assets/bgmusic.wav']);
-            this.load.audio('jump', ['assets/jump.wav']);
-            this.load.audio('error', ['assets/error.wav']);
-            this.load.audio('bump', ['assets/bump.wav']);
-            this.load.audio('pop', ['assets/pop.wav']);
-            this.load.audio('balloonspawn', ['assets/balloonspawn.wav']);
             
         },
         create: function(){
@@ -61,44 +45,9 @@ var firstScene = new Phaser.Class({
 
                 loseText.visible = false;
 
-                //red anims
-                this.anims.create({
-                    key: 'red_idle',
-                    frames: [ { key: 'guy_red', frame: 0}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                this.anims.create({
-                    key: 'red_move',
-                    frames: [ { key: 'guy_red', frame: 1}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                this.anims.create({
-                    key: 'red_jump',
-                    frames: [ { key: 'guy_red', frame: 2}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                //blue anims
-                this.anims.create({
-                    key: 'blue_idle',
-                    frames: [ { key: 'guy_blue', frame: 0}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                this.anims.create({
-                    key: 'blue_move',
-                    frames: [ { key: 'guy_blue', frame: 1}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                this.anims.create({
-                    key: 'blue_jump',
-                    frames: [ { key: 'guy_blue', frame: 2}],
-                    frameRate: 10,
-                    repeat: -1
-                });
+                
+                
+               
 
                 //audio
                 bgmusic = this.sound.add('bgmusic', {loop: true});
@@ -109,12 +58,7 @@ var firstScene = new Phaser.Class({
                 jump = this.sound.add('jump', {loop: false});
                 balloonSpawn = this.sound.add('balloonspawn', {loop: false});
 
-                //Create Balloon Timer
-                timer = this.time.addEvent({
-                    delay: 5000,
-                    callback: spawnBalloon,
-                    loop: true
-                });
+                
             
                 //create powerup timer
                 powerupSpawnTimer = this.time.addEvent({
@@ -123,6 +67,13 @@ var firstScene = new Phaser.Class({
                     loop: true
                 });
                 
+                //this.time.events.loop(15000,spawnPowerup,this)
+                //Create Balloon Timer
+                timer = this.time.addEvent({
+                    delay: 5000,
+                    callback: spawnBalloon,
+                    loop: true
+                });
 
                 //balloon group
                 balloons = this.physics.add.group({
@@ -259,15 +210,6 @@ var secondScene = new Phaser.Class({
         },
         preload: function(){
             
-            this.load.image('balloon', 'assets/balloon.png');
-            ;
-            this.load.image('sky', 'assets/background_sky2d.png');
-            this.load.image('platform', 'assets/platform_grass.png');
-            this.load.image('ground', 'assets/foreground_grass.png');
-            this.load.image('tree_trunk', 'assets/tree_trunk.png');
-            this.load.image('tree_leaves', 'assets/tree_leaves.png');
-    
-            
             
         },
         create: function(){
@@ -306,45 +248,7 @@ var secondScene = new Phaser.Class({
 
                 loseText.visible = false;
 
-                //red anims
-                this.anims.create({
-                    key: 'red_idle',
-                    frames: [ { key: 'guy_red', frame: 0}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                this.anims.create({
-                    key: 'red_move',
-                    frames: [ { key: 'guy_red', frame: 1}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                this.anims.create({
-                    key: 'red_jump',
-                    frames: [ { key: 'guy_red', frame: 2}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                //blue anims
-                this.anims.create({
-                    key: 'blue_idle',
-                    frames: [ { key: 'guy_blue', frame: 0}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                this.anims.create({
-                    key: 'blue_move',
-                    frames: [ { key: 'guy_blue', frame: 1}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                this.anims.create({
-                    key: 'blue_jump',
-                    frames: [ { key: 'guy_blue', frame: 2}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-
+                
                 //audio
                 bgmusic = this.sound.add('bgmusic', {loop: true});
                 bgmusic.play();
@@ -354,12 +258,7 @@ var secondScene = new Phaser.Class({
                 jump = this.sound.add('jump', {loop: false});
                 balloonSpawn = this.sound.add('balloonspawn', {loop: false});
 
-                //Create Balloon Timer
-                timer = this.time.addEvent({
-                    delay: 5000,
-                    callback: spawnBalloon,
-                    loop: true
-                });
+                
             
                 //create powerup timer
                 powerupSpawnTimer = this.time.addEvent({
@@ -368,7 +267,12 @@ var secondScene = new Phaser.Class({
                     loop: true
                 });
                 
-
+                //Create Balloon Timer
+                timer = this.time.addEvent({
+                    delay: 5000,
+                    callback: spawnBalloon,
+                    loop: true
+                });
                 //balloon group
                 balloons = this.physics.add.group({
                     key: 'balloon',
@@ -376,6 +280,7 @@ var secondScene = new Phaser.Class({
                     setXY: {x: 12, y: 0, stepX: 70},
                     mass: 0.3
                 });
+                
                 
                 balloons.children.iterate(function(child){
                     child.setScale(0.5);
@@ -510,11 +415,7 @@ var thirdScene = new Phaser.Class({
         },
         preload: function(){
             
-            this.load.image('balloon', 'assets/balloon.png');
-            //this.load.image('guy_red', 'assets/guy_idle_red.png');
-            this.load.image('sky', 'assets/background_sky2d.png');
-            this.load.image('platform', 'assets/platform_grass.png');
-            this.load.image('ground', 'assets/foreground_grass.png');
+           
     
             
             
@@ -555,44 +456,7 @@ var thirdScene = new Phaser.Class({
 
                 loseText.visible = false;
 
-                //red anims
-                this.anims.create({
-                    key: 'red_idle',
-                    frames: [ { key: 'guy_red', frame: 0}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                this.anims.create({
-                    key: 'red_move',
-                    frames: [ { key: 'guy_red', frame: 1}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                this.anims.create({
-                    key: 'red_jump',
-                    frames: [ { key: 'guy_red', frame: 2}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                //blue anims
-                this.anims.create({
-                    key: 'blue_idle',
-                    frames: [ { key: 'guy_blue', frame: 0}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                this.anims.create({
-                    key: 'blue_move',
-                    frames: [ { key: 'guy_blue', frame: 1}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                this.anims.create({
-                    key: 'blue_jump',
-                    frames: [ { key: 'guy_blue', frame: 2}],
-                    frameRate: 10,
-                    repeat: -1
-                });
+                
 
                 //audio
                 bgmusic = this.sound.add('bgmusic', {loop: true});
@@ -603,12 +467,7 @@ var thirdScene = new Phaser.Class({
                 jump = this.sound.add('jump', {loop: false});
                 balloonSpawn = this.sound.add('balloonspawn', {loop: false});
 
-                //Create Balloon Timer
-                timer = this.time.addEvent({
-                    delay: 5000,
-                    callback: spawnBalloon,
-                    loop: true
-                });
+                
             
                 //create powerup timer
                 powerupSpawnTimer = this.time.addEvent({
@@ -616,7 +475,12 @@ var thirdScene = new Phaser.Class({
                     callback: spawnPowerup,
                     loop: true
                 });
-                
+                //Create Balloon Timer
+                timer = this.time.addEvent({
+                    delay: 5000,
+                    callback: spawnBalloon,
+                    loop: true
+                });
 
                 //balloon group
                 balloons = this.physics.add.group({
@@ -753,10 +617,7 @@ var fourthScene = new Phaser.Class({
         },
         preload: function(){
             
-            //this.load.image('balloon', 'assets/balloon.png');
-            //this.load.image('guy_red', 'assets/guy_idle_red.png');
-            //this.load.image('sky', 'assets/background_sky2d.png');
-            //this.load.image('platform', 'assets/platform_grass.png');   
+            
             
             
         },
@@ -797,44 +658,7 @@ var fourthScene = new Phaser.Class({
 
                 loseText.visible = false;
 
-                //red anims
-                this.anims.create({
-                    key: 'red_idle',
-                    frames: [ { key: 'guy_red', frame: 0}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                this.anims.create({
-                    key: 'red_move',
-                    frames: [ { key: 'guy_red', frame: 1}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                this.anims.create({
-                    key: 'red_jump',
-                    frames: [ { key: 'guy_red', frame: 2}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                //blue anims
-                this.anims.create({
-                    key: 'blue_idle',
-                    frames: [ { key: 'guy_blue', frame: 0}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                this.anims.create({
-                    key: 'blue_move',
-                    frames: [ { key: 'guy_blue', frame: 1}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                this.anims.create({
-                    key: 'blue_jump',
-                    frames: [ { key: 'guy_blue', frame: 2}],
-                    frameRate: 10,
-                    repeat: -1
-                });
+               
 
                 //audio
                 bgmusic = this.sound.add('bgmusic', {loop: true});
@@ -845,12 +669,7 @@ var fourthScene = new Phaser.Class({
                 jump = this.sound.add('jump', {loop: false});
                 balloonSpawn = this.sound.add('balloonspawn', {loop: false});
 
-                //Create Balloon Timer
-                timer = this.time.addEvent({
-                    delay: 5000,
-                    callback: spawnBalloon,
-                    loop: true
-                });
+                
             
                 //create powerup timer
                 powerupSpawnTimer = this.time.addEvent({
@@ -858,7 +677,12 @@ var fourthScene = new Phaser.Class({
                     callback: spawnPowerup,
                     loop: true
                 });
-                
+                //Create Balloon Timer
+                timer = this.time.addEvent({
+                    delay: 5000,
+                    callback: spawnBalloon,
+                    loop: true
+                });
 
                 //balloon group
                 balloons = this.physics.add.group({
@@ -995,11 +819,7 @@ var fifthScene = new Phaser.Class({
         },
         preload: function(){
             
-            this.load.image('balloon', 'assets/balloon.png');
-            
-            this.load.image('sky', 'assets/background_sky2d.png');
-            this.load.image('platform', 'assets/platform_grass.png');
-            this.load.image('ground', 'assets/foreground_grass.png');
+           
     
            
             
@@ -1030,7 +850,7 @@ var fifthScene = new Phaser.Class({
                 loseText = this.add.text(
                         400, 
                         200, 
-                        "You Lose...lvl: 1", 
+                        "You Lose...lvl: 5", 
                         {
                             fontSize: 50,
                             color: "#000000",
@@ -1040,44 +860,7 @@ var fifthScene = new Phaser.Class({
 
                 loseText.visible = false;
 
-                //red anims
-                this.anims.create({
-                    key: 'red_idle',
-                    frames: [ { key: 'guy_red', frame: 0}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                this.anims.create({
-                    key: 'red_move',
-                    frames: [ { key: 'guy_red', frame: 1}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                this.anims.create({
-                    key: 'red_jump',
-                    frames: [ { key: 'guy_red', frame: 2}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                //blue anims
-                this.anims.create({
-                    key: 'blue_idle',
-                    frames: [ { key: 'guy_blue', frame: 0}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                this.anims.create({
-                    key: 'blue_move',
-                    frames: [ { key: 'guy_blue', frame: 1}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-                this.anims.create({
-                    key: 'blue_jump',
-                    frames: [ { key: 'guy_blue', frame: 2}],
-                    frameRate: 10,
-                    repeat: -1
-                });
+                
 
                 //audio
                 bgmusic = this.sound.add('bgmusic', {loop: true});
@@ -1088,12 +871,7 @@ var fifthScene = new Phaser.Class({
                 jump = this.sound.add('jump', {loop: false});
                 balloonSpawn = this.sound.add('balloonspawn', {loop: false});
 
-                //Create Balloon Timer
-                timer = this.time.addEvent({
-                    delay: 5000,
-                    callback: spawnBalloon,
-                    loop: true
-                });
+                
             
                 //create powerup timer
                 powerupSpawnTimer = this.time.addEvent({
@@ -1101,9 +879,16 @@ var fifthScene = new Phaser.Class({
                     callback: spawnPowerup,
                     loop: true
                 });
+                //Create Balloon Timer
+                timer = this.time.addEvent({
+                    delay: 5000,
+                    callback: spawnBalloon,
+                    loop: true
+                });
                 
 
                 //balloon group
+                
                 balloons = this.physics.add.group({
                     key: 'balloon',
                     repeat: 0,
@@ -1237,39 +1022,40 @@ var levelselect = new Phaser.Class({
             Phaser.Scene.call(this,{key:'levelselect'});
         },
         preload: function(){
-            this.load.spritesheet('guy_red', 'assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
-            this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
-            this.load.image('balloon', 'assets/balloon.png');
-            //this.load.image('guy_red', 'assets/guy_idle_red.png');
-            this.load.image('sky', 'assets/background_sky2d.png');
-            this.load.image('volcano', 'assets/background_volcano.png');
-            
-            this.load.image('platform', 'assets/platform_grass.png');
-            this.load.image('volcano_boulder', 'assets/volcano_boulder.png');
-            this.load.image('ground', 'assets/foreground_grass.png');
-            this.load.image('ground_volcano', 'assets/foreground_volcano.png');
-            
-            this.load.image('treetrunk', 'assets/tree_trunk.png');
-            this.load.image('treeleaves', 'assets/tree_leaves.png');
-            
-            this.load.image('spikepole', 'assets/spikepole.png');
-            this.load.image('spikebottom', 'assets/spikeplatform_bottom.png');
-            
-            this.load.image('speedboost', 'assets/speedboost.png');
-            this.load.image('coin', 'assets/coin.png');
-    
-            this.load.audio('bgmusic', ['assets/bgmusic.wav']);
-            this.load.audio('jump', ['assets/jump.wav']);
-            this.load.audio('error', ['assets/error.wav']);
-            this.load.audio('bump', ['assets/bump.wav']);
-            this.load.audio('pop', ['assets/pop.wav']);
-            this.load.audio('speedboostSFX', ['assets/item_speedup.wav']);
-            this.load.audio('balloonspawn', ['assets/balloonspawn.wav']);
-            this.load.audio('bonuspointSFX', ['assets/item_pointbonus.wav']);
-            
+            if(loaded == false){
+                this.load.spritesheet('guy_red', 'assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
+                this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
+                this.load.image('balloon', 'assets/balloon.png');
+                //this.load.image('guy_red', 'assets/guy_idle_red.png');
+                this.load.image('sky', 'assets/background_sky2d.png');
+                this.load.image('volcano', 'assets/background_volcano.png');
+
+                this.load.image('platform', 'assets/platform_grass.png');
+                this.load.image('volcano_boulder', 'assets/volcano_boulder.png');
+                this.load.image('ground', 'assets/foreground_grass.png');
+                this.load.image('ground_volcano', 'assets/foreground_volcano.png');
+
+                this.load.image('treetrunk', 'assets/tree_trunk.png');
+                this.load.image('treeleaves', 'assets/tree_leaves.png');
+
+                this.load.image('spikepole', 'assets/spikepole.png');
+                this.load.image('spikebottom', 'assets/spikeplatform_bottom.png');
+
+                this.load.image('speedboost', 'assets/speedboost.png');
+                this.load.image('coin', 'assets/coin.png');
+
+                this.load.audio('bgmusic', ['assets/bgmusic.wav']);
+                this.load.audio('jump', ['assets/jump.wav']);
+                this.load.audio('error', ['assets/error.wav']);
+                this.load.audio('bump', ['assets/bump.wav']);
+                this.load.audio('pop', ['assets/pop.wav']);
+                this.load.audio('speedboostSFX', ['assets/item_speedup.wav']);
+                this.load.audio('balloonspawn', ['assets/balloonspawn.wav']);
+                this.load.audio('bonuspointSFX', ['assets/item_pointbonus.wav']);
+            }
         },
         create: function(){
-            
+                startup =false
                 lost = false
                 this.add.image(400, 300, 'sky');
 
@@ -1301,50 +1087,52 @@ var levelselect = new Phaser.Class({
                
 
                 
-
-                this.anims.create({
-                    key: 'red_idle',
-                    frames: [ { key: 'guy_red', frame: 0}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-
-
-                this.anims.create({
-                    key: 'red_move',
-                    frames: [ { key: 'guy_red', frame: 1}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-
-                this.anims.create({
-                    key: 'red_jump',
-                    frames: [ { key: 'guy_red', frame: 2}],
-                    frameRate: 10,
-                    repeat: -1
-                });
-
-                this.anims.create({
-                    key: 'blue_idle',
-                    frames: [ { key: 'guy_blue', frame: 0}],
-                    frameRate: 10,
-                    repeat: -1
-                });
+                if(loaded == false){
+                    this.anims.create({
+                        key: 'red_idle',
+                        frames: [ { key: 'guy_red', frame: 0}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
 
 
-                this.anims.create({
-                    key: 'blue_move',
-                    frames: [ { key: 'guy_blue', frame: 1}],
-                    frameRate: 10,
-                    repeat: -1
-                });
+                    this.anims.create({
+                        key: 'red_move',
+                        frames: [ { key: 'guy_red', frame: 1}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
 
-                this.anims.create({
-                    key: 'blue_jump',
-                    frames: [ { key: 'guy_blue', frame: 2}],
-                    frameRate: 10,
-                    repeat: -1
-                });
+                    this.anims.create({
+                        key: 'red_jump',
+                        frames: [ { key: 'guy_red', frame: 2}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+
+                    this.anims.create({
+                        key: 'blue_idle',
+                        frames: [ { key: 'guy_blue', frame: 0}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+
+
+                    this.anims.create({
+                        key: 'blue_move',
+                        frames: [ { key: 'guy_blue', frame: 1}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+
+                    this.anims.create({
+                        key: 'blue_jump',
+                        frames: [ { key: 'guy_blue', frame: 2}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+                    loaded = true;
+                }
 
                 //audio
                 bgmusic = this.sound.add('bgmusic', {loop: true});
@@ -1447,7 +1235,7 @@ if(true){
     var speedboosts;
     var coins;
     var spawnedCoinGroup = false;
-
+    var loaded = false;
     var score = 0;
     var scoreText;
 
@@ -1464,6 +1252,7 @@ if(true){
 
     var lost = false;
     var loseText;
+    var startup = false;
 };
 //var bgmusic;
 //var popSFX;
@@ -1541,6 +1330,10 @@ function popBalloon(balloon, ground){
         error.play();
         popSFX.play();
         bgmusic.stop();
+        player_red.anims.play('red_idle', true);
+        player_blue.anims.play('blue_idle', true);
+        player_blue.setVelocityX(0);
+        player_red.setVelocityX(0);
     }else{
         popSFX.play();
     }
@@ -1572,42 +1365,47 @@ function spawnBalloon(){
 }
 
 function spawnPowerup(){
-    var powerup = Phaser.Math.Between(0,1);
-    var x = Phaser.Math.Between(0,800);
-    if(powerup == 0){
-        var speedboost = speedboosts.create(x, 0, 'speedboost');
-        speedboost.setScale(0.02);
-        speedboost.setVelocity(Phaser.Math.Between(-200, 200), 20);
-        speedboost.setMass(0.3);
-        speedboost.allowGravity = true;
-        speedboost.setBounce(0.2);
-        speedboost.setGravityY(1);
-        speedboost.useDamping = true;
-        speedboost.allowDrag = true;
-        speedboost.allowRotation = true;
-        speedboost.setAngularAcceleration(1);
-        speedboost.isCircle = true;
-        speedboost.setCircle(20);
-        speedboost.setMaxSpeed = 2;
+    if(startup == true){
+        var powerup = Phaser.Math.Between(0,1);
+        var x = Phaser.Math.Between(0,800);
+        if(powerup == 0){
+            var speedboost = speedboosts.create(x, 0, 'speedboost');
+            speedboost.setScale(0.02);
+            speedboost.setVelocity(Phaser.Math.Between(-200, 200), 20);
+            speedboost.setMass(0.3);
+            speedboost.allowGravity = true;
+            speedboost.setBounce(0.2);
+            speedboost.setGravityY(1);
+            speedboost.useDamping = true;
+            speedboost.allowDrag = true;
+            speedboost.allowRotation = true;
+            speedboost.setAngularAcceleration(1);
+            speedboost.isCircle = true;
+            speedboost.setCircle(20);
+            speedboost.setMaxSpeed = 2;
 
-        speedboost.setCollideWorldBounds(true);
-    } else if (powerup == 1){
-        var coin = coins.create(x, 0, 'coin');
-        coin.setScale(0.2);
-        coin.setVelocity(Phaser.Math.Between(-200, 200), 20);
-        coin.setMass(0.3);
-        coin.allowGravity = true;
-        coin.setBounce(0.2);
-        coin.setGravityY(1);
-        coin.useDamping = true;
-        coin.allowDrag = true;
-        coin.allowRotation = true;
-        coin.setAngularAcceleration(1);
-        coin.isCircle = true;
-        coin.setCircle(20);
-        coin.setMaxSpeed = 2;
-        
-        coin.setCollideWorldBounds(true);
+            speedboost.setCollideWorldBounds(true);
+        } else if (powerup == 1){
+            var coin = coins.create(x, 0, 'coin');
+            coin.setScale(0.2);
+            coin.setVelocity(Phaser.Math.Between(-200, 200), 20);
+            coin.setMass(0.3);
+            coin.allowGravity = true;
+            coin.setBounce(0.2);
+            coin.setGravityY(1);
+            coin.useDamping = true;
+            coin.allowDrag = true;
+            coin.allowRotation = true;
+            coin.setAngularAcceleration(1);
+            coin.isCircle = true;
+            coin.setCircle(20);
+            coin.setMaxSpeed = 2;
+
+            coin.setCollideWorldBounds(true);
+        }
+        else{
+            startup = true
+        }
     }
     
 }
