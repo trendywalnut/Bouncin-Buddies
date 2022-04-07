@@ -50,7 +50,7 @@ var firstScene = new Phaser.Class({
                
 
                 //audio
-                bgmusic = this.sound.add('bgmusic', {loop: true});
+                //bgmusic = this.sound.add('bgmusic', {loop: true});
                 bgmusic.play();
                 popSFX = this.sound.add('pop', {loop: false});
                 bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
@@ -1022,6 +1022,8 @@ var levelselect = new Phaser.Class({
             Phaser.Scene.call(this,{key:'levelselect'});
         },
         preload: function(){
+            totalBalloons = 1
+            score = 0
             if(loaded == false){
                 this.load.spritesheet('guy_red', 'assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
                 this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
@@ -1055,7 +1057,7 @@ var levelselect = new Phaser.Class({
             }
         },
         create: function(){
-                startup =false
+                //startup =false
                 lost = false
                 this.add.image(400, 300, 'sky');
 
@@ -1252,7 +1254,7 @@ if(true){
 
     var lost = false;
     var loseText;
-    var startup = false;
+    //var startup;
 };
 //var bgmusic;
 //var popSFX;
@@ -1342,6 +1344,7 @@ function popBalloon(balloon, ground){
 
 function spawnBalloon(){
     totalBalloons++;
+    console.log(totalBalloons)
     var x = Phaser.Math.Between(0, 800);
     var balloon = balloons.create(x, 0, 'balloon');
     balloon.setScale(0.5);
@@ -1365,10 +1368,12 @@ function spawnBalloon(){
 }
 
 function spawnPowerup(){
-    if(startup == true){
+    //console.log("Spawn")
+    //console.log(startup)
+    //if(startup == true){
         var powerup = Phaser.Math.Between(0,1);
         var x = Phaser.Math.Between(0,800);
-        if(powerup == 0){
+        if(powerup <= .5){
             var speedboost = speedboosts.create(x, 0, 'speedboost');
             speedboost.setScale(0.02);
             speedboost.setVelocity(Phaser.Math.Between(-200, 200), 20);
@@ -1385,7 +1390,7 @@ function spawnPowerup(){
             speedboost.setMaxSpeed = 2;
 
             speedboost.setCollideWorldBounds(true);
-        } else if (powerup == 1){
+        } else if (powerup >=.5){
             var coin = coins.create(x, 0, 'coin');
             coin.setScale(0.2);
             coin.setVelocity(Phaser.Math.Between(-200, 200), 20);
@@ -1402,10 +1407,11 @@ function spawnPowerup(){
             coin.setMaxSpeed = 2;
 
             coin.setCollideWorldBounds(true);
-        }
-        else{
-            startup = true
-        }
+        //}
+        //else{
+        //    startup = true
+        //    console.log(startup)
+        //}
     }
     
 }
