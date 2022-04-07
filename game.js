@@ -154,8 +154,8 @@ var firstScene = new Phaser.Class({
                 })
 
                 //text
-                scoreText = this.add.text(16,16, 'Score: 0', {fontSize: '32px', fill: '#000'}); 
-
+                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000'}); 
+                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000'}); 
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
                 this.physics.add.collider(player_blue, platforms);
@@ -353,7 +353,8 @@ var secondScene = new Phaser.Class({
                 })
 
                 //text
-                scoreText = this.add.text(16,16, 'Score: 0', {fontSize: '32px', fill: '#000'}); 
+                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000'}); 
+                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000'}); 
 
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
@@ -561,7 +562,8 @@ var thirdScene = new Phaser.Class({
                 })
 
                 //text
-                scoreText = this.add.text(16,16, 'Score: 0', {fontSize: '32px', fill: '#000'}); 
+                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000'}); 
+                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000'}); 
 
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
@@ -764,7 +766,8 @@ var fourthScene = new Phaser.Class({
                 })
 
                 //text
-                scoreText = this.add.text(16,16, 'Score: 0', {fontSize: '32px', fill: '#000'}); 
+                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000'}); 
+                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000'}); 
 
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
@@ -968,7 +971,8 @@ var fifthScene = new Phaser.Class({
                 })
 
                 //text
-                scoreText = this.add.text(16,16, 'Score: 0', {fontSize: '32px', fill: '#000'}); 
+                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000'}); 
+                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000'}); 
 
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
@@ -1150,8 +1154,7 @@ var levelselect = new Phaser.Class({
 
 
                 //text
-                scoreText = this.add.text(16,16, 'Score: 0', {fontSize: '32px', fill: '#000'}); 
-
+                
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
                 this.physics.add.collider(player_blue, platforms);
@@ -1241,6 +1244,7 @@ if(true){
     var loaded = false;
     var score = 0;
     var scoreText;
+    var livesText;
 
     var timer;
     var totalBalloons = 1;
@@ -1324,19 +1328,21 @@ function playerMovement () {
 }
 
 function hitBalloon(player, balloon){
-    //balloon.setVelocityY(-260);
-    player.setVelocityY(200);
-    
-    bump.play();
-    
-    score += 1;
-    scoreText.setText('Score:' + score);
-    
+    if(lives >0){
+        //balloon.setVelocityY(-260);
+        player.setVelocityY(200);
+
+        bump.play();
+
+        score += 1;
+        scoreText.setText('Score:' + score);
+    }
 }
 
 function popBalloon(balloon, ground){
     totalBalloons -= 1;
     lives -=1
+    livesText.setText('lives: '+lives)
     if (totalBalloons <= 0 || lives == 0) {
         loseText.visible = true;
         lost = true;
@@ -1385,6 +1391,7 @@ function spawnPowerup(){
     //console.log("Spawn")
     //console.log(startup)
     //if(startup == true){
+    if(lives >0){
         var powerup = Phaser.Math.Between(0,1);
         var x = Phaser.Math.Between(0,800);
         if(powerup <= .5){
@@ -1426,6 +1433,7 @@ function spawnPowerup(){
         //    startup = true
         //    console.log(startup)
         //}
+    }
     }
     
 }
