@@ -11,7 +11,7 @@ var firstScene = new Phaser.Class({
         },
         create: function(){
             
-    
+                lives = lives1
                 this.add.image(400, 300, 'sky');
 
                 platforms = this.physics.add.staticGroup();
@@ -214,7 +214,7 @@ var secondScene = new Phaser.Class({
         },
         create: function(){
             
-    
+                lives = lives2
                 this.add.image(400, 300, 'sky');
 
                 platforms = this.physics.add.staticGroup();
@@ -422,7 +422,7 @@ var thirdScene = new Phaser.Class({
         },
         create: function(){
             
-    
+                lives = lives3
                 this.add.image(400, 300, 'sky');
 
                 platforms = this.physics.add.staticGroup();
@@ -622,7 +622,7 @@ var fourthScene = new Phaser.Class({
             
         },
         create: function(){
-            
+                lives = lives4
     
                 this.add.image(400, 300, 'volcano');
 
@@ -826,7 +826,7 @@ var fifthScene = new Phaser.Class({
         },
         create: function(){
             
-    
+                lives = lives5
                 this.add.image(400, 300, 'sky');
 
                 platforms = this.physics.add.staticGroup();
@@ -1251,7 +1251,12 @@ if(true){
 
     var playerSpeed = 270;
     var jumpSpeed = 450;
-
+    var lives;
+    var lives1 = 8
+    var lives2 = 8 
+    var lives3 = 8
+    var lives4 = 8
+    var lives5 = 8
     var lost = false;
     var loseText;
     //var startup;
@@ -1325,7 +1330,8 @@ function hitBalloon(player, balloon){
 
 function popBalloon(balloon, ground){
     totalBalloons -= 1;
-    if (totalBalloons <= 0) {
+    lives -=1
+    if (totalBalloons <= 0 || lives == 0) {
         loseText.visible = true;
         lost = true;
         timer.remove();
