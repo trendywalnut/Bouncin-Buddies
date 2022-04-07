@@ -10,7 +10,7 @@ var firstScene = new Phaser.Class({
             
         },
         create: function(){
-            
+                max =max1
                 lives = lives1
                 this.add.image(400, 300, 'sky');
 
@@ -213,7 +213,7 @@ var secondScene = new Phaser.Class({
             
         },
         create: function(){
-            
+                max = max2
                 lives = lives2
                 this.add.image(400, 300, 'sky');
 
@@ -421,7 +421,7 @@ var thirdScene = new Phaser.Class({
             
         },
         create: function(){
-            
+                max = max3
                 lives = lives3
                 this.add.image(400, 300, 'sky');
 
@@ -622,6 +622,7 @@ var fourthScene = new Phaser.Class({
             
         },
         create: function(){
+                max = max4
                 lives = lives4
     
                 this.add.image(400, 300, 'volcano');
@@ -825,7 +826,7 @@ var fifthScene = new Phaser.Class({
             
         },
         create: function(){
-            
+                max = max5
                 lives = lives5
                 this.add.image(400, 300, 'sky');
 
@@ -1248,7 +1249,12 @@ if(true){
 
     var keys;
     var cursors;
-
+    var max;
+    var max1 = 8
+    var max2 = 8 
+    var max3 = 8
+    var max4 = 8
+    var max5 = 8
     var playerSpeed = 270;
     var jumpSpeed = 450;
     var lives;
@@ -1349,28 +1355,30 @@ function popBalloon(balloon, ground){
 }
 
 function spawnBalloon(){
-    totalBalloons++;
-    console.log(totalBalloons)
-    var x = Phaser.Math.Between(0, 800);
-    var balloon = balloons.create(x, 0, 'balloon');
-    balloon.setScale(0.5);
-    balloon.setVelocity(Phaser.Math.Between(-200, 200), 20);
-    balloon.setMass(0.3);
-    balloon.allowGravity = true;
-    balloon.setBounce(0.2);
-    balloon.setGravityY(1);
-    balloon.useDamping = true;
-    balloon.allowDrag = true;
-    balloon.allowRotation = true;
-    balloon.setAngularAcceleration(1.5);
-    balloon.isCircle = true;
-    balloon.setCircle(20, 27, 37);
-    balloon.setMaxSpeed = 2;
-        
-    balloon.setCollideWorldBounds(true);  
-    
-    //play SFX
-    balloonSpawn.play();
+    if(totalBalloons<=max){
+        totalBalloons++;
+        console.log(totalBalloons)
+        var x = Phaser.Math.Between(0, 800);
+        var balloon = balloons.create(x, 0, 'balloon');
+        balloon.setScale(0.5);
+        balloon.setVelocity(Phaser.Math.Between(-200, 200), 20);
+        balloon.setMass(0.3);
+        balloon.allowGravity = true;
+        balloon.setBounce(0.2);
+        balloon.setGravityY(1);
+        balloon.useDamping = true;
+        balloon.allowDrag = true;
+        balloon.allowRotation = true;
+        balloon.setAngularAcceleration(1.5);
+        balloon.isCircle = true;
+        balloon.setCircle(20, 27, 37);
+        balloon.setMaxSpeed = 2;
+
+        balloon.setCollideWorldBounds(true);  
+
+        //play SFX
+        balloonSpawn.play();
+    }
 }
 
 function spawnPowerup(){
