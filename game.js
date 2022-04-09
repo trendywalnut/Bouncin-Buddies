@@ -35,7 +35,7 @@ var firstScene = new Phaser.Class({
                 loseText = this.add.text(
                         400, 
                         200, 
-                        "You Lose...lvl: 1", 
+                        "\t\t\t\t\t\tGAME OVER\nPress Space to restart", 
                         {
                             fontSize: 50,
                             color: "#000000",
@@ -154,8 +154,8 @@ var firstScene = new Phaser.Class({
                 })
 
                 //text
-                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000'}); 
-                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000'}); 
+                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000', fontStyle: 'bold'}); 
+                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000', fontStyle: 'bold'}); 
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
                 this.physics.add.collider(player_blue, platforms);
@@ -221,8 +221,8 @@ var secondScene = new Phaser.Class({
                 tree = this.physics.add.staticGroup();
 
                 platforms.create(400, 568, 'ground').setScale(1).refreshBody();
-                tree.create(400, 375, 'tree_trunk').setScale(1.75);
-                tree.create(400, 150, 'tree_leaves').setScale(1.75);
+                tree.create(400, 375, 'treetrunk').setScale(1.75);
+                tree.create(400, 150, 'treeleaves').setScale(1.75);
 
                 player_red = this.physics.add.sprite(100, 375, 'guy_red').setScale(0.2);
                 player_red.setBounce(0.1);
@@ -238,7 +238,7 @@ var secondScene = new Phaser.Class({
                 loseText = this.add.text(
                         400, 
                         200, 
-                        "You Lose...lvl: 1", 
+                        "\t\t\t\t\t\tGAME OVER\nPress Space to restart", 
                         {
                             fontSize: 50,
                             color: "#000000",
@@ -353,8 +353,8 @@ var secondScene = new Phaser.Class({
                 })
 
                 //text
-                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000'}); 
-                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000'}); 
+                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000', fontStyle: 'bold'}); 
+                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000', fontStyle: 'bold'});  
 
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
@@ -447,7 +447,7 @@ var thirdScene = new Phaser.Class({
                 loseText = this.add.text(
                         400, 
                         200, 
-                        "You Lose...lvl: 1", 
+                        "\t\t\t\t\t\tGAME OVER\nPress Space to restart", 
                         {
                             fontSize: 50,
                             color: "#000000",
@@ -562,8 +562,8 @@ var thirdScene = new Phaser.Class({
                 })
 
                 //text
-                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000'}); 
-                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000'}); 
+                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000', fontStyle: 'bold'}); 
+                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000', fontStyle: 'bold'}); 
 
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
@@ -651,7 +651,7 @@ var fourthScene = new Phaser.Class({
                 loseText = this.add.text(
                         400, 
                         200, 
-                        "You Lose...lvl: 1", 
+                        "\t\t\t\t\t\tGAME OVER\nPress Space to restart", 
                         {
                             fontSize: 50,
                             color: "#000000",
@@ -766,8 +766,8 @@ var fourthScene = new Phaser.Class({
                 })
 
                 //text
-                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000'}); 
-                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000'}); 
+                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000', fontStyle: 'bold'}); 
+                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000', fontStyle: 'bold'});  
 
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
@@ -854,7 +854,7 @@ var fifthScene = new Phaser.Class({
                 loseText = this.add.text(
                         400, 
                         200, 
-                        "You Lose...lvl: 5", 
+                        "\t\t\t\t\t\tGAME OVER\nPress Space to restart", 
                         {
                             fontSize: 50,
                             color: "#000000",
@@ -971,8 +971,8 @@ var fifthScene = new Phaser.Class({
                 })
 
                 //text
-                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000'}); 
-                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000'}); 
+                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000', fontStyle: 'bold'}); 
+                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000', fontStyle: 'bold'});  
 
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
@@ -1050,6 +1050,12 @@ var levelselect = new Phaser.Class({
 
                 this.load.image('speedboost', 'assets/speedboost.png');
                 this.load.image('coin', 'assets/coin.png');
+                
+                this.load.image('one', 'assets/one.png');
+                this.load.image('two', 'assets/two.png');
+                this.load.image('three', 'assets/three.png');
+                this.load.image('four', 'assets/four.png');
+                this.load.image('five', 'assets/five.png');
 
                 this.load.audio('bgmusic', ['assets/bgmusic.wav']);
                 this.load.audio('jump', ['assets/jump.wav']);
@@ -1072,6 +1078,7 @@ var levelselect = new Phaser.Class({
 
                 lvl1 = this.physics.add.staticGroup();
                 lvl1.create(800/6,350,'baka')
+                //lvl1.scale(0.01);
                 lvl2 = this.physics.add.staticGroup();
                 lvl2.create(2*800/6,350,'baka')
                 lvl3 = this.physics.add.staticGroup();
@@ -1343,7 +1350,7 @@ function popBalloon(balloon, ground){
     totalBalloons -= 1;
     lives -=1
     livesText.setText('lives: '+lives)
-    if (totalBalloons <= 0 || lives == 0) {
+    if (lives == 0) {
         loseText.visible = true;
         lost = true;
         timer.remove();
