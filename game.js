@@ -415,11 +415,7 @@ var thirdScene = new Phaser.Class({
             Phaser.Scene.call(this,{key:'thirdScene'});
         },
         preload: function(){
-            
-           
-    
-            
-            
+                        
         },
         create: function(){
                 max = max3
@@ -427,11 +423,15 @@ var thirdScene = new Phaser.Class({
                 this.add.image(400, 300, 'sky');
 
                 platforms = this.physics.add.staticGroup();
+                bounceTops = this.physics.add.staticGroup();
+                spikeBottoms = this.physics.add.staticGroup();
 
                 platforms.create(400, 568, 'ground').setScale(1).refreshBody();
 
-                platforms.create(700, 500, 'platform');
-                platforms.create(75, 500, 'platform');
+                bounceTops.create(600, 250, 'spiketop');
+                bounceTops.create(175, 250, 'spiketop');
+                spikeBottoms.create(600, 280, 'spikebottom');
+                spikeBottoms.create(175, 280, 'spikebottom');
 
                 player_red = this.physics.add.sprite(100, 375, 'guy_red').setScale(0.2);
                 player_red.setBounce(0.1);
@@ -505,7 +505,6 @@ var thirdScene = new Phaser.Class({
                     child.isCircle = true;
                     child.setCircle(20);
                     child.setMaxSpeed = 2;
-
                     child.setCollideWorldBounds(true);
                 })
             
@@ -578,6 +577,12 @@ var thirdScene = new Phaser.Class({
                 //player colliders with balloons
                 this.physics.add.collider(player_red, balloons, hitBalloon, null, this);
                 this.physics.add.collider(player_blue, balloons, hitBalloon, null, this);
+            
+                //balloons collide with bounce tops
+                this.physics.add.collider(balloons, bounceTops);
+            
+                //balloons pop on spikes
+                this.physics.add.collider(balloons, spikeBottoms, popBalloon, null, this);
             
                 //player colliders with speedboost
                 this.physics.add.collider(player_red, speedboosts, speedBoost, null, this);
@@ -1082,7 +1087,7 @@ var levelselect = new Phaser.Class({
                 lvl2 = this.physics.add.staticGroup();
                 lvl2.create(2*800/6,350,'baka')
                 lvl3 = this.physics.add.staticGroup();
-                //lvl3.create(3*800/6,350,'baka')
+                lvl3.create(3*800/6,350,'baka')
                 lvl4 = this.physics.add.staticGroup();
                 lvl4.create(4*800/6,350,'baka')
                 lvl5 = this.physics.add.staticGroup();
@@ -1248,6 +1253,7 @@ var tutorial1 = new Phaser.Class({
                 this.load.image('treeleaves', 'assets/tree_leaves.png');
 
                 this.load.image('spikepole', 'assets/spikepole.png');
+                this.load.image('spiketop', 'assets/spikeplatform_top.png')
                 this.load.image('spikebottom', 'assets/spikeplatform_bottom.png');
 
                 this.load.image('speedboost', 'assets/speedboost.png');
@@ -1504,6 +1510,11 @@ function hitBalloon(player, balloon){
         score += 1;
         scoreText.setText('Score:' + score);
     }
+}
+
+function bounceBalloon(balloon, platform) {
+    balloon.applyForce(new Vector2(0, 200));
+    //balloon.setVelocityX(balloon.velocityX * 2);
 }
 
 function popBalloon(balloon, ground){
