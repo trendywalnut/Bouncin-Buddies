@@ -1082,14 +1082,14 @@ var levelselect = new Phaser.Class({
                 platforms.create(400, 568, 'ground').setScale(1).refreshBody();
 
                 lvl1 = this.physics.add.staticGroup();
-                lvl1.create(800/6,350,'baka');
+                lvl1.create(800/6,350,'one');
                 //lvl1.scale(0.01);
                 lvl2 = this.physics.add.staticGroup();
-                lvl2.create(2*800/6,350,'baka')
+                lvl2.create(2*800/6,350,'two')
                 lvl3 = this.physics.add.staticGroup();
-                lvl3.create(3*800/6,350,'baka')
+                lvl3.create(3*800/6,350,'three')
                 lvl4 = this.physics.add.staticGroup();
-                lvl4.create(4*800/6,350,'baka')
+                lvl4.create(4*800/6,350,'four')
                 lvl5 = this.physics.add.staticGroup();
                 //lvl5.create(5*800/6,350,'baka')
 
