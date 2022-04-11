@@ -1077,7 +1077,7 @@ var levelselect = new Phaser.Class({
                 platforms.create(400, 568, 'ground').setScale(1).refreshBody();
 
                 lvl1 = this.physics.add.staticGroup();
-                lvl1.create(800/6,350,'baka')
+                lvl1.create(800/6,350,'baka');
                 //lvl1.scale(0.01);
                 lvl2 = this.physics.add.staticGroup();
                 lvl2.create(2*800/6,350,'baka')
@@ -1267,28 +1267,25 @@ var tutorial1 = new Phaser.Class({
                 this.load.audio('speedboostSFX', ['assets/item_speedup.wav']);
                 this.load.audio('balloonspawn', ['assets/balloonspawn.wav']);
                 this.load.audio('bonuspointSFX', ['assets/item_pointbonus.wav']);
+                
+                //tutorial image
+                this.load.image('tutorial', ['assets/tutorialscreen.jpg']);
             }
         },
         create: function(){
                 //startup =false
                 lost = false
                 this.add.image(400, 300, 'sky');
+                
+                //add tutorial image
+                this.add.image(400, 300, 'tutorial');
 
                 platforms = this.physics.add.staticGroup();
 
                 platforms.create(400, 568, 'ground').setScale(1).refreshBody();
 
-                lvl1 = this.physics.add.staticGroup();
-                lvl1.create(800/6,350,'baka')
-                //lvl1.scale(0.01);
-                lvl2 = this.physics.add.staticGroup();
-                lvl2.create(2*800/6,350,'baka')
-                lvl3 = this.physics.add.staticGroup();
-                //lvl3.create(3*800/6,350,'baka')
                 lvl4 = this.physics.add.staticGroup();
-                lvl4.create(4*800/6,350,'baka')
-                lvl5 = this.physics.add.staticGroup();
-                //lvl5.create(5*800/6,350,'baka')
+                lvl4.create(4*800/6,450,'baka');
 
                 player_red = this.physics.add.sprite(100, 400, 'guy_red').setScale(0.2);
                 player_red.setBounce(0.1);
@@ -1301,8 +1298,6 @@ var tutorial1 = new Phaser.Class({
                 player_blue.setGravityY(599);
 
                
-
-                
                 if(loaded == false){
                     this.anims.create({
                         key: 'red_idle',
@@ -1359,56 +1354,20 @@ var tutorial1 = new Phaser.Class({
                 jump = this.sound.add('jump', {loop: false});
                 speedboostSFX = this.sound.add('speedboostSFX', {loop: false});
                 bonuspointSFX = this.sound.add('bonuspointSFX', {loop: false});
-
-
-
-                //text
                 
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
                 this.physics.add.collider(player_blue, platforms);
 
-                this.physics.add.collider(lvl1,player_red, function(){
-                    this.scene.start('firstScene')
-                    }
-                , null, this);
-                this.physics.add.collider(lvl1,player_blue, function(){
-                    this.scene.start('firstScene')
-                    }
-                , null, this);
-                this.physics.add.collider(lvl2,player_red, function(){
-                    this.scene.start('secondScene')
-                    }
-                , null, this);
-                this.physics.add.collider(lvl2,player_blue, function(){
-                    this.scene.start('secondScene')
-                    }
-                , null, this);
-                this.physics.add.collider(lvl3,player_red, function(){
-                    this.scene.start('thirdScene')
-                    }
-                , null, this);
-                this.physics.add.collider(lvl3,player_blue, function(){
-                    this.scene.start('thirdScene')
-                    }
-                , null, this);
+                
                 this.physics.add.collider(lvl4,player_red, function(){
-                    this.scene.start('fourthScene')
+                    this.scene.start('levelselect')
                     }
                 , null, this);
                 this.physics.add.collider(lvl4,player_blue, function(){
-                    this.scene.start('fourthScene')
+                    this.scene.start('levelselect')
                     }
-                , null, this);
-                this.physics.add.collider(lvl5,player_red, function(){
-                    this.scene.start('fifthScene')
-                    }
-                , null, this);
-                this.physics.add.collider(lvl5,player_blue, function(){
-                    this.scene.start('fifthScene')
-                    }
-                , null, this);
-                
+                , null, this);                
 
                 // Input Events
                 cursors = this.input.keyboard.createCursorKeys();
@@ -1416,7 +1375,6 @@ var tutorial1 = new Phaser.Class({
 
                 //Second Player Keys
                 keys = this.input.keyboard.addKeys('A,W,S,D,space');
-    
 
         },
         update: function(){
