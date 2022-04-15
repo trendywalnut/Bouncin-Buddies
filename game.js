@@ -1559,7 +1559,7 @@ function playerMovement () {
 // \____/ \__,_|_|_|\___/ \___/|_| |_|
 function hitBalloon(player, balloon){
     if(lives >0){
-        //balloon.setVelocityY(-260);
+        balloon.setVelocityY(-260);
         player.setVelocityY(200);
 
         bump.play();
