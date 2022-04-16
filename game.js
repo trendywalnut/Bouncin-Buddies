@@ -22,11 +22,20 @@ var firstScene = new Phaser.Class({
 
                 platforms = this.physics.add.staticGroup();
 
-                platforms.create(400, 568, 'ground').setScale(1).refreshBody();
-
-                platforms.create(700, 500, 'platform');
-                platforms.create(75, 500, 'platform');
-
+                platforms.create(400,600-30,'fcollide').setScale(1)
+                
+                platforms.create(32,600-96,'scollide').setScale(1)
+                platforms.create(96,600-96,'scollide').setScale(1)
+                platforms.create(157,600-96,'scollide').setScale(1)
+                platforms.create(182,600-96,'scollide').setScale(1)
+                platforms.create(800-32,600-96,'scollide').setScale(1)
+                platforms.create(800-96,600-96,'scollide').setScale(1)
+                platforms.create(800-157,600-96,'scollide').setScale(1)
+                platforms.create(800-182,600-96,'scollide').setScale(1)
+                this.add.image(400, 568, 'ground')
+                this.add.image(700, 500, 'platform');
+                this.add.image(100, 500, 'platform');
+                
                 player_red = this.physics.add.sprite(100, 375, 'guy_red').setScale(0.2);
                 player_red.setBounce(0.1);
                 player_red.setCollideWorldBounds(true);
@@ -233,9 +242,193 @@ var secondScene = new Phaser.Class({
                 platforms = this.physics.add.staticGroup();
                 tree = this.physics.add.staticGroup();
 
-                platforms.create(400, 568, 'ground').setScale(1).refreshBody();
-                tree.create(400, 375, 'treetrunk').setScale(1.75);
-                tree.create(400, 150, 'treeleaves').setScale(1.75);
+                
+                this.add.image(400, 568, 'ground')
+                this.add.image(400, 375, 'treetrunk').setScale(1.75);
+                
+                platforms.create(400,600-30,'fcollide').setScale(1)
+                this.add.image(400, 150, 'treeleaves').setScale(1.75);
+                tree.create(400,200,'scollide').visible = false
+                tree.create(400-64,200-64,'scollide').visible = false
+                tree.create(400-64,200,'scollide').visible = false
+                tree.create(400,200-64,'scollide').visible = false
+                tree.create(400+64,200+64,'scollide').visible = false
+                tree.create(400+64,200,'scollide').visible = false
+                tree.create(400,200+64,'scollide').visible = false
+                tree.create(400-64,200+64,'scollide').visible = false
+                tree.create(400+64,200-64,'scollide').visible = false
+                tree.create(400,200-128,'scollide').visible = false
+                tree.create(400+64,200-128,'scollide').visible = false
+                tree.create(400-64,200-128,'scollide').visible = false
+                tree.create(400,200-192,'scollide').visible = false
+                tree.create(400+128,200,'scollide').visible = false
+                tree.create(400-100,200,'scollide').visible = false
+                tree.create(400+100,200-64,'scollide').visible = false
+                tree.create(400-128,200-64,'scollide').visible = false
+                tree.create(400-85,200-128,'scollide').visible = false
+                tree.create(400-128,200-32,'scollide').visible = false
+                tree.create(400+100,200-128,'scollide').visible = false
+                tree.create(400-50,200+64,'scollide').visible = false
+                tree.create(400-110,200+32,'scollide').visible = false
+                tree.create(400+16,16,'scollide').visible = false
+                tree.create(400+48,48,'scollide').visible = false
+                tree.create(400+64,48,'scollide').visible = false
+                tree.create(400+80,48,'scollide').visible = false
+                tree.create(400+96,230,'scollide').visible = false
+                tree.create(400-96,230+10,'scollide').visible = false
+                tree.create(400-96,200-120,'scollide').visible = false
+                tree.create(250,200,'colliders').visible = false
+                tree.create(250+10-16*1,200,'colliders').visible = false
+                tree.create(250+6-16*1,200-16,'colliders').visible = false
+                tree.create(250+6-16*1,200-16*2,'colliders').visible = false
+                tree.create(250+10-16*1,200-16*2,'colliders').visible = false
+                tree.create(250+10-16*1,200-16*3,'colliders').visible = false
+                tree.create(250+10-16*1,200-16*4,'colliders').visible = false
+                tree.create(250+8-16*1,200-16*5,'colliders').visible = false
+                tree.create(250+10-16*1,200-16*6,'colliders').visible = false
+                tree.create(250+10+16*0,200-16*6,'colliders').visible = false
+                tree.create(250+10+16*1,200-16*6,'colliders').visible = false
+                tree.create(250+10+16*2,200-16*6,'colliders').visible = false
+                tree.create(250+10+16*0,200-16*7,'colliders').visible = false
+                tree.create(250+10+16*1,200-16*7,'colliders').visible = false
+                tree.create(250+10+16*0,200-16*8,'colliders').visible = false
+                tree.create(250+10+16*1,200-16*8,'colliders').visible = false
+                tree.create(250+10-16*0,200+16*2,'colliders').visible = false
+                tree.create(250+10-16*0,200+16*3,'colliders').visible = false
+                tree.create(400-32,32,'colliders').visible = false
+                tree.create(400-48,32,'colliders').visible = false
+                tree.create(400-64,32,'colliders').visible = false
+                tree.create(400-48,16,'colliders').visible = false
+                tree.create(400-32,16,'colliders').visible = false
+                tree.create(400-72,40,'colliders').visible = false
+                tree.create(400-88,40,'colliders').visible = false
+                tree.create(400-96,40,'colliders').visible = false
+                tree.create(400-96,300-16,'colliders').visible = false
+                tree.create(400-96,300-24,'colliders').visible = false
+                tree.create(400-112,300-24,'colliders').visible = false
+                tree.create(400-128,300-32,'colliders').visible = false
+                tree.create(400+100,300-32,'colliders').visible = false
+                tree.create(400+108,300-40,'colliders').visible = false
+                tree.create(400+124,300-40,'colliders').visible = false
+                tree.create(400+124,300-48,'colliders').visible = false
+                tree.create(400+140,300-48,'colliders').visible = false
+                tree.create(400+124,300-64,'colliders').visible = false
+                tree.create(400+140,300-64,'colliders').visible = false
+                tree.create(400+148,300-64,'colliders').visible = false
+                tree.create(400+156,300-88,'colliders').visible = false
+                tree.create(400+156,300-104,'colliders').visible = false
+                tree.create(400+156,300-120,'colliders').visible = false
+                tree.create(400+152,300-128,'colliders').visible = false
+                tree.create(400+140,300-128,'colliders').visible = false
+                tree.create(400+152,300-136,'colliders').visible = false
+                tree.create(400+140,300-136,'colliders').visible = false
+                tree.create(400+146,300-142,'colliders').visible = false
+                tree.create(400+132,300-142,'colliders').visible = false
+                tree.create(400+146,300-150,'colliders').visible = false
+                tree.create(400+132,300-150,'colliders').visible = false
+                tree.create(400,0,'scollide').visible = false
+                tree.create(400-64,0,'scollide').visible = false
+                tree.create(400-64*2,0,'scollide').visible = false
+                tree.create(400-64,64,'scollide').visible = false
+                tree.create(400-64*2,64,'scollide').visible = false
+                tree.create(400+64,0,'scollide').visible = false
+                tree.create(400+64*2,0,'scollide').visible = false
+                tree.create(400+64,64,'scollide').visible = false
+                tree.create(400+64*2,64,'scollide').visible = false
+                tree.create(400+64,64*2,'scollide').visible = false
+                tree.create(400+64*2,64*2,'scollide').visible = false
+                tree.create(400-64,64*2,'scollide').visible = false
+                tree.create(400-64*2,64*2,'scollide').visible = false
+                
+                
+                
+                
+                this.add.image(400, 150, 'treeleaves').setScale(1.75);
+                
+                
+                
+                tree.create(360, 300, 'colliders').setScale(1).visible = false
+                tree.create(360+7, 316, 'colliders').setScale(1).visible = false
+                tree.create(376-4+16*2, 316, 'colliders').setScale(1).visible = false
+                tree.create(376-4+16*2, 300, 'colliders').setScale(1).visible = false
+                tree.create(360+7, 332, 'colliders').setScale(1).visible = false
+                tree.create(376-4+16*2, 332, 'colliders').setScale(1).visible = false
+                tree.create(360+7, 348, 'colliders').setScale(1).visible = false
+                tree.create(376-4+16*2, 348, 'colliders').setScale(1).visible = false
+                tree.create(360+7, 364, 'colliders').setScale(1).visible = false
+                tree.create(376-4+16*2, 364, 'colliders').setScale(1).visible = false
+                tree.create(360+7, 380, 'colliders').setScale(1).visible = false
+                tree.create(376-4+16*2, 380, 'colliders').setScale(1).visible = false
+                tree.create(360+7, 396, 'colliders').setScale(1).visible = false
+                tree.create(360+7, 396+16*1, 'colliders').setScale(1).visible = false
+                tree.create(376-4+16*2, 396+16*1, 'colliders').setScale(1).visible = false
+                tree.create(360+7, 396+16*2, 'colliders').setScale(1).visible = false
+                tree.create(376+4+16*2, 396+16*2, 'colliders').setScale(1).visible = false
+                tree.create(360+7, 396+16*3, 'colliders').setScale(1).visible = false
+                tree.create(376-4+16*2, 396+16*3, 'colliders').setScale(1).visible = false
+                tree.create(360-2, 396+16*4, 'colliders').setScale(1).visible = false
+                tree.create(376+14+16*2, 396+16*4, 'colliders').setScale(1).visible = false
+                tree.create(360-8, 396+16*6, 'colliders').setScale(1).visible = false
+                tree.create(376+10+16*3, 396+16*6, 'colliders').setScale(1).visible = false
+                tree.create(360-8, 396+16*7, 'colliders').setScale(1).visible = false
+                tree.create(376+6+16*3, 396+16*5, 'colliders').setScale(1).visible = false
+                tree.create(360-10, 396+16*8, 'colliders').setScale(1).visible = false
+                tree.create(376+8+16*4, 396+16*8, 'colliders').setScale(1).visible = false
+                tree.create(376+16*4, 396+16*7, 'colliders').setScale(1).visible = false
+                
+                
+                tree.create(376, 300, 'colliders').setScale(1).visible = false
+                tree.create(376+16*1, 300, 'colliders').setScale(1).visible = false
+                tree.create(376, 316, 'colliders').setScale(1).visible = false
+                tree.create(376+16*1, 316, 'colliders').setScale(1).visible = false
+                tree.create(376, 332, 'colliders').setScale(1).visible = false
+                tree.create(376+16*1, 332, 'colliders').setScale(1).visible = false
+                tree.create(376, 348, 'colliders').setScale(1).visible = false
+                tree.create(376+16*1, 348, 'colliders').setScale(1).visible = false
+                tree.create(376, 364, 'colliders').setScale(1).visible = false
+                tree.create(376+16*1, 364, 'colliders').setScale(1).visible = false
+                tree.create(376, 380, 'colliders').setScale(1).visible = false
+                tree.create(376+16*1, 380, 'colliders').setScale(1).visible = false
+                tree.create(376, 396, 'colliders').setScale(1).visible = false
+                tree.create(376+16*1, 396, 'colliders').setScale(1).visible = false
+                tree.create(376+16*2, 396, 'colliders').setScale(1).visible = false
+                tree.create(376, 396+16*1, 'colliders').setScale(1).visible = false
+                tree.create(376+16*1, 396+16*1, 'colliders').setScale(1).visible = false
+                tree.create(376+16*2, 396+16*1, 'colliders').setScale(1).visible = false
+                tree.create(376, 396+16*2, 'colliders').setScale(1).visible = false
+                tree.create(376+16*1, 396+16*2, 'colliders').setScale(1).visible = false
+                tree.create(376+16*2, 396+16*2, 'colliders').setScale(1).visible = false
+                tree.create(376, 396+16*3, 'colliders').setScale(1).visible = false
+                tree.create(376+16*1, 396+16*3, 'colliders').setScale(1).visible = false
+                tree.create(376+16*2, 396+16*3, 'colliders').setScale(1).visible = false
+                tree.create(360, 396+16*4, 'colliders').setScale(1).visible = false
+                tree.create(376, 396+16*4, 'colliders').setScale(1).visible = false
+                tree.create(376+16*1, 396+16*4, 'colliders').setScale(1).visible = false
+                tree.create(376+16*2, 396+16*4, 'colliders').setScale(1).visible = false
+                tree.create(360, 396+16*5, 'colliders').setScale(1).visible = false
+                tree.create(376, 396+16*5, 'colliders').setScale(1).visible = false
+                tree.create(376+16*1, 396+16*5, 'colliders').setScale(1).visible = false
+                tree.create(376+16*2, 396+16*5, 'colliders').setScale(1).visible = false
+                tree.create(376+16*3, 396+16*5, 'colliders').setScale(1).visible = false
+                tree.create(360, 396+16*6, 'colliders').setScale(1).visible = false
+                tree.create(376, 396+16*6, 'colliders').setScale(1).visible = false
+                tree.create(376+16*1, 396+16*6, 'colliders').setScale(1).visible = false
+                tree.create(376+16*2, 396+16*6, 'colliders').setScale(1).visible = false
+                tree.create(376+16*3, 396+16*6, 'colliders').setScale(1).visible = false
+                tree.create(360, 396+16*7, 'colliders').setScale(1).visible = false
+                tree.create(376, 396+16*7, 'colliders').setScale(1).visible = false
+                tree.create(376+16*1, 396+16*7, 'colliders').setScale(1).visible = false
+                tree.create(376+16*2, 396+16*7, 'colliders').setScale(1).visible = false
+                tree.create(376+16*3, 396+16*7, 'colliders').setScale(1).visible = false
+                tree.create(360, 396+16*8, 'colliders').setScale(1).visible = false
+                tree.create(376, 396+16*8, 'colliders').setScale(1).visible = false
+                tree.create(376+16*1, 396+16*8, 'colliders').setScale(1).visible = false
+                tree.create(376+16*2, 396+16*8, 'colliders').setScale(1).visible = false
+                tree.create(376+16*3, 396+16*8, 'colliders').setScale(1).visible = false
+                tree.create(376+16*4, 396+16*8, 'colliders').setScale(1).visible = false
+                
+                
+                //this.add.image(400, 375, 'treetrunk').setScale(1.75);
 
                 player_red = this.physics.add.sprite(100, 375, 'guy_red').setScale(0.2);
                 player_red.setBounce(0.1);
@@ -445,7 +638,8 @@ var thirdScene = new Phaser.Class({
                 bounceTops = this.physics.add.staticGroup();
                 spikeBottoms = this.physics.add.staticGroup();
 
-                platforms.create(400, 568, 'ground').setScale(1).refreshBody();
+                platforms.create(400,600-30,'fcollide').setScale(1)
+                this.add.image(400, 568, 'ground')
 
                 bounceTops.create(600, 250, 'spiketop');
                 bounceTops.create(175, 250, 'spiketop');
@@ -661,7 +855,8 @@ var fourthScene = new Phaser.Class({
 
                 platforms = this.physics.add.staticGroup();
 
-                platforms.create(400, 568, 'ground_volcano').setScale(1).refreshBody();
+                platforms.create(400,600-30,'fcollide').setScale(1)
+                this.add.image(400, 568, 'ground')
 
                 platforms.create(700, 500, 'volcano_boulder');
                 platforms.create(75, 500, 'volcano_boulder');
@@ -871,7 +1066,8 @@ var fifthScene = new Phaser.Class({
 
                 platforms = this.physics.add.staticGroup();
 
-                platforms.create(400, 568, 'ground').setScale(1).refreshBody();
+                platforms.create(400,600-30,'fcollide').setScale(1)
+                this.add.image(400, 568, 'ground')
 
                 platforms.create(700, 500, 'platform');
                 platforms.create(75, 500, 'platform');
@@ -1116,7 +1312,8 @@ var levelselect = new Phaser.Class({
 
                 platforms = this.physics.add.staticGroup();
 
-                platforms.create(400, 568, 'ground').setScale(1).refreshBody();
+                platforms.create(400,600-30,'fcollide').setScale(1)
+                this.add.image(400, 568, 'ground')
 
                 lvl1 = this.physics.add.staticGroup();
                 lvl1.create(800/6,350,'one');
@@ -1318,19 +1515,23 @@ var tutorial1 = new Phaser.Class({
                 
                 //tutorial image
                 this.load.image('tutorial', ['assets/tutorialscreen.jpg']);
+                this.load.image('fcollide', 'dontquestionme/colliderwide.png');
+                this.load.image('scollide', 'dontquestionme/collider_small.png');
+                this.load.image('colliders', 'dontquestionme/colliders.png');
             }
         },
         create: function(){
                 //startup =false
                 lost = false
+                
                 this.add.image(400, 300, 'sky');
                 
                 //add tutorial image
                 this.add.image(400, 300, 'tutorial');
-
+                
                 platforms = this.physics.add.staticGroup();
-
-                platforms.create(400, 568, 'ground').setScale(1).refreshBody();
+                platforms.create(400,600-30,'fcollide').setScale(1)
+                this.add.image(400, 568, 'ground')
 
                 lvl4 = this.physics.add.staticGroup();
                 lvl4.create(4*800/6,450,'baka');
