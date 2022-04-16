@@ -1835,9 +1835,9 @@ function spawnPowerup(){
     //console.log(startup)
     //if(startup == true){
     if(lives >0){
-        var powerup = Phaser.Math.Between(0,1);
+        var powerup = Phaser.Math.FloatBetween(0,1);
         var x = Phaser.Math.Between(0,800);
-        if(powerup <= .5){
+        if(powerup <= .2){
             var speedboost = speedboosts.create(x, 0, 'speedboost');
             speedboost.setScale(0.02);
             speedboost.setVelocity(Phaser.Math.Between(-200, 200), 20);
@@ -1854,7 +1854,7 @@ function spawnPowerup(){
             speedboost.setMaxSpeed = 2;
 
             speedboost.setCollideWorldBounds(true);
-        } else if (powerup >=.5){
+        } else if (powerup >=.8){
             var coin = coins.create(x, 0, 'coin');
             coin.setScale(0.2);
             coin.setVelocity(Phaser.Math.Between(-200, 200), 20);
