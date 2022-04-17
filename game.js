@@ -842,10 +842,6 @@ var fourthScene = new Phaser.Class({
             Phaser.Scene.call(this,{key:'fourthScene'});
         },
         preload: function(){
-            
-            
-            
-            
         },
         create: function(){
                 max = max4
@@ -856,7 +852,7 @@ var fourthScene = new Phaser.Class({
                 platforms = this.physics.add.staticGroup();
 
                 platforms.create(400,600-30,'fcollide').setScale(1)
-                this.add.image(400, 568, 'ground')
+                this.add.image(400, 568, 'ground_volcano')
 
                 platforms.create(700, 500, 'volcano_boulder');
                 platforms.create(75, 500, 'volcano_boulder');
