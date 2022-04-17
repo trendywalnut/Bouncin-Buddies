@@ -243,7 +243,7 @@ var secondScene = new Phaser.Class({
                 tree = this.physics.add.staticGroup();
 
                 
-                this.add.image(400, 568, 'ground')
+                
                 this.add.image(400, 375, 'treetrunk').setScale(1.75);
                 
                 platforms.create(400,600-30,'fcollide').setScale(1)
@@ -426,7 +426,7 @@ var secondScene = new Phaser.Class({
                 tree.create(376+16*2, 396+16*8, 'colliders').setScale(1).visible = false
                 tree.create(376+16*3, 396+16*8, 'colliders').setScale(1).visible = false
                 tree.create(376+16*4, 396+16*8, 'colliders').setScale(1).visible = false
-                
+                this.add.image(400, 568, 'ground')
                 
                 //this.add.image(400, 375, 'treetrunk').setScale(1.75);
 
