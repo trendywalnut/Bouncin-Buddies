@@ -1542,9 +1542,11 @@ var tutorial1 = new Phaser.Class({
                 platforms = this.physics.add.staticGroup();
                 platforms.create(400,600-30,'fcollide').setScale(1)
                 this.add.image(400, 568, 'ground')
+            
+                platforms.create(700, 500, 'platform');
 
                 lvl4 = this.physics.add.staticGroup();
-                lvl4.create(4*800/6,450,'baka');
+                lvl4.create(750,450,'baka');
 
                 player_red = this.physics.add.sprite(100, 400, 'guy_red').setScale(0.2);
                 player_red.setBounce(0.1);
