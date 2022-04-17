@@ -1871,7 +1871,7 @@ var tutorial3 = new Phaser.Class({
                 
                 platforms = this.physics.add.staticGroup();
                 platforms.create(400,600-30,'fcollide').setScale(1)
-                this.add.image(400, 568, 'ground')
+                platforms.create(400, 568, 'ground')
 
                 lvl4 = this.physics.add.staticGroup();
                 lvl4.create(4*800/6,450,'baka');
@@ -1939,10 +1939,53 @@ var tutorial3 = new Phaser.Class({
                 //bgmusic.play();
                 
                 bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
+                popSFX = this.sound.add('pop', {loop: false});
+                error = this.sound.add('error', {loop: false});
+                jump = this.sound.add('jump', {loop: false});
+                balloonSpawn = this.sound.add('balloonspawn', {loop: false});
                 
                 jump = this.sound.add('jump', {loop: false});
                 speedboostSFX = this.sound.add('speedboostSFX', {loop: false});
                 bonuspointSFX = this.sound.add('bonuspointSFX', {loop: false});
+            
+            //Create Balloon Timer
+                timer = this.time.addEvent({
+                    delay: 5000,
+                    callback: spawnBalloonTut,
+                    loop: true
+                });
+
+                //balloon group
+                balloons = this.physics.add.group({
+                    key: 'balloon',
+                    repeat: 0,
+                    setXY: {x: 12, y: 0, stepX: 70},
+                    mass: 0.3
+                });
+                
+                balloons.children.iterate(function(child){
+                    child.setScale(0.5);
+                    child.setVelocity(Phaser.Math.Between(-200, 200), 20);
+                    child.setMass(0.3);
+                    child.allowGravity = true;
+                    child.setBounce(0.2);
+                    child.setGravityY(1);
+                    child.useDamping = true;
+                    child.allowDrag = true;
+                    child.allowRotation = true;
+                    child.setAngularAcceleration(1);
+                    child.isCircle = true;
+                    child.setCircle(20);
+                    child.setMaxSpeed = 2;
+
+                    child.setCollideWorldBounds(true);
+                })
+            
+                this.physics.add.collider(balloons, platforms, popBalloonTut, null, this);
+
+                //player colliders with balloons
+                this.physics.add.collider(player_red, balloons, hitBalloonTut, null, this);
+                this.physics.add.collider(player_blue, balloons, hitBalloonTut, null, this);
                 
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
@@ -2475,6 +2518,15 @@ function hitBalloon(player, balloon){
     }
 }
 
+function hitBalloonTut(player, balloon){
+
+    balloon.setVelocityY(-260);
+    player.setVelocityY(200);
+
+    bump.play();
+    
+}
+
 function bounceBalloon(balloon, platform) {
     balloon.applyForce(new Vector2(0, 200));
     //balloon.setVelocityX(balloon.velocityX * 2);
@@ -2498,6 +2550,11 @@ function popBalloon(balloon, ground){
     }else{
         popSFX.play();
     }
+    balloon.destroy();
+}
+
+function popBalloonTut(balloon, ground){
+    popSFX.play();
     balloon.destroy();
 }
 
@@ -2526,6 +2583,32 @@ function spawnBalloon(){
         //play SFX
         balloonSpawn.play();
     }
+}
+
+function spawnBalloonTut(){
+    
+    //console.log(totalBalloons)
+    var x = Phaser.Math.Between(0, 800);
+    var balloon = balloons.create(x, 0, 'balloon');
+    balloon.setScale(0.5);
+    balloon.setVelocity(Phaser.Math.Between(-200, 200), 20);
+    balloon.setMass(0.3);
+    balloon.allowGravity = true;
+    balloon.setBounce(0.2);
+    balloon.setGravityY(1);
+    balloon.useDamping = true;
+    balloon.allowDrag = true;
+    balloon.allowRotation = true;
+    balloon.setAngularAcceleration(1.5);
+    balloon.isCircle = true;
+    balloon.setCircle(20, 27, 37);
+    balloon.setMaxSpeed = 2;
+
+    balloon.setCollideWorldBounds(true);  
+
+    //play SFX
+    balloonSpawn.play();
+    
 }
 // ______                        _   _       
 // | ___ \                      | | | |      
