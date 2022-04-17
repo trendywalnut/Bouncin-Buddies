@@ -1299,6 +1299,16 @@ var levelselect = new Phaser.Class({
                 this.load.audio('speedboostSFX', ['assets/item_speedup.wav']);
                 this.load.audio('balloonspawn', ['assets/balloonspawn.wav']);
                 this.load.audio('bonuspointSFX', ['assets/item_pointbonus.wav']);
+                
+                //tutorial image
+                this.load.image('tutorial', ['assets/tutorialscreen.jpg']);
+                this.load.image('tutorial_1', ['assets/Tutorial1.png']);
+                this.load.image('tutorial_2', ['assets/Tutorial2.png']);
+                this.load.image('tutorial_3', ['assets/Tutorial3.png']);
+                this.load.image('tutorial_4', ['assets/Tutorial4.png']);
+                this.load.image('fcollide', 'dontquestionme/colliderwide.png');
+                this.load.image('scollide', 'dontquestionme/collider_small.png');
+                this.load.image('colliders', 'dontquestionme/colliders.png');
             }
         },
         create: function(){
@@ -1511,6 +1521,10 @@ var tutorial1 = new Phaser.Class({
                 
                 //tutorial image
                 this.load.image('tutorial', ['assets/tutorialscreen.jpg']);
+                this.load.image('tutorial_1', ['assets/Tutorial1.png']);
+                this.load.image('tutorial_2', ['assets/Tutorial2.png']);
+                this.load.image('tutorial_3', ['assets/Tutorial3.png']);
+                this.load.image('tutorial_4', ['assets/Tutorial4.png']);
                 this.load.image('fcollide', 'dontquestionme/colliderwide.png');
                 this.load.image('scollide', 'dontquestionme/collider_small.png');
                 this.load.image('colliders', 'dontquestionme/colliders.png');
@@ -1523,7 +1537,506 @@ var tutorial1 = new Phaser.Class({
                 this.add.image(400, 300, 'sky');
                 
                 //add tutorial image
-                this.add.image(400, 300, 'tutorial');
+                this.add.image(400, 300, 'tutorial_1');
+                
+                platforms = this.physics.add.staticGroup();
+                platforms.create(400,600-30,'fcollide').setScale(1)
+                this.add.image(400, 568, 'ground')
+
+                lvl4 = this.physics.add.staticGroup();
+                lvl4.create(4*800/6,450,'baka');
+
+                player_red = this.physics.add.sprite(100, 400, 'guy_red').setScale(0.2);
+                player_red.setBounce(0.1);
+                player_red.setCollideWorldBounds(true);
+                player_red.setGravityY(599);
+
+               
+                if(loaded == false){
+                    this.anims.create({
+                        key: 'red_idle',
+                        frames: [ { key: 'guy_red', frame: 0}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+
+
+                    this.anims.create({
+                        key: 'red_move',
+                        frames: [ { key: 'guy_red', frame: 1}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+
+                    this.anims.create({
+                        key: 'red_jump',
+                        frames: [ { key: 'guy_red', frame: 2}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+
+                    this.anims.create({
+                        key: 'blue_idle',
+                        frames: [ { key: 'guy_blue', frame: 0}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+
+
+                    this.anims.create({
+                        key: 'blue_move',
+                        frames: [ { key: 'guy_blue', frame: 1}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+
+                    this.anims.create({
+                        key: 'blue_jump',
+                        frames: [ { key: 'guy_blue', frame: 2}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+                    loaded = true;
+                }
+
+                //audio
+                bgmusic = this.sound.add('bgmusic', {loop: true});
+                //bgmusic.play();
+                
+                bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
+                
+                jump = this.sound.add('jump', {loop: false});
+                speedboostSFX = this.sound.add('speedboostSFX', {loop: false});
+                bonuspointSFX = this.sound.add('bonuspointSFX', {loop: false});
+                
+                //Collide Player with Platforms
+                this.physics.add.collider(player_red, platforms);
+                //this.physics.add.collider(player_blue, platforms);
+
+                
+                this.physics.add.collider(lvl4,player_red, function(){
+                    this.scene.start('tutorial2')
+                    }
+                , null, this);
+                                
+
+                // Input Events
+                cursors = this.input.keyboard.createCursorKeys();
+
+
+                //Second Player Keys
+                keys = this.input.keyboard.addKeys('A,W,S,D,space');
+
+        },
+        update: function(){
+            redMovement();
+        }
+    });
+
+var tutorial2 = new Phaser.Class({
+        Extends: Phaser.Scene,
+        initialize:
+        function levelselect(){
+            Phaser.Scene.call(this,{key:'tutorial2'});
+        },
+        preload: function(){
+            totalBalloons = 1
+            score = 0
+            if(loaded == false){
+                this.load.spritesheet('guy_red', 'assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
+                this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
+                this.load.image('balloon', 'assets/balloon.png');
+                //this.load.image('guy_red', 'assets/guy_idle_red.png');
+                this.load.image('sky', 'assets/background_sky2d.png');
+                this.load.image('volcano', 'assets/background_volcano.png');
+
+                this.load.image('platform', 'assets/platform_grass.png');
+                this.load.image('volcano_boulder', 'assets/volcano_boulder.png');
+                this.load.image('ground', 'assets/foreground_grass.png');
+                this.load.image('ground_volcano', 'assets/foreground_volcano.png');
+
+                this.load.image('treetrunk', 'assets/tree_trunk.png');
+                this.load.image('treeleaves', 'assets/tree_leaves.png');
+
+                this.load.image('spikepole', 'assets/spikepole.png');
+                this.load.image('spiketop', 'assets/spikeplatform_top.png')
+                this.load.image('spikebottom', 'assets/spikeplatform_bottom.png');
+
+                this.load.image('speedboost', 'assets/speedboost.png');
+                this.load.image('coin', 'assets/coin.png');
+                
+                this.load.image('one', 'assets/one.png');
+                this.load.image('two', 'assets/two.png');
+                this.load.image('three', 'assets/three.png');
+                this.load.image('four', 'assets/four.png');
+                this.load.image('five', 'assets/five.png');
+
+                this.load.audio('bgmusic', ['assets/bgmusic.wav']);
+                this.load.audio('jump', ['assets/jump.wav']);
+                this.load.audio('error', ['assets/error.wav']);
+                this.load.audio('bump', ['assets/bump.wav']);
+                this.load.audio('pop', ['assets/pop.wav']);
+                this.load.audio('speedboostSFX', ['assets/item_speedup.wav']);
+                this.load.audio('balloonspawn', ['assets/balloonspawn.wav']);
+                this.load.audio('bonuspointSFX', ['assets/item_pointbonus.wav']);
+                
+                //tutorial image
+                this.load.image('tutorial', ['assets/tutorialscreen.jpg']);
+                this.load.image('tutorial_1', ['assets/Tutorial1.png']);
+                this.load.image('tutorial_2', ['assets/Tutorial2.png']);
+                this.load.image('tutorial_3', ['assets/Tutorial3.png']);
+                this.load.image('tutorial_4', ['assets/Tutorial4.png']);
+                this.load.image('fcollide', 'dontquestionme/colliderwide.png');
+                this.load.image('scollide', 'dontquestionme/collider_small.png');
+                this.load.image('colliders', 'dontquestionme/colliders.png');
+            }
+        },
+        create: function(){
+                //startup =false
+                lost = false
+                
+                this.add.image(400, 300, 'sky');
+                
+                //add tutorial image
+                this.add.image(400, 300, 'tutorial_2');
+                
+                platforms = this.physics.add.staticGroup();
+                platforms.create(400,600-30,'fcollide').setScale(1)
+                this.add.image(400, 568, 'ground')
+
+                lvl4 = this.physics.add.staticGroup();
+                lvl4.create(4*800/6,450,'baka');
+
+                player_red = this.physics.add.sprite(100, 400, 'guy_red').setScale(0.2);
+                player_red.setBounce(0.1);
+                player_red.setCollideWorldBounds(true);
+                player_red.setGravityY(599);
+
+                player_blue = this.physics.add.sprite(700, 400, 'guy_blue').setScale(0.2);
+                player_blue.setBounce(0.1);
+                player_blue.setCollideWorldBounds(true);
+                player_blue.setGravityY(599);
+
+               
+                if(loaded == false){
+                    this.anims.create({
+                        key: 'red_idle',
+                        frames: [ { key: 'guy_red', frame: 0}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+
+
+                    this.anims.create({
+                        key: 'red_move',
+                        frames: [ { key: 'guy_red', frame: 1}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+
+                    this.anims.create({
+                        key: 'red_jump',
+                        frames: [ { key: 'guy_red', frame: 2}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+
+                    this.anims.create({
+                        key: 'blue_idle',
+                        frames: [ { key: 'guy_blue', frame: 0}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+
+
+                    this.anims.create({
+                        key: 'blue_move',
+                        frames: [ { key: 'guy_blue', frame: 1}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+
+                    this.anims.create({
+                        key: 'blue_jump',
+                        frames: [ { key: 'guy_blue', frame: 2}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+                    loaded = true;
+                }
+
+                //audio
+                bgmusic = this.sound.add('bgmusic', {loop: true});
+                //bgmusic.play();
+                
+                bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
+                
+                jump = this.sound.add('jump', {loop: false});
+                speedboostSFX = this.sound.add('speedboostSFX', {loop: false});
+                bonuspointSFX = this.sound.add('bonuspointSFX', {loop: false});
+                
+                //Collide Player with Platforms
+                this.physics.add.collider(player_red, platforms);
+                this.physics.add.collider(player_blue, platforms);
+
+                
+                this.physics.add.collider(lvl4,player_red, function(){
+                    this.scene.start('tutorial3')
+                    }
+                , null, this);
+                this.physics.add.collider(lvl4,player_blue, function(){
+                    this.scene.start('tutorial3')
+                    }
+                , null, this);                
+
+                // Input Events
+                cursors = this.input.keyboard.createCursorKeys();
+
+
+                //Second Player Keys
+                keys = this.input.keyboard.addKeys('A,W,S,D,space');
+
+        },
+        update: function(){
+            playerMovement();
+        }
+    });
+
+var tutorial3 = new Phaser.Class({
+        Extends: Phaser.Scene,
+        initialize:
+        function levelselect(){
+            Phaser.Scene.call(this,{key:'tutorial3'});
+        },
+        preload: function(){
+            totalBalloons = 1
+            score = 0
+            if(loaded == false){
+                this.load.spritesheet('guy_red', 'assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
+                this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
+                this.load.image('balloon', 'assets/balloon.png');
+                //this.load.image('guy_red', 'assets/guy_idle_red.png');
+                this.load.image('sky', 'assets/background_sky2d.png');
+                this.load.image('volcano', 'assets/background_volcano.png');
+
+                this.load.image('platform', 'assets/platform_grass.png');
+                this.load.image('volcano_boulder', 'assets/volcano_boulder.png');
+                this.load.image('ground', 'assets/foreground_grass.png');
+                this.load.image('ground_volcano', 'assets/foreground_volcano.png');
+
+                this.load.image('treetrunk', 'assets/tree_trunk.png');
+                this.load.image('treeleaves', 'assets/tree_leaves.png');
+
+                this.load.image('spikepole', 'assets/spikepole.png');
+                this.load.image('spiketop', 'assets/spikeplatform_top.png')
+                this.load.image('spikebottom', 'assets/spikeplatform_bottom.png');
+
+                this.load.image('speedboost', 'assets/speedboost.png');
+                this.load.image('coin', 'assets/coin.png');
+                
+                this.load.image('one', 'assets/one.png');
+                this.load.image('two', 'assets/two.png');
+                this.load.image('three', 'assets/three.png');
+                this.load.image('four', 'assets/four.png');
+                this.load.image('five', 'assets/five.png');
+
+                this.load.audio('bgmusic', ['assets/bgmusic.wav']);
+                this.load.audio('jump', ['assets/jump.wav']);
+                this.load.audio('error', ['assets/error.wav']);
+                this.load.audio('bump', ['assets/bump.wav']);
+                this.load.audio('pop', ['assets/pop.wav']);
+                this.load.audio('speedboostSFX', ['assets/item_speedup.wav']);
+                this.load.audio('balloonspawn', ['assets/balloonspawn.wav']);
+                this.load.audio('bonuspointSFX', ['assets/item_pointbonus.wav']);
+                
+                //tutorial image
+                this.load.image('tutorial', ['assets/tutorialscreen.jpg']);
+                this.load.image('tutorial_1', ['assets/Tutorial1.png']);
+                this.load.image('tutorial_2', ['assets/Tutorial2.png']);
+                this.load.image('tutorial_3', ['assets/Tutorial3.png']);
+                this.load.image('tutorial_4', ['assets/Tutorial4.png']);
+                this.load.image('fcollide', 'dontquestionme/colliderwide.png');
+                this.load.image('scollide', 'dontquestionme/collider_small.png');
+                this.load.image('colliders', 'dontquestionme/colliders.png');
+            }
+        },
+        create: function(){
+                //startup =false
+                lost = false
+                
+                this.add.image(400, 300, 'sky');
+                
+                //add tutorial image
+                this.add.image(400, 300, 'tutorial_3');
+                
+                platforms = this.physics.add.staticGroup();
+                platforms.create(400,600-30,'fcollide').setScale(1)
+                this.add.image(400, 568, 'ground')
+
+                lvl4 = this.physics.add.staticGroup();
+                lvl4.create(4*800/6,450,'baka');
+
+                player_red = this.physics.add.sprite(100, 400, 'guy_red').setScale(0.2);
+                player_red.setBounce(0.1);
+                player_red.setCollideWorldBounds(true);
+                player_red.setGravityY(599);
+
+                player_blue = this.physics.add.sprite(700, 400, 'guy_blue').setScale(0.2);
+                player_blue.setBounce(0.1);
+                player_blue.setCollideWorldBounds(true);
+                player_blue.setGravityY(599);
+
+               
+                if(loaded == false){
+                    this.anims.create({
+                        key: 'red_idle',
+                        frames: [ { key: 'guy_red', frame: 0}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+
+
+                    this.anims.create({
+                        key: 'red_move',
+                        frames: [ { key: 'guy_red', frame: 1}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+
+                    this.anims.create({
+                        key: 'red_jump',
+                        frames: [ { key: 'guy_red', frame: 2}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+
+                    this.anims.create({
+                        key: 'blue_idle',
+                        frames: [ { key: 'guy_blue', frame: 0}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+
+
+                    this.anims.create({
+                        key: 'blue_move',
+                        frames: [ { key: 'guy_blue', frame: 1}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+
+                    this.anims.create({
+                        key: 'blue_jump',
+                        frames: [ { key: 'guy_blue', frame: 2}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+                    loaded = true;
+                }
+
+                //audio
+                bgmusic = this.sound.add('bgmusic', {loop: true});
+                //bgmusic.play();
+                
+                bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
+                
+                jump = this.sound.add('jump', {loop: false});
+                speedboostSFX = this.sound.add('speedboostSFX', {loop: false});
+                bonuspointSFX = this.sound.add('bonuspointSFX', {loop: false});
+                
+                //Collide Player with Platforms
+                this.physics.add.collider(player_red, platforms);
+                this.physics.add.collider(player_blue, platforms);
+
+                
+                this.physics.add.collider(lvl4,player_red, function(){
+                    this.scene.start('tutorial4')
+                    }
+                , null, this);
+                this.physics.add.collider(lvl4,player_blue, function(){
+                    this.scene.start('tutorial4')
+                    }
+                , null, this);                
+
+                // Input Events
+                cursors = this.input.keyboard.createCursorKeys();
+
+
+                //Second Player Keys
+                keys = this.input.keyboard.addKeys('A,W,S,D,space');
+
+        },
+        update: function(){
+            playerMovement();
+        }
+    });
+
+var tutorial4 = new Phaser.Class({
+        Extends: Phaser.Scene,
+        initialize:
+        function levelselect(){
+            Phaser.Scene.call(this,{key:'tutorial4'});
+        },
+        preload: function(){
+            totalBalloons = 1
+            score = 0
+            if(loaded == false){
+                this.load.spritesheet('guy_red', 'assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
+                this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
+                this.load.image('balloon', 'assets/balloon.png');
+                //this.load.image('guy_red', 'assets/guy_idle_red.png');
+                this.load.image('sky', 'assets/background_sky2d.png');
+                this.load.image('volcano', 'assets/background_volcano.png');
+
+                this.load.image('platform', 'assets/platform_grass.png');
+                this.load.image('volcano_boulder', 'assets/volcano_boulder.png');
+                this.load.image('ground', 'assets/foreground_grass.png');
+                this.load.image('ground_volcano', 'assets/foreground_volcano.png');
+
+                this.load.image('treetrunk', 'assets/tree_trunk.png');
+                this.load.image('treeleaves', 'assets/tree_leaves.png');
+
+                this.load.image('spikepole', 'assets/spikepole.png');
+                this.load.image('spiketop', 'assets/spikeplatform_top.png')
+                this.load.image('spikebottom', 'assets/spikeplatform_bottom.png');
+
+                this.load.image('speedboost', 'assets/speedboost.png');
+                this.load.image('coin', 'assets/coin.png');
+                
+                this.load.image('one', 'assets/one.png');
+                this.load.image('two', 'assets/two.png');
+                this.load.image('three', 'assets/three.png');
+                this.load.image('four', 'assets/four.png');
+                this.load.image('five', 'assets/five.png');
+
+                this.load.audio('bgmusic', ['assets/bgmusic.wav']);
+                this.load.audio('jump', ['assets/jump.wav']);
+                this.load.audio('error', ['assets/error.wav']);
+                this.load.audio('bump', ['assets/bump.wav']);
+                this.load.audio('pop', ['assets/pop.wav']);
+                this.load.audio('speedboostSFX', ['assets/item_speedup.wav']);
+                this.load.audio('balloonspawn', ['assets/balloonspawn.wav']);
+                this.load.audio('bonuspointSFX', ['assets/item_pointbonus.wav']);
+                
+                //tutorial image
+                this.load.image('tutorial', ['assets/tutorialscreen.jpg']);
+                this.load.image('tutorial_1', ['assets/Tutorial1.png']);
+                this.load.image('tutorial_2', ['assets/Tutorial2.png']);
+                this.load.image('tutorial_3', ['assets/Tutorial3.png']);
+                this.load.image('tutorial_4', ['assets/Tutorial4.png']);
+                this.load.image('fcollide', 'dontquestionme/colliderwide.png');
+                this.load.image('scollide', 'dontquestionme/collider_small.png');
+                this.load.image('colliders', 'dontquestionme/colliders.png');
+            }
+        },
+        create: function(){
+                //startup =false
+                lost = false
+                
+                this.add.image(400, 300, 'sky');
+                
+                //add tutorial image
+                this.add.image(400, 300, 'tutorial_4');
                 
                 platforms = this.physics.add.staticGroup();
                 platforms.create(400,600-30,'fcollide').setScale(1)
@@ -1626,6 +2139,175 @@ var tutorial1 = new Phaser.Class({
             playerMovement();
         }
     });
+
+//Old tutorial scene
+var tutorial0 = new Phaser.Class({
+        Extends: Phaser.Scene,
+        initialize:
+        function levelselect(){
+            Phaser.Scene.call(this,{key:'tutorial0'});
+        },
+        preload: function(){
+            totalBalloons = 1
+            score = 0
+            if(loaded == false){
+                this.load.spritesheet('guy_red', 'assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
+                this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
+                this.load.image('balloon', 'assets/balloon.png');
+                //this.load.image('guy_red', 'assets/guy_idle_red.png');
+                this.load.image('sky', 'assets/background_sky2d.png');
+                this.load.image('volcano', 'assets/background_volcano.png');
+
+                this.load.image('platform', 'assets/platform_grass.png');
+                this.load.image('volcano_boulder', 'assets/volcano_boulder.png');
+                this.load.image('ground', 'assets/foreground_grass.png');
+                this.load.image('ground_volcano', 'assets/foreground_volcano.png');
+
+                this.load.image('treetrunk', 'assets/tree_trunk.png');
+                this.load.image('treeleaves', 'assets/tree_leaves.png');
+
+                this.load.image('spikepole', 'assets/spikepole.png');
+                this.load.image('spiketop', 'assets/spikeplatform_top.png')
+                this.load.image('spikebottom', 'assets/spikeplatform_bottom.png');
+
+                this.load.image('speedboost', 'assets/speedboost.png');
+                this.load.image('coin', 'assets/coin.png');
+                
+                this.load.image('one', 'assets/one.png');
+                this.load.image('two', 'assets/two.png');
+                this.load.image('three', 'assets/three.png');
+                this.load.image('four', 'assets/four.png');
+                this.load.image('five', 'assets/five.png');
+
+                this.load.audio('bgmusic', ['assets/bgmusic.wav']);
+                this.load.audio('jump', ['assets/jump.wav']);
+                this.load.audio('error', ['assets/error.wav']);
+                this.load.audio('bump', ['assets/bump.wav']);
+                this.load.audio('pop', ['assets/pop.wav']);
+                this.load.audio('speedboostSFX', ['assets/item_speedup.wav']);
+                this.load.audio('balloonspawn', ['assets/balloonspawn.wav']);
+                this.load.audio('bonuspointSFX', ['assets/item_pointbonus.wav']);
+                
+                //tutorial image
+                this.load.image('tutorial', ['assets/tutorialscreen.jpg']);
+                this.load.image('fcollide', 'dontquestionme/colliderwide.png');
+                this.load.image('scollide', 'dontquestionme/collider_small.png');
+                this.load.image('colliders', 'dontquestionme/colliders.png');
+            }
+        },
+        create: function(){
+                //startup =false
+                lost = false
+                
+                this.add.image(400, 300, 'sky');
+                
+                //add tutorial image
+                //this.add.image(400, 300, 'tutorial');
+                
+                platforms = this.physics.add.staticGroup();
+                platforms.create(400,600-30,'fcollide').setScale(1)
+                this.add.image(400, 568, 'ground')
+
+                lvl4 = this.physics.add.staticGroup();
+                lvl4.create(4*800/6,450,'baka');
+
+                player_red = this.physics.add.sprite(100, 400, 'guy_red').setScale(0.2);
+                player_red.setBounce(0.1);
+                player_red.setCollideWorldBounds(true);
+                player_red.setGravityY(599);
+
+                //player_blue = this.physics.add.sprite(700, 400, 'guy_blue').setScale(0.2);
+                //player_blue.setBounce(0.1);
+                //player_blue.setCollideWorldBounds(true);
+                //player_blue.setGravityY(599);
+
+               
+                if(loaded == false){
+                    this.anims.create({
+                        key: 'red_idle',
+                        frames: [ { key: 'guy_red', frame: 0}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+
+
+                    this.anims.create({
+                        key: 'red_move',
+                        frames: [ { key: 'guy_red', frame: 1}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+
+                    this.anims.create({
+                        key: 'red_jump',
+                        frames: [ { key: 'guy_red', frame: 2}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+
+                    this.anims.create({
+                        key: 'blue_idle',
+                        frames: [ { key: 'guy_blue', frame: 0}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+
+
+                    this.anims.create({
+                        key: 'blue_move',
+                        frames: [ { key: 'guy_blue', frame: 1}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+
+                    this.anims.create({
+                        key: 'blue_jump',
+                        frames: [ { key: 'guy_blue', frame: 2}],
+                        frameRate: 10,
+                        repeat: -1
+                    });
+                    loaded = true;
+                }
+
+                //audio
+                bgmusic = this.sound.add('bgmusic', {loop: true});
+                //bgmusic.play();
+                
+                bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
+                
+                jump = this.sound.add('jump', {loop: false});
+                speedboostSFX = this.sound.add('speedboostSFX', {loop: false});
+                bonuspointSFX = this.sound.add('bonuspointSFX', {loop: false});
+                
+                //Collide Player with Platforms
+                this.physics.add.collider(player_red, platforms);
+                this.physics.add.collider(player_blue, platforms);
+
+                
+                this.physics.add.collider(lvl4,player_red, function(){
+                    this.scene.start('levelselect')
+                    }
+                , null, this);
+                this.physics.add.collider(lvl4,player_blue, function(){
+                    this.scene.start('levelselect')
+                    }
+                , null, this);                
+
+                // Input Events
+                cursors = this.input.keyboard.createCursorKeys();
+
+
+                //Second Player Keys
+                keys = this.input.keyboard.addKeys('A,W,S,D,space');
+
+        },
+        update: function(){
+            playerMovement();
+        }
+    });
+
+
+
 let config = {
     type: Phaser.AUTO,
     width: 800,
@@ -1638,7 +2320,7 @@ let config = {
         }
         
     },
-    scene: [tutorial1,levelselect,firstScene,secondScene,thirdScene,fourthScene,fifthScene]
+    scene: [tutorial1,tutorial2,tutorial3,tutorial4,levelselect,firstScene,secondScene,thirdScene,fourthScene,fifthScene,tutorial0]
 };
 
 let game = new Phaser.Game(config);
@@ -1747,6 +2429,33 @@ function playerMovement () {
     if (!player_blue.body.touching.down){
         player_blue.anims.play('blue_jump', true);
     } 
+}
+
+function redMovement () {
+    
+    // Red Movement
+    if (keys.A.isDown) {
+        player_red.setVelocityX(-playerSpeed);
+        player_red.flipX = true;
+        player_red.anims.play('red_move', true);
+    }
+    else if (keys.D.isDown) {
+        player_red.setVelocityX(playerSpeed);
+        player_red.flipX = false;
+        player_red.anims.play('red_move', true);
+    }
+    else {
+        player_red.setVelocityX(0);
+        player_red.anims.play('red_idle', true);
+    }
+    if (keys.W.isDown && player_red.body.touching.down) {
+        jump.play();
+        player_red.setVelocityY(-jumpSpeed);
+        //player_red.anims.play('jump', true);
+    }
+    if (!player_red.body.touching.down){
+        player_red.anims.play('red_jump', true);
+    }
 }
 // ______       _ _                   
 // | ___ \     | | |                  
