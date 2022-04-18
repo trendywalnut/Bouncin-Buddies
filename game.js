@@ -1509,6 +1509,8 @@ var tutorial1 = new Phaser.Class({
                 this.load.image('three', 'assets/three.png');
                 this.load.image('four', 'assets/four.png');
                 this.load.image('five', 'assets/five.png');
+                
+                this.load.image('door', 'assets/door.png');
 
                 this.load.audio('bgmusic', ['assets/bgmusic.wav']);
                 this.load.audio('jump', ['assets/jump.wav']);
@@ -1546,7 +1548,7 @@ var tutorial1 = new Phaser.Class({
                 platforms.create(700, 500, 'platform');
 
                 lvl4 = this.physics.add.staticGroup();
-                lvl4.create(750,450,'baka');
+                lvl4.create(750,450,'door');
 
                 player_red = this.physics.add.sprite(100, 400, 'guy_red').setScale(0.2);
                 player_red.setBounce(0.1);
@@ -1672,6 +1674,8 @@ var tutorial2 = new Phaser.Class({
                 this.load.image('three', 'assets/three.png');
                 this.load.image('four', 'assets/four.png');
                 this.load.image('five', 'assets/five.png');
+                
+                this.load.image('door', 'assets/door.png');
 
                 this.load.audio('bgmusic', ['assets/bgmusic.wav']);
                 this.load.audio('jump', ['assets/jump.wav']);
@@ -1707,14 +1711,14 @@ var tutorial2 = new Phaser.Class({
                 this.add.image(400, 568, 'ground')
 
                 lvl4 = this.physics.add.staticGroup();
-                lvl4.create(4*800/6,450,'baka');
+                lvl4.create(750,450,'door');
 
                 player_red = this.physics.add.sprite(100, 400, 'guy_red').setScale(0.2);
                 player_red.setBounce(0.1);
                 player_red.setCollideWorldBounds(true);
                 player_red.setGravityY(599);
 
-                player_blue = this.physics.add.sprite(700, 400, 'guy_blue').setScale(0.2);
+                player_blue = this.physics.add.sprite(600, 400, 'guy_blue').setScale(0.2);
                 player_blue.setBounce(0.1);
                 player_blue.setCollideWorldBounds(true);
                 player_blue.setGravityY(599);
@@ -1841,6 +1845,8 @@ var tutorial3 = new Phaser.Class({
                 this.load.image('three', 'assets/three.png');
                 this.load.image('four', 'assets/four.png');
                 this.load.image('five', 'assets/five.png');
+                
+                this.load.image('door', 'assets/door.png');
 
                 this.load.audio('bgmusic', ['assets/bgmusic.wav']);
                 this.load.audio('jump', ['assets/jump.wav']);
@@ -1876,14 +1882,14 @@ var tutorial3 = new Phaser.Class({
                 platforms.create(400, 568, 'ground')
 
                 lvl4 = this.physics.add.staticGroup();
-                lvl4.create(4*800/6,450,'baka');
+                lvl4.create(750,450,'door');
 
                 player_red = this.physics.add.sprite(100, 400, 'guy_red').setScale(0.2);
                 player_red.setBounce(0.1);
                 player_red.setCollideWorldBounds(true);
                 player_red.setGravityY(599);
 
-                player_blue = this.physics.add.sprite(700, 400, 'guy_blue').setScale(0.2);
+                player_blue = this.physics.add.sprite(600, 400, 'guy_blue').setScale(0.2);
                 player_blue.setBounce(0.1);
                 player_blue.setCollideWorldBounds(true);
                 player_blue.setGravityY(599);
@@ -2053,6 +2059,8 @@ var tutorial4 = new Phaser.Class({
                 this.load.image('three', 'assets/three.png');
                 this.load.image('four', 'assets/four.png');
                 this.load.image('five', 'assets/five.png');
+                
+                this.load.image('door', 'assets/door.png');
 
                 this.load.audio('bgmusic', ['assets/bgmusic.wav']);
                 this.load.audio('jump', ['assets/jump.wav']);
@@ -2088,14 +2096,14 @@ var tutorial4 = new Phaser.Class({
                 this.add.image(400, 568, 'ground')
 
                 lvl4 = this.physics.add.staticGroup();
-                lvl4.create(4*800/6,450,'baka');
+                lvl4.create(750,450,'door');
 
                 player_red = this.physics.add.sprite(100, 400, 'guy_red').setScale(0.2);
                 player_red.setBounce(0.1);
                 player_red.setCollideWorldBounds(true);
                 player_red.setGravityY(599);
 
-                player_blue = this.physics.add.sprite(700, 400, 'guy_blue').setScale(0.2);
+                player_blue = this.physics.add.sprite(600, 400, 'guy_blue').setScale(0.2);
                 player_blue.setBounce(0.1);
                 player_blue.setCollideWorldBounds(true);
                 player_blue.setGravityY(599);
@@ -2223,6 +2231,8 @@ var tutorial0 = new Phaser.Class({
                 this.load.image('three', 'assets/three.png');
                 this.load.image('four', 'assets/four.png');
                 this.load.image('five', 'assets/five.png');
+                
+                this.load.image('door', 'assets/door.png');
 
                 this.load.audio('bgmusic', ['assets/bgmusic.wav']);
                 this.load.audio('jump', ['assets/jump.wav']);
@@ -2235,6 +2245,10 @@ var tutorial0 = new Phaser.Class({
                 
                 //tutorial image
                 this.load.image('tutorial', ['assets/tutorialscreen.jpg']);
+                this.load.image('tutorial_1', ['assets/Tutorial1.png']);
+                this.load.image('tutorial_2', ['assets/Tutorial2.png']);
+                this.load.image('tutorial_3', ['assets/Tutorial3.png']);
+                this.load.image('tutorial_4', ['assets/Tutorial4.png']);
                 this.load.image('fcollide', 'dontquestionme/colliderwide.png');
                 this.load.image('scollide', 'dontquestionme/collider_small.png');
                 this.load.image('colliders', 'dontquestionme/colliders.png');
@@ -2350,6 +2364,7 @@ var tutorial0 = new Phaser.Class({
             playerMovement();
         }
     });
+
 
 
 
