@@ -476,7 +476,7 @@ var secondScene = new Phaser.Class({
                 //Create Balloon Timer
                 timer = this.time.addEvent({
                     delay: 5000,
-                    callback: spawnBalloon,
+                    callback: spawnBalloon2,
                     loop: true
                 });
                 //balloon group
@@ -2586,6 +2586,39 @@ function spawnBalloon(){
         balloonSpawn.play();
     }
 }
+function spawnBalloon2(){
+    if(totalBalloons<=max){
+        totalBalloons++;
+        console.log(totalBalloons)
+        var x = Phaser.Math.Between(0, 200);
+        var y = Phaser.Math.Between(0,1)
+        if(y == 0){
+            var balloon = balloons.create(x, 0, 'balloon');
+        }
+        else{
+            var balloon = balloons.create(800-x, 0, 'balloon');
+        }
+        balloon.setScale(0.5);
+        balloon.setVelocity(Phaser.Math.Between(-200, 200), 20);
+        balloon.setMass(0.3);
+        balloon.allowGravity = true;
+        balloon.setBounce(0.2);
+        balloon.setGravityY(1);
+        balloon.useDamping = true;
+        balloon.allowDrag = true;
+        balloon.allowRotation = true;
+        balloon.setAngularAcceleration(1.5);
+        balloon.isCircle = true;
+        balloon.setCircle(20, 27, 37);
+        balloon.setMaxSpeed = 2;
+
+        balloon.setCollideWorldBounds(true);  
+
+        //play SFX
+        balloonSpawn.play();
+    }
+}
+
 
 function spawnBalloonTut(){
     
