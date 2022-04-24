@@ -248,6 +248,7 @@ var secondScene = new Phaser.Class({
                 
                 platforms.create(400,600-30,'fcollide').setScale(1)
                 this.add.image(400, 150, 'treeleaves').setScale(1.75);
+                
                 tree.create(400,200,'scollide').visible = false
                 tree.create(400-64,200-64,'scollide').visible = false
                 tree.create(400-64,200,'scollide').visible = false
@@ -456,7 +457,7 @@ var secondScene = new Phaser.Class({
 
                 
                 //audio
-                bgmusic = this.sound.add('bgmusic', {loop: true});
+                bgmusic = this.sound.add('bgmusic2', {loop: true});
                 bgmusic.play();
                 popSFX = this.sound.add('pop', {loop: false});
                 bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
@@ -722,7 +723,7 @@ var thirdScene = new Phaser.Class({
                 
 
                 //audio
-                bgmusic = this.sound.add('bgmusic', {loop: true});
+                bgmusic = this.sound.add('bgmusic2', {loop: true});
                 bgmusic.play();
                 popSFX = this.sound.add('pop', {loop: false});
                 bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
@@ -934,7 +935,7 @@ var fourthScene = new Phaser.Class({
                
 
                 //audio
-                bgmusic = this.sound.add('bgmusic', {loop: true});
+                bgmusic = this.sound.add('bgmusic4', {loop: true});
                 bgmusic.play();
                 popSFX = this.sound.add('pop', {loop: false});
                 bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
@@ -1371,14 +1372,14 @@ var levelselect = new Phaser.Class({
                 this.add.image(400, 568, 'ground')
 
                 lvl1 = this.physics.add.staticGroup();
-                lvl1.create(800/6,350,'one');
+                lvl1.create(800/5,350,'one');
                 //lvl1.scale(0.01);
                 lvl2 = this.physics.add.staticGroup();
-                lvl2.create(2*800/6,350,'two')
+                lvl2.create(2*800/5,350,'two')
                 lvl3 = this.physics.add.staticGroup();
-                lvl3.create(3*800/6,350,'three')
+                lvl3.create(3*800/5,350,'three')
                 lvl4 = this.physics.add.staticGroup();
-                lvl4.create(4*800/6,350,'four')
+                lvl4.create(4*800/5,350,'four')
                 lvl5 = this.physics.add.staticGroup();
                 //lvl5.create(5*800/6,350,'baka')
 
@@ -1562,6 +1563,8 @@ var tutorial1 = new Phaser.Class({
                 this.load.image('door', 'assets/door.png');
 
                 this.load.audio('bgmusic', ['assets/bgmusic.wav']);
+                this.load.audio('bgmusic2', ['assets/bgmusic_lvl2.wav']);
+                this.load.audio('bgmusic4', ['assets/bgmusic_lvl4.wav']);
                 this.load.audio('jump', ['assets/jump.wav']);
                 this.load.audio('error', ['assets/error.wav']);
                 this.load.audio('bump', ['assets/bump.wav']);
@@ -2618,6 +2621,8 @@ function popBalloon(balloon, ground){
         error.play();
         popSFX.play();
         bgmusic.stop();
+        bgmusic2.stop();
+        bgmusic4.stop();
         player_red.anims.play('red_idle', true);
         player_blue.anims.play('blue_idle', true);
         player_blue.setVelocityX(0);
