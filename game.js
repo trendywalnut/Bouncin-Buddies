@@ -640,9 +640,58 @@ var thirdScene = new Phaser.Class({
 
                 platforms.create(400,600-30,'fcollide').setScale(1)
                 this.add.image(400, 568, 'ground')
-
-                bounceTops.create(600, 250, 'spiketop');
-                bounceTops.create(175, 250, 'spiketop');
+                
+                
+                this.add.image(600, 235, 'spiketop');
+                this.add.image(175, 235, 'spiketop');
+                bounceTops.create(600,240,'scollide').visible = false
+                bounceTops.create(175,240,'scollide').visible = false
+                bounceTops.create(175-28,240,'scollide').visible = false
+                bounceTops.create(175+28,240,'scollide').visible = false
+                bounceTops.create(175-64,240-6,'mcollide').visible = false
+                bounceTops.create(175+64,240-6,'mcollide').visible = false
+                bounceTops.create(175-64,240+10,'mcollide').visible = false
+                bounceTops.create(175+64,240+10,'mcollide').visible = false
+                bounceTops.create(175-64,240+16,'mcollide').visible = false
+                bounceTops.create(175+64,240+16,'mcollide').visible = false
+                bounceTops.create(175-64-19,240+16,'mcollide').visible = false
+                bounceTops.create(175+64+19,240+16,'mcollide').visible = false
+                bounceTops.create(175-64-19+8,240+8,'mcollide').visible = false
+                bounceTops.create(175+64+19-8,240+8,'mcollide').visible = false
+                bounceTops.create(175-64-19+12,240+4,'mcollide').visible = false
+                bounceTops.create(175+64+19-12,240+4,'mcollide').visible = false
+                bounceTops.create(175-64-19+14,240+2,'mcollide').visible = false
+                bounceTops.create(175+64+19-14,240+2,'mcollide').visible = false
+                bounceTops.create(175-64-19+15,240+1,'mcollide').visible = false
+                bounceTops.create(175+64+19-15,240+1,'mcollide').visible = false
+                bounceTops.create(175-64-19+13,240+3,'mcollide').visible = false
+                bounceTops.create(175+64+19-13,240+3,'mcollide').visible = false
+                
+                bounceTops.create(600-64,240-6,'mcollide').visible = false
+                bounceTops.create(600+64,240-6,'mcollide').visible = false
+                bounceTops.create(600-64,240+10,'mcollide').visible = false
+                bounceTops.create(600+64,240+10,'mcollide').visible = false
+                bounceTops.create(600-64,240+16,'mcollide').visible = false
+                bounceTops.create(600+64,240+16,'mcollide').visible = false
+                bounceTops.create(600-64-19,240+16,'mcollide').visible = false
+                bounceTops.create(600+64+19,240+16,'mcollide').visible = false
+                bounceTops.create(600-64-19+8,240+8,'mcollide').visible = false
+                bounceTops.create(600+64+19-8,240+8,'mcollide').visible = false
+                bounceTops.create(600-64-19+12,240+4,'mcollide').visible = false
+                bounceTops.create(600+64+19-12,240+4,'mcollide').visible = false
+                bounceTops.create(600-64-19+14,240+2,'mcollide').visible = false
+                bounceTops.create(600+64+19-14,240+2,'mcollide').visible = false
+                bounceTops.create(600-64-19+15,240+1,'mcollide').visible = false
+                bounceTops.create(600+64+19-15,240+1,'mcollide').visible = false
+                bounceTops.create(600-64-19+13,240+3,'mcollide').visible = false
+                bounceTops.create(600+64+19-13,240+3,'mcollide').visible = false
+                
+            
+                
+                
+            
+                bounceTops.create(600-28,240,'scollide').visible = false
+                bounceTops.create(600+28,240,'scollide').visible = false
                 spikeBottoms.create(600, 280, 'spikebottom');
                 spikeBottoms.create(175, 280, 'spikebottom');
 
@@ -792,7 +841,7 @@ var thirdScene = new Phaser.Class({
                 this.physics.add.collider(player_blue, balloons, hitBalloon, null, this);
             
                 //balloons collide with bounce tops
-                this.physics.add.collider(balloons, bounceTops);
+                this.physics.add.collider(balloons, bounceTops,hitBalloonstop,null,this);
             
                 //balloons pop on spikes
                 this.physics.add.collider(balloons, spikeBottoms, popBalloon, null, this);
@@ -1530,6 +1579,7 @@ var tutorial1 = new Phaser.Class({
                 this.load.image('fcollide', 'dontquestionme/colliderwide.png');
                 this.load.image('scollide', 'dontquestionme/collider_small.png');
                 this.load.image('colliders', 'dontquestionme/colliders.png');
+                this.load.image('mcollide','dontquestionme/colliders_m.png')
             }
         },
         create: function(){
@@ -2539,6 +2589,14 @@ function hitBalloonTut(player, balloon){
 
     balloon.setVelocityY(-260);
     player.setVelocityY(200);
+
+    bump.play();
+    
+}
+function hitBalloonstop(balloon){
+
+    balloon.setVelocityY(-100);
+    balloon.setVelocityX(-ballon.X.velocity+30)
 
     bump.play();
     
