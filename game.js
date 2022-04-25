@@ -1393,7 +1393,16 @@ var levelselect = new Phaser.Class({
                 player_blue.setCollideWorldBounds(true);
                 player_blue.setGravityY(599);
 
-               
+                this.add.text(
+                        400, 
+                        200, 
+                        "Level Select", 
+                        {
+                            fontSize: 50,
+                            color: "#000000",
+                            fontStyle: "bold"
+                        }
+                    ).setOrigin(0.5);
 
                 
                 if(loaded == false){
@@ -2457,7 +2466,7 @@ let config = {
         default: 'arcade',
         arcade: {
             gravity: { y:100 },
-            debug: true
+            debug: false
         }
         
     },
@@ -2641,7 +2650,7 @@ function bounceBalloon(balloon, platform) {
 function popBalloon(balloon, ground){
     totalBalloons -= 1;
     lives -=1
-    livesText.setText('lives: '+lives)
+    livesText.setText('Lives: '+lives)
     if (lives == 0) {
         loseText.visible = true;
         lost = true;
