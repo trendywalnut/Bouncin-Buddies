@@ -110,7 +110,7 @@ var firstScene = new Phaser.Class({
                     child.allowRotation = true;
                     child.setAngularAcceleration(1);
                     child.isCircle = true;
-                    child.setCircle(20);
+                    child.setCircle(20, 5, 20);
                     child.setMaxSpeed = 2;
 
                     child.setCollideWorldBounds(true);
@@ -136,7 +136,7 @@ var firstScene = new Phaser.Class({
                     child.allowRotation = true;
                     child.setAngularAcceleration(1);
                     child.isCircle = true;
-                    child.setCircle(20);
+                    child.setCircle(800, -404, -170);
                     child.setMaxSpeed = 2;
 
                     child.setCollideWorldBounds(true); 
@@ -162,7 +162,7 @@ var firstScene = new Phaser.Class({
                     child.allowRotation = true;
                     child.setAngularAcceleration(1);
                     child.isCircle = true;
-                    child.setCircle(20);
+                    child.setCircle(125, 0, 0);
                     child.setMaxSpeed = 2;
 
                     child.setCollideWorldBounds(true);
@@ -501,7 +501,7 @@ var secondScene = new Phaser.Class({
                     child.allowRotation = true;
                     child.setAngularAcceleration(1);
                     child.isCircle = true;
-                    child.setCircle(20);
+                    child.setCircle(20, 5, 20);
                     child.setMaxSpeed = 2;
 
                     child.setCollideWorldBounds(true);
@@ -527,7 +527,7 @@ var secondScene = new Phaser.Class({
                     child.allowRotation = true;
                     child.setAngularAcceleration(1);
                     child.isCircle = true;
-                    child.setCircle(20);
+                    child.setCircle(800, -404, -170);
                     child.setMaxSpeed = 2;
 
                     child.setCollideWorldBounds(true); 
@@ -553,7 +553,7 @@ var secondScene = new Phaser.Class({
                     child.allowRotation = true;
                     child.setAngularAcceleration(1);
                     child.isCircle = true;
-                    child.setCircle(20);
+                    child.setCircle(125, 0, 0);
                     child.setMaxSpeed = 2;
 
                     child.setCollideWorldBounds(true);
@@ -766,7 +766,7 @@ var thirdScene = new Phaser.Class({
                     child.allowRotation = true;
                     child.setAngularAcceleration(1);
                     child.isCircle = true;
-                    child.setCircle(20);
+                    child.setCircle(20, 5, 20);
                     child.setMaxSpeed = 2;
                     child.setCollideWorldBounds(true);
                 })
@@ -791,7 +791,7 @@ var thirdScene = new Phaser.Class({
                     child.allowRotation = true;
                     child.setAngularAcceleration(1);
                     child.isCircle = true;
-                    child.setCircle(20);
+                    child.setCircle(800, -404, -170);
                     child.setMaxSpeed = 2;
 
                     child.setCollideWorldBounds(true); 
@@ -817,7 +817,7 @@ var thirdScene = new Phaser.Class({
                     child.allowRotation = true;
                     child.setAngularAcceleration(1);
                     child.isCircle = true;
-                    child.setCircle(20);
+                    child.setCircle(125, 0, 0);
                     child.setMaxSpeed = 2;
 
                     child.setCollideWorldBounds(true);
@@ -1004,7 +1004,7 @@ var fourthScene = new Phaser.Class({
                     child.allowRotation = true;
                     child.setAngularAcceleration(1);
                     child.isCircle = true;
-                    child.setCircle(20);
+                    child.setCircle(800, -404, -170);
                     child.setMaxSpeed = 2;
 
                     child.setCollideWorldBounds(true); 
@@ -1030,7 +1030,7 @@ var fourthScene = new Phaser.Class({
                     child.allowRotation = true;
                     child.setAngularAcceleration(1);
                     child.isCircle = true;
-                    child.setCircle(20);
+                    child.setCircle(125, 0, 0);
                     child.setMaxSpeed = 2;
 
                     child.setCollideWorldBounds(true);
@@ -1190,7 +1190,7 @@ var fifthScene = new Phaser.Class({
                     child.allowRotation = true;
                     child.setAngularAcceleration(1);
                     child.isCircle = true;
-                    child.setCircle(20);
+                    child.setCircle(20, 5, 20);
                     child.setMaxSpeed = 2;
 
                     child.setCollideWorldBounds(true);
@@ -1598,6 +1598,9 @@ var tutorial1 = new Phaser.Class({
                 platforms.create(400,600-30,'fcollide').setScale(1)
                 this.add.image(400, 568, 'ground')
             
+                //add skip text
+                skipText = this.add.text(16,550, 'Press L to skip tutorial', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
+            
                 platforms.create(700, 500, 'platform');
 
                 lvl4 = this.physics.add.staticGroup();
@@ -1682,10 +1685,14 @@ var tutorial1 = new Phaser.Class({
 
 
                 //Second Player Keys
-                keys = this.input.keyboard.addKeys('A,W,S,D,space');
+                keys = this.input.keyboard.addKeys('A,W,S,D,space,L');
 
         },
         update: function(){
+            if(keys.L.isDown){
+                    
+                this.scene.start('levelselect')
+            }
             redMovement();
         }
     });
@@ -1762,6 +1769,9 @@ var tutorial2 = new Phaser.Class({
                 platforms = this.physics.add.staticGroup();
                 platforms.create(400,600-30,'fcollide').setScale(1)
                 this.add.image(400, 568, 'ground')
+            
+                //add skip text
+                skipText = this.add.text(16,550, 'Press L to skip tutorial', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
 
                 lvl4 = this.physics.add.staticGroup();
                 lvl4.create(750,450,'door');
@@ -1853,10 +1863,13 @@ var tutorial2 = new Phaser.Class({
 
 
                 //Second Player Keys
-                keys = this.input.keyboard.addKeys('A,W,S,D,space');
+                keys = this.input.keyboard.addKeys('A,W,S,D,space,L');
 
         },
         update: function(){
+            if(keys.L.isDown){  
+                this.scene.start('levelselect')
+            }
             playerMovement();
         }
     });
@@ -1933,6 +1946,9 @@ var tutorial3 = new Phaser.Class({
                 platforms = this.physics.add.staticGroup();
                 platforms.create(400,600-30,'fcollide').setScale(1)
                 platforms.create(400, 568, 'ground')
+            
+            //add skip text
+                skipText = this.add.text(16,550, 'Press L to skip tutorial', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
 
                 lvl4 = this.physics.add.staticGroup();
                 lvl4.create(750,450,'door');
@@ -2036,7 +2052,7 @@ var tutorial3 = new Phaser.Class({
                     child.allowRotation = true;
                     child.setAngularAcceleration(1);
                     child.isCircle = true;
-                    child.setCircle(20);
+                    child.setCircle(20, 5, 20);
                     child.setMaxSpeed = 2;
 
                     child.setCollideWorldBounds(true);
@@ -2067,10 +2083,13 @@ var tutorial3 = new Phaser.Class({
 
 
                 //Second Player Keys
-                keys = this.input.keyboard.addKeys('A,W,S,D,space');
+                keys = this.input.keyboard.addKeys('A,W,S,D,space,L');
 
         },
         update: function(){
+            if(keys.L.isDown){  
+                this.scene.start('levelselect')
+            }
             playerMovement();
         }
     });
@@ -2147,6 +2166,9 @@ var tutorial4 = new Phaser.Class({
                 platforms = this.physics.add.staticGroup();
                 platforms.create(400,600-30,'fcollide').setScale(1)
                 this.add.image(400, 568, 'ground')
+            
+                //add skip text
+                skipText = this.add.text(16,550, 'Press L to skip tutorial', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
 
                 lvl4 = this.physics.add.staticGroup();
                 lvl4.create(750,450,'door');
@@ -2238,10 +2260,13 @@ var tutorial4 = new Phaser.Class({
 
 
                 //Second Player Keys
-                keys = this.input.keyboard.addKeys('A,W,S,D,space');
+                keys = this.input.keyboard.addKeys('A,W,S,D,space,L');
 
         },
         update: function(){
+            if(keys.L.isDown){  
+                this.scene.start('levelselect')
+            }
             playerMovement();
         }
     });
@@ -2414,6 +2439,9 @@ var tutorial0 = new Phaser.Class({
 
         },
         update: function(){
+            if(keys.L.isDown){  
+                this.scene.start('levelselect')
+            }
             playerMovement();
         }
     });
@@ -2429,7 +2457,7 @@ let config = {
         default: 'arcade',
         arcade: {
             gravity: { y:100 },
-            debug: false
+            debug: true
         }
         
     },
@@ -2655,7 +2683,7 @@ function spawnBalloon(){
         balloon.allowRotation = true;
         balloon.setAngularAcceleration(1.5);
         balloon.isCircle = true;
-        balloon.setCircle(20, 27, 37);
+        balloon.setCircle(20, 5, 20);
         balloon.setMaxSpeed = 2;
 
         balloon.setCollideWorldBounds(true);  
@@ -2687,7 +2715,7 @@ function spawnBalloon2(){
         balloon.allowRotation = true;
         balloon.setAngularAcceleration(1.5);
         balloon.isCircle = true;
-        balloon.setCircle(20, 27, 37);
+        balloon.setCircle(20, 5, 20);
         balloon.setMaxSpeed = 2;
 
         balloon.setCollideWorldBounds(true);  
@@ -2714,7 +2742,7 @@ function spawnBalloonTut(){
     balloon.allowRotation = true;
     balloon.setAngularAcceleration(1.5);
     balloon.isCircle = true;
-    balloon.setCircle(20, 27, 37);
+    balloon.setCircle(20, 5, 20);
     balloon.setMaxSpeed = 2;
 
     balloon.setCollideWorldBounds(true);  
@@ -2751,7 +2779,7 @@ function spawnPowerup(){
             speedboost.allowRotation = true;
             speedboost.setAngularAcceleration(1);
             speedboost.isCircle = true;
-            speedboost.setCircle(20);
+            speedboost.setCircle(800, -404, -170);
             speedboost.setMaxSpeed = 2;
 
             speedboost.setCollideWorldBounds(true);
@@ -2768,7 +2796,7 @@ function spawnPowerup(){
             coin.allowRotation = true;
             coin.setAngularAcceleration(1);
             coin.isCircle = true;
-            coin.setCircle(20);
+            coin.setCircle(125, 0, 0);
             coin.setMaxSpeed = 2;
 
             coin.setCollideWorldBounds(true);
