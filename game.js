@@ -11,10 +11,7 @@ var firstScene = new Phaser.Class({
         function firstScene(){
             Phaser.Scene.call(this,{key:'firstScene'});
         },
-        preload: function(){
-            
-            
-        },
+        
         create: function(){
                 max =max1
                 lives = lives1
@@ -230,10 +227,7 @@ var secondScene = new Phaser.Class({
         function secondScene(){
             Phaser.Scene.call(this,{key:'secondScene'});
         },
-        preload: function(){
-            
-            
-        },
+        
         create: function(){
                 max = max2
                 lives = lives2
@@ -247,187 +241,91 @@ var secondScene = new Phaser.Class({
                 this.add.image(400, 375, 'treetrunk').setScale(1.75);
                 
                 platforms.create(400,600-30,'fcollide').setScale(1)
-                this.add.image(400, 150, 'treeleaves').setScale(1.75);
-                
-                tree.create(400,200,'scollide').visible = false
-                tree.create(400-64,200-64,'scollide').visible = false
-                tree.create(400-64,200,'scollide').visible = false
-                tree.create(400,200-64,'scollide').visible = false
-                tree.create(400+64,200+64,'scollide').visible = false
-                tree.create(400+64,200,'scollide').visible = false
-                tree.create(400,200+64,'scollide').visible = false
-                tree.create(400-64,200+64,'scollide').visible = false
-                tree.create(400+64,200-64,'scollide').visible = false
-                tree.create(400,200-128,'scollide').visible = false
-                tree.create(400+64,200-128,'scollide').visible = false
-                tree.create(400-64,200-128,'scollide').visible = false
-                tree.create(400,200-192,'scollide').visible = false
-                tree.create(400+128,200,'scollide').visible = false
-                tree.create(400-100,200,'scollide').visible = false
-                tree.create(400+100,200-64,'scollide').visible = false
-                tree.create(400-128,200-64,'scollide').visible = false
-                tree.create(400-85,200-128,'scollide').visible = false
-                tree.create(400-128,200-32,'scollide').visible = false
-                tree.create(400+100,200-128,'scollide').visible = false
-                tree.create(400-50,200+64,'scollide').visible = false
-                tree.create(400-110,200+32,'scollide').visible = false
-                tree.create(400+16,16,'scollide').visible = false
-                tree.create(400+48,48,'scollide').visible = false
-                tree.create(400+64,48,'scollide').visible = false
-                tree.create(400+80,48,'scollide').visible = false
-                tree.create(400+96,230,'scollide').visible = false
-                tree.create(400-96,230+10,'scollide').visible = false
-                tree.create(400-96,200-120,'scollide').visible = false
-                tree.create(250,200,'colliders').visible = false
-                tree.create(250+10-16*1,200,'colliders').visible = false
-                tree.create(250+6-16*1,200-16,'colliders').visible = false
-                tree.create(250+6-16*1,200-16*2,'colliders').visible = false
-                tree.create(250+10-16*1,200-16*2,'colliders').visible = false
-                tree.create(250+10-16*1,200-16*3,'colliders').visible = false
-                tree.create(250+10-16*1,200-16*4,'colliders').visible = false
-                tree.create(250+8-16*1,200-16*5,'colliders').visible = false
-                tree.create(250+10-16*1,200-16*6,'colliders').visible = false
-                tree.create(250+10+16*0,200-16*6,'colliders').visible = false
-                tree.create(250+10+16*1,200-16*6,'colliders').visible = false
-                tree.create(250+10+16*2,200-16*6,'colliders').visible = false
-                tree.create(250+10+16*0,200-16*7,'colliders').visible = false
-                tree.create(250+10+16*1,200-16*7,'colliders').visible = false
-                tree.create(250+10+16*0,200-16*8,'colliders').visible = false
-                tree.create(250+10+16*1,200-16*8,'colliders').visible = false
-                tree.create(250+10-16*0,200+16*2,'colliders').visible = false
-                tree.create(250+10-16*0,200+16*3,'colliders').visible = false
-                tree.create(400-32,32,'colliders').visible = false
-                tree.create(400-48,32,'colliders').visible = false
-                tree.create(400-64,32,'colliders').visible = false
-                tree.create(400-48,16,'colliders').visible = false
-                tree.create(400-32,16,'colliders').visible = false
-                tree.create(400-72,40,'colliders').visible = false
-                tree.create(400-88,40,'colliders').visible = false
-                tree.create(400-96,40,'colliders').visible = false
-                tree.create(400-96,300-16,'colliders').visible = false
-                tree.create(400-96,300-24,'colliders').visible = false
-                tree.create(400-112,300-24,'colliders').visible = false
-                tree.create(400-128,300-32,'colliders').visible = false
-                tree.create(400+100,300-32,'colliders').visible = false
-                tree.create(400+108,300-40,'colliders').visible = false
-                tree.create(400+124,300-40,'colliders').visible = false
-                tree.create(400+124,300-48,'colliders').visible = false
-                tree.create(400+140,300-48,'colliders').visible = false
-                tree.create(400+124,300-64,'colliders').visible = false
-                tree.create(400+140,300-64,'colliders').visible = false
-                tree.create(400+148,300-64,'colliders').visible = false
-                tree.create(400+156,300-88,'colliders').visible = false
-                tree.create(400+156,300-104,'colliders').visible = false
-                tree.create(400+156,300-120,'colliders').visible = false
-                tree.create(400+152,300-128,'colliders').visible = false
-                tree.create(400+140,300-128,'colliders').visible = false
-                tree.create(400+152,300-136,'colliders').visible = false
-                tree.create(400+140,300-136,'colliders').visible = false
-                tree.create(400+146,300-142,'colliders').visible = false
-                tree.create(400+132,300-142,'colliders').visible = false
-                tree.create(400+146,300-150,'colliders').visible = false
-                tree.create(400+132,300-150,'colliders').visible = false
-                tree.create(400,0,'scollide').visible = false
-                tree.create(400-64,0,'scollide').visible = false
-                tree.create(400-64*2,0,'scollide').visible = false
-                tree.create(400-64,64,'scollide').visible = false
-                tree.create(400-64*2,64,'scollide').visible = false
-                tree.create(400+64,0,'scollide').visible = false
-                tree.create(400+64*2,0,'scollide').visible = false
-                tree.create(400+64,64,'scollide').visible = false
-                tree.create(400+64*2,64,'scollide').visible = false
-                tree.create(400+64,64*2,'scollide').visible = false
-                tree.create(400+64*2,64*2,'scollide').visible = false
-                tree.create(400-64,64*2,'scollide').visible = false
-                tree.create(400-64*2,64*2,'scollide').visible = false
-                
-                
                 
                 
                 this.add.image(400, 150, 'treeleaves').setScale(1.75);
+                tree.create(390,150,'lfcollide').visible = true
                 
                 
                 
-                tree.create(360, 300, 'colliders').setScale(1).visible = false
-                tree.create(360+7, 316, 'colliders').setScale(1).visible = false
-                tree.create(376-4+16*2, 316, 'colliders').setScale(1).visible = false
-                tree.create(376-4+16*2, 300, 'colliders').setScale(1).visible = false
-                tree.create(360+7, 332, 'colliders').setScale(1).visible = false
-                tree.create(376-4+16*2, 332, 'colliders').setScale(1).visible = false
-                tree.create(360+7, 348, 'colliders').setScale(1).visible = false
-                tree.create(376-4+16*2, 348, 'colliders').setScale(1).visible = false
-                tree.create(360+7, 364, 'colliders').setScale(1).visible = false
-                tree.create(376-4+16*2, 364, 'colliders').setScale(1).visible = false
-                tree.create(360+7, 380, 'colliders').setScale(1).visible = false
-                tree.create(376-4+16*2, 380, 'colliders').setScale(1).visible = false
-                tree.create(360+7, 396, 'colliders').setScale(1).visible = false
-                tree.create(360+7, 396+16*1, 'colliders').setScale(1).visible = false
-                tree.create(376-4+16*2, 396+16*1, 'colliders').setScale(1).visible = false
-                tree.create(360+7, 396+16*2, 'colliders').setScale(1).visible = false
-                tree.create(376+4+16*2, 396+16*2, 'colliders').setScale(1).visible = false
-                tree.create(360+7, 396+16*3, 'colliders').setScale(1).visible = false
-                tree.create(376-4+16*2, 396+16*3, 'colliders').setScale(1).visible = false
-                tree.create(360-2, 396+16*4, 'colliders').setScale(1).visible = false
-                tree.create(376+14+16*2, 396+16*4, 'colliders').setScale(1).visible = false
-                tree.create(360-8, 396+16*6, 'colliders').setScale(1).visible = false
-                tree.create(376+10+16*3, 396+16*6, 'colliders').setScale(1).visible = false
-                tree.create(360-8, 396+16*7, 'colliders').setScale(1).visible = false
-                tree.create(376+6+16*3, 396+16*5, 'colliders').setScale(1).visible = false
-                tree.create(360-10, 396+16*8, 'colliders').setScale(1).visible = false
-                tree.create(376+8+16*4, 396+16*8, 'colliders').setScale(1).visible = false
-                tree.create(376+16*4, 396+16*7, 'colliders').setScale(1).visible = false
                 
                 
-                tree.create(376, 300, 'colliders').setScale(1).visible = false
-                tree.create(376+16*1, 300, 'colliders').setScale(1).visible = false
-                tree.create(376, 316, 'colliders').setScale(1).visible = false
-                tree.create(376+16*1, 316, 'colliders').setScale(1).visible = false
-                tree.create(376, 332, 'colliders').setScale(1).visible = false
-                tree.create(376+16*1, 332, 'colliders').setScale(1).visible = false
-                tree.create(376, 348, 'colliders').setScale(1).visible = false
-                tree.create(376+16*1, 348, 'colliders').setScale(1).visible = false
-                tree.create(376, 364, 'colliders').setScale(1).visible = false
-                tree.create(376+16*1, 364, 'colliders').setScale(1).visible = false
-                tree.create(376, 380, 'colliders').setScale(1).visible = false
-                tree.create(376+16*1, 380, 'colliders').setScale(1).visible = false
-                tree.create(376, 396, 'colliders').setScale(1).visible = false
-                tree.create(376+16*1, 396, 'colliders').setScale(1).visible = false
-                tree.create(376+16*2, 396, 'colliders').setScale(1).visible = false
-                tree.create(376, 396+16*1, 'colliders').setScale(1).visible = false
-                tree.create(376+16*1, 396+16*1, 'colliders').setScale(1).visible = false
-                tree.create(376+16*2, 396+16*1, 'colliders').setScale(1).visible = false
-                tree.create(376, 396+16*2, 'colliders').setScale(1).visible = false
-                tree.create(376+16*1, 396+16*2, 'colliders').setScale(1).visible = false
-                tree.create(376+16*2, 396+16*2, 'colliders').setScale(1).visible = false
-                tree.create(376, 396+16*3, 'colliders').setScale(1).visible = false
-                tree.create(376+16*1, 396+16*3, 'colliders').setScale(1).visible = false
-                tree.create(376+16*2, 396+16*3, 'colliders').setScale(1).visible = false
-                tree.create(360, 396+16*4, 'colliders').setScale(1).visible = false
-                tree.create(376, 396+16*4, 'colliders').setScale(1).visible = false
-                tree.create(376+16*1, 396+16*4, 'colliders').setScale(1).visible = false
-                tree.create(376+16*2, 396+16*4, 'colliders').setScale(1).visible = false
-                tree.create(360, 396+16*5, 'colliders').setScale(1).visible = false
-                tree.create(376, 396+16*5, 'colliders').setScale(1).visible = false
-                tree.create(376+16*1, 396+16*5, 'colliders').setScale(1).visible = false
-                tree.create(376+16*2, 396+16*5, 'colliders').setScale(1).visible = false
-                tree.create(376+16*3, 396+16*5, 'colliders').setScale(1).visible = false
-                tree.create(360, 396+16*6, 'colliders').setScale(1).visible = false
-                tree.create(376, 396+16*6, 'colliders').setScale(1).visible = false
-                tree.create(376+16*1, 396+16*6, 'colliders').setScale(1).visible = false
-                tree.create(376+16*2, 396+16*6, 'colliders').setScale(1).visible = false
-                tree.create(376+16*3, 396+16*6, 'colliders').setScale(1).visible = false
-                tree.create(360, 396+16*7, 'colliders').setScale(1).visible = false
-                tree.create(376, 396+16*7, 'colliders').setScale(1).visible = false
-                tree.create(376+16*1, 396+16*7, 'colliders').setScale(1).visible = false
-                tree.create(376+16*2, 396+16*7, 'colliders').setScale(1).visible = false
-                tree.create(376+16*3, 396+16*7, 'colliders').setScale(1).visible = false
-                tree.create(360, 396+16*8, 'colliders').setScale(1).visible = false
-                tree.create(376, 396+16*8, 'colliders').setScale(1).visible = false
-                tree.create(376+16*1, 396+16*8, 'colliders').setScale(1).visible = false
-                tree.create(376+16*2, 396+16*8, 'colliders').setScale(1).visible = false
-                tree.create(376+16*3, 396+16*8, 'colliders').setScale(1).visible = false
-                tree.create(376+16*4, 396+16*8, 'colliders').setScale(1).visible = false
+                
+                
+               
+                
+                
+                tree.create(400+124,300-64,'colliders').visible = cvis
+                tree.create(400+140,300-64,'colliders').visible = cvis
+                tree.create(400+148,300-64,'colliders').visible = cvis
+                tree.create(400+156,300-88,'colliders').visible = cvis
+                tree.create(400+156,300-104,'colliders').visible = cvis
+                tree.create(400+156,300-120,'colliders').visible = cvis
+                tree.create(400+152,300-128,'colliders').visible = cvis
+                tree.create(400+140,300-128,'colliders').visible = cvis
+                tree.create(400+152,300-136,'colliders').visible = cvis
+                tree.create(400+140,300-136,'colliders').visible = cvis
+                tree.create(400+146,300-142,'colliders').visible = cvis
+                tree.create(400+132,300-142,'colliders').visible = cvis
+                tree.create(400+146,300-150,'colliders').visible = cvis
+                tree.create(400+132,300-150,'colliders').visible = cvis
+                
+               
+                
+                tree.create(400+64*2,0,'scollide').visible = cvis
+                
+                tree.create(400+64*2,64,'scollide').visible = cvis
+                
+                tree.create(400+64*2,64*2,'scollide').visible = cvis
+                
+                
+                
+                tree.create(390,415,'trcollide').visible = true
+                
+                //this.add.image(400, 150, 'treeleaves').setScale(1.75);
+                
+                
+                
+                
+                
+                
+                
+                tree.create(360-8, 396+16*7, 'colliders').setScale(1).visible = cvis
+                
+                
+                
+                tree.create(376+16*4, 396+16*7, 'colliders').setScale(1).visible = cvis
+                tree.create(376+16*4, 396+16*6, 'colliders').setScale(1).visible = cvis
+                
+                
+                
+               
+                
+               
+                tree.create(360, 396+16*4, 'colliders').setScale(1).visible = cvis
+                
+                tree.create(360, 396+16*5, 'colliders').setScale(1).visible = cvis
+            
+                
+                
+                tree.create(376+16*3, 396+16*5, 'colliders').setScale(1).visible = cvis
+                tree.create(360, 396+16*6, 'colliders').setScale(1).visible = cvis
+                
+                
+                
+                tree.create(376+16*3, 396+16*6, 'colliders').setScale(1).visible = cvis
+                
+                
+                
+                tree.create(376+16*3, 396+16*7, 'colliders').setScale(1).visible = cvis
+                
+               
+                
+                
+                tree.create(376+16*3, 396+16*8, 'colliders').setScale(1).visible = cvis
+                tree.create(376+16*4, 396+16*8, 'colliders').setScale(1).visible = cvis
                 this.add.image(400, 568, 'ground')
+                
                 
                 //this.add.image(400, 375, 'treetrunk').setScale(1.75);
 
@@ -627,9 +525,7 @@ var thirdScene = new Phaser.Class({
         function thirdScene(){
             Phaser.Scene.call(this,{key:'thirdScene'});
         },
-        preload: function(){
-                        
-        },
+        
         create: function(){
                 max = max3
                 lives = lives3
@@ -891,8 +787,7 @@ var fourthScene = new Phaser.Class({
         function fourthScene(){
             Phaser.Scene.call(this,{key:'fourthScene'});
         },
-        preload: function(){
-        },
+        
         create: function(){
                 max = max4
                 lives = lives4
@@ -1098,13 +993,7 @@ var fifthScene = new Phaser.Class({
         function fifthScene(){
             Phaser.Scene.call(this,{key:'fifthScene'});
         },
-        preload: function(){
-            
-           
-    
-           
-            
-        },
+        
         create: function(){
                 max = max5
                 lives = lives5
@@ -1313,33 +1202,7 @@ var levelselect = new Phaser.Class({
         preload: function(){
             totalBalloons = 1
             score = 0
-            if(loaded == false){
-                this.load.spritesheet('guy_red', 'assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
-                this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
-                this.load.image('balloon', 'assets/balloon.png');
-                //this.load.image('guy_red', 'assets/guy_idle_red.png');
-                this.load.image('sky', 'assets/background_sky2d.png');
-                this.load.image('volcano', 'assets/background_volcano.png');
-
-                this.load.image('platform', 'assets/platform_grass.png');
-                this.load.image('volcano_boulder', 'assets/volcano_boulder.png');
-                this.load.image('ground', 'assets/foreground_grass.png');
-                this.load.image('ground_volcano', 'assets/foreground_volcano.png');
-
-                this.load.image('treetrunk', 'assets/tree_trunk.png');
-                this.load.image('treeleaves', 'assets/tree_leaves.png');
-
-                this.load.image('spikepole', 'assets/spikepole.png');
-                this.load.image('spikebottom', 'assets/spikeplatform_bottom.png');
-
-                this.load.image('speedboost', 'assets/speedboost.png');
-                this.load.image('coin', 'assets/coin.png');
-                
-                this.load.image('one', 'assets/one.png');
-                this.load.image('two', 'assets/two.png');
-                this.load.image('three', 'assets/three.png');
-                this.load.image('four', 'assets/four.png');
-                this.load.image('five', 'assets/five.png');
+            if(loaded2 == false){
 
                 this.load.audio('bgmusic', ['assets/bgmusic.wav']);
                 this.load.audio('jump', ['assets/jump.wav']);
@@ -1350,15 +1213,8 @@ var levelselect = new Phaser.Class({
                 this.load.audio('balloonspawn', ['assets/balloonspawn.wav']);
                 this.load.audio('bonuspointSFX', ['assets/item_pointbonus.wav']);
                 
-                //tutorial image
-                this.load.image('tutorial', ['assets/tutorialscreen.jpg']);
-                this.load.image('tutorial_1', ['assets/Tutorial1.png']);
-                this.load.image('tutorial_2', ['assets/Tutorial2.png']);
-                this.load.image('tutorial_3', ['assets/Tutorial3.png']);
-                this.load.image('tutorial_4', ['assets/Tutorial4.png']);
-                this.load.image('fcollide', 'dontquestionme/colliderwide.png');
-                this.load.image('scollide', 'dontquestionme/collider_small.png');
-                this.load.image('colliders', 'dontquestionme/colliders.png');
+                
+                loaded2 = true 
             }
         },
         create: function(){
@@ -1592,6 +1448,8 @@ var tutorial1 = new Phaser.Class({
                 this.load.image('scollide', 'dontquestionme/collider_small.png');
                 this.load.image('colliders', 'dontquestionme/colliders.png');
                 this.load.image('mcollide','dontquestionme/colliders_m.png')
+                this.load.image('trcollide','dontquestionme/trunkcollide.png')
+                this.load.image('lfcollide','dontquestionme/leafcollide.png')
             }
         },
         create: function(){
@@ -1712,60 +1570,7 @@ var tutorial2 = new Phaser.Class({
         function levelselect(){
             Phaser.Scene.call(this,{key:'tutorial2'});
         },
-        preload: function(){
-            totalBalloons = 1
-            score = 0
-            if(loaded == false){
-                this.load.spritesheet('guy_red', 'assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
-                this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
-                this.load.image('balloon', 'assets/balloon.png');
-                //this.load.image('guy_red', 'assets/guy_idle_red.png');
-                this.load.image('sky', 'assets/background_sky2d.png');
-                this.load.image('volcano', 'assets/background_volcano.png');
-
-                this.load.image('platform', 'assets/platform_grass.png');
-                this.load.image('volcano_boulder', 'assets/volcano_boulder.png');
-                this.load.image('ground', 'assets/foreground_grass.png');
-                this.load.image('ground_volcano', 'assets/foreground_volcano.png');
-
-                this.load.image('treetrunk', 'assets/tree_trunk.png');
-                this.load.image('treeleaves', 'assets/tree_leaves.png');
-
-                this.load.image('spikepole', 'assets/spikepole.png');
-                this.load.image('spiketop', 'assets/spikeplatform_top.png')
-                this.load.image('spikebottom', 'assets/spikeplatform_bottom.png');
-
-                this.load.image('speedboost', 'assets/speedboost.png');
-                this.load.image('coin', 'assets/coin.png');
-                
-                this.load.image('one', 'assets/one.png');
-                this.load.image('two', 'assets/two.png');
-                this.load.image('three', 'assets/three.png');
-                this.load.image('four', 'assets/four.png');
-                this.load.image('five', 'assets/five.png');
-                
-                this.load.image('door', 'assets/door.png');
-
-                this.load.audio('bgmusic', ['assets/bgmusic.wav']);
-                this.load.audio('jump', ['assets/jump.wav']);
-                this.load.audio('error', ['assets/error.wav']);
-                this.load.audio('bump', ['assets/bump.wav']);
-                this.load.audio('pop', ['assets/pop.wav']);
-                this.load.audio('speedboostSFX', ['assets/item_speedup.wav']);
-                this.load.audio('balloonspawn', ['assets/balloonspawn.wav']);
-                this.load.audio('bonuspointSFX', ['assets/item_pointbonus.wav']);
-                
-                //tutorial image
-                this.load.image('tutorial', ['assets/tutorialscreen.jpg']);
-                this.load.image('tutorial_1', ['assets/Tutorial1.png']);
-                this.load.image('tutorial_2', ['assets/Tutorial2.png']);
-                this.load.image('tutorial_3', ['assets/Tutorial3.png']);
-                this.load.image('tutorial_4', ['assets/Tutorial4.png']);
-                this.load.image('fcollide', 'dontquestionme/colliderwide.png');
-                this.load.image('scollide', 'dontquestionme/collider_small.png');
-                this.load.image('colliders', 'dontquestionme/colliders.png');
-            }
-        },
+        
         create: function(){
                 //startup =false
                 lost = false
@@ -1797,50 +1602,9 @@ var tutorial2 = new Phaser.Class({
 
                
                 if(loaded == false){
-                    this.anims.create({
-                        key: 'red_idle',
-                        frames: [ { key: 'guy_red', frame: 0}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
+                    
 
-
-                    this.anims.create({
-                        key: 'red_move',
-                        frames: [ { key: 'guy_red', frame: 1}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-                    this.anims.create({
-                        key: 'red_jump',
-                        frames: [ { key: 'guy_red', frame: 2}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-                    this.anims.create({
-                        key: 'blue_idle',
-                        frames: [ { key: 'guy_blue', frame: 0}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-
-                    this.anims.create({
-                        key: 'blue_move',
-                        frames: [ { key: 'guy_blue', frame: 1}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-                    this.anims.create({
-                        key: 'blue_jump',
-                        frames: [ { key: 'guy_blue', frame: 2}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-                    loaded = true;
+                    
                 }
 
                 //audio
@@ -1889,60 +1653,7 @@ var tutorial3 = new Phaser.Class({
         function levelselect(){
             Phaser.Scene.call(this,{key:'tutorial3'});
         },
-        preload: function(){
-            totalBalloons = 1
-            score = 0
-            if(loaded == false){
-                this.load.spritesheet('guy_red', 'assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
-                this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
-                this.load.image('balloon', 'assets/balloon.png');
-                //this.load.image('guy_red', 'assets/guy_idle_red.png');
-                this.load.image('sky', 'assets/background_sky2d.png');
-                this.load.image('volcano', 'assets/background_volcano.png');
-
-                this.load.image('platform', 'assets/platform_grass.png');
-                this.load.image('volcano_boulder', 'assets/volcano_boulder.png');
-                this.load.image('ground', 'assets/foreground_grass.png');
-                this.load.image('ground_volcano', 'assets/foreground_volcano.png');
-
-                this.load.image('treetrunk', 'assets/tree_trunk.png');
-                this.load.image('treeleaves', 'assets/tree_leaves.png');
-
-                this.load.image('spikepole', 'assets/spikepole.png');
-                this.load.image('spiketop', 'assets/spikeplatform_top.png')
-                this.load.image('spikebottom', 'assets/spikeplatform_bottom.png');
-
-                this.load.image('speedboost', 'assets/speedboost.png');
-                this.load.image('coin', 'assets/coin.png');
-                
-                this.load.image('one', 'assets/one.png');
-                this.load.image('two', 'assets/two.png');
-                this.load.image('three', 'assets/three.png');
-                this.load.image('four', 'assets/four.png');
-                this.load.image('five', 'assets/five.png');
-                
-                this.load.image('door', 'assets/door.png');
-
-                this.load.audio('bgmusic', ['assets/bgmusic.wav']);
-                this.load.audio('jump', ['assets/jump.wav']);
-                this.load.audio('error', ['assets/error.wav']);
-                this.load.audio('bump', ['assets/bump.wav']);
-                this.load.audio('pop', ['assets/pop.wav']);
-                this.load.audio('speedboostSFX', ['assets/item_speedup.wav']);
-                this.load.audio('balloonspawn', ['assets/balloonspawn.wav']);
-                this.load.audio('bonuspointSFX', ['assets/item_pointbonus.wav']);
-                
-                //tutorial image
-                this.load.image('tutorial', ['assets/tutorialscreen.jpg']);
-                this.load.image('tutorial_1', ['assets/Tutorial1.png']);
-                this.load.image('tutorial_2', ['assets/Tutorial2.png']);
-                this.load.image('tutorial_3', ['assets/Tutorial3.png']);
-                this.load.image('tutorial_4', ['assets/Tutorial4.png']);
-                this.load.image('fcollide', 'dontquestionme/colliderwide.png');
-                this.load.image('scollide', 'dontquestionme/collider_small.png');
-                this.load.image('colliders', 'dontquestionme/colliders.png');
-            }
-        },
+        
         create: function(){
                 //startup =false
                 lost = false
@@ -2109,60 +1820,7 @@ var tutorial4 = new Phaser.Class({
         function levelselect(){
             Phaser.Scene.call(this,{key:'tutorial4'});
         },
-        preload: function(){
-            totalBalloons = 1
-            score = 0
-            if(loaded == false){
-                this.load.spritesheet('guy_red', 'assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
-                this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
-                this.load.image('balloon', 'assets/balloon.png');
-                //this.load.image('guy_red', 'assets/guy_idle_red.png');
-                this.load.image('sky', 'assets/background_sky2d.png');
-                this.load.image('volcano', 'assets/background_volcano.png');
-
-                this.load.image('platform', 'assets/platform_grass.png');
-                this.load.image('volcano_boulder', 'assets/volcano_boulder.png');
-                this.load.image('ground', 'assets/foreground_grass.png');
-                this.load.image('ground_volcano', 'assets/foreground_volcano.png');
-
-                this.load.image('treetrunk', 'assets/tree_trunk.png');
-                this.load.image('treeleaves', 'assets/tree_leaves.png');
-
-                this.load.image('spikepole', 'assets/spikepole.png');
-                this.load.image('spiketop', 'assets/spikeplatform_top.png')
-                this.load.image('spikebottom', 'assets/spikeplatform_bottom.png');
-
-                this.load.image('speedboost', 'assets/speedboost.png');
-                this.load.image('coin', 'assets/coin.png');
-                
-                this.load.image('one', 'assets/one.png');
-                this.load.image('two', 'assets/two.png');
-                this.load.image('three', 'assets/three.png');
-                this.load.image('four', 'assets/four.png');
-                this.load.image('five', 'assets/five.png');
-                
-                this.load.image('door', 'assets/door.png');
-
-                this.load.audio('bgmusic', ['assets/bgmusic.wav']);
-                this.load.audio('jump', ['assets/jump.wav']);
-                this.load.audio('error', ['assets/error.wav']);
-                this.load.audio('bump', ['assets/bump.wav']);
-                this.load.audio('pop', ['assets/pop.wav']);
-                this.load.audio('speedboostSFX', ['assets/item_speedup.wav']);
-                this.load.audio('balloonspawn', ['assets/balloonspawn.wav']);
-                this.load.audio('bonuspointSFX', ['assets/item_pointbonus.wav']);
-                
-                //tutorial image
-                this.load.image('tutorial', ['assets/tutorialscreen.jpg']);
-                this.load.image('tutorial_1', ['assets/Tutorial1.png']);
-                this.load.image('tutorial_2', ['assets/Tutorial2.png']);
-                this.load.image('tutorial_3', ['assets/Tutorial3.png']);
-                this.load.image('tutorial_4', ['assets/Tutorial4.png']);
-                this.load.image('fcollide', 'dontquestionme/colliderwide.png');
-                this.load.image('scollide', 'dontquestionme/collider_small.png');
-                this.load.image('colliders', 'dontquestionme/colliders.png');
-            }
-        },
+        
         create: function(){
                 //startup =false
                 lost = false
@@ -2491,6 +2149,7 @@ if(true){
     var coins;
     var spawnedCoinGroup = false;
     var loaded = false;
+    var loaded2 = false;
     var score = 0;
     var scoreText;
     var livesText;
@@ -2518,6 +2177,7 @@ if(true){
     var lives5 = 8
     var lost = false;
     var loseText;
+    var cvis = true
     //var startup;
 };
 //var bgmusic;
