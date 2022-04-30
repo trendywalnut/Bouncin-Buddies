@@ -62,7 +62,7 @@ var firstScene = new Phaser.Class({
                
 
                 //audio
-                //bgmusic = this.sound.add('bgmusic', {loop: true});
+                bgmusic = this.sound.add('bgmusic', {loop: true});
                 bgmusic.play();
                 popSFX = this.sound.add('pop', {loop: false});
                 bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
@@ -1165,22 +1165,10 @@ var levelselect = new Phaser.Class({
         preload: function(){
             totalBalloons = 1
             score = 0
-            if(loaded2 == false){
-
-                this.load.audio('bgmusic', ['assets/bgmusic.wav']);
-                this.load.audio('jump', ['assets/jump.wav']);
-                this.load.audio('error', ['assets/error.wav']);
-                this.load.audio('bump', ['assets/bump.wav']);
-                this.load.audio('pop', ['assets/pop.wav']);
-                this.load.audio('speedboostSFX', ['assets/item_speedup.wav']);
-                this.load.audio('balloonspawn', ['assets/balloonspawn.wav']);
-                this.load.audio('bonuspointSFX', ['assets/item_pointbonus.wav']);
-                
-                
-                loaded2 = true 
-            }
+            
         },
         create: function(){
+                
                 //startup =false
                 lost = false
                 this.add.image(400, 300, 'sky');
@@ -1211,7 +1199,8 @@ var levelselect = new Phaser.Class({
                 player_blue.setBounce(0.1);
                 player_blue.setCollideWorldBounds(true);
                 player_blue.setGravityY(599);
-
+                
+                
                 this.add.text(
                         400, 
                         200, 
@@ -1272,14 +1261,15 @@ var levelselect = new Phaser.Class({
                 }
 
                 //audio
-                bgmusic = this.sound.add('bgmusic', {loop: true});
-                //bgmusic.play();
+                
                 
                 bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
                 
                 jump = this.sound.add('jump', {loop: false});
                 speedboostSFX = this.sound.add('speedboostSFX', {loop: false});
                 bonuspointSFX = this.sound.add('bonuspointSFX', {loop: false});
+                bgmusic = this.sound.add('bgmusiclvl', {loop: true});
+                bgmusic.play()
 
 
 
@@ -1290,42 +1280,52 @@ var levelselect = new Phaser.Class({
                 this.physics.add.collider(player_blue, platforms);
 
                 this.physics.add.collider(lvl1,player_red, function(){
+                    trust()
                     this.scene.start('firstScene')
                     }
                 , null, this);
                 this.physics.add.collider(lvl1,player_blue, function(){
+                    trust()
                     this.scene.start('firstScene')
                     }
                 , null, this);
                 this.physics.add.collider(lvl2,player_red, function(){
+                    trust()
                     this.scene.start('secondScene')
                     }
                 , null, this);
                 this.physics.add.collider(lvl2,player_blue, function(){
+                    trust()
                     this.scene.start('secondScene')
                     }
                 , null, this);
                 this.physics.add.collider(lvl3,player_red, function(){
+                    trust()
                     this.scene.start('thirdScene')
                     }
                 , null, this);
                 this.physics.add.collider(lvl3,player_blue, function(){
+                    trust()
                     this.scene.start('thirdScene')
                     }
                 , null, this);
                 this.physics.add.collider(lvl4,player_red, function(){
+                    trust()
                     this.scene.start('fourthScene')
                     }
                 , null, this);
                 this.physics.add.collider(lvl4,player_blue, function(){
+                    trust()
                     this.scene.start('fourthScene')
                     }
                 , null, this);
                 this.physics.add.collider(lvl5,player_red, function(){
+                    trust()
                     this.scene.start('fifthScene')
                     }
                 , null, this);
                 this.physics.add.collider(lvl5,player_blue, function(){
+                    trust()
                     this.scene.start('fifthScene')
                     }
                 , null, this);
@@ -1393,6 +1393,7 @@ var tutorial1 = new Phaser.Class({
                 this.load.audio('bgmusic', ['assets/bgmusic.wav']);
                 this.load.audio('bgmusic2', ['assets/bgmusic_lvl2.wav']);
                 this.load.audio('bgmusic4', ['assets/bgmusic_lvl4.wav']);
+                this.load.audio('bgmusiclvl', ['assets/bgmusic_lvlselect.wav']);
                 this.load.audio('jump', ['assets/jump.wav']);
                 this.load.audio('error', ['assets/error.wav']);
                 this.load.audio('bump', ['assets/bump.wav']);
@@ -1440,7 +1441,8 @@ var tutorial1 = new Phaser.Class({
                 player_red.setBounce(0.1);
                 player_red.setCollideWorldBounds(true);
                 player_red.setGravityY(599);
-
+                //bgmusic = this.sound.add('bgmusic', {loop: true});
+                //bgmusic.play();
                
                 if(loaded == false){
                     this.anims.create({
@@ -1491,7 +1493,7 @@ var tutorial1 = new Phaser.Class({
 
                 //audio
                 bgmusic = this.sound.add('bgmusic', {loop: true});
-                //bgmusic.play();
+                bgmusic.play();
                 
                 bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
                 
@@ -1520,7 +1522,7 @@ var tutorial1 = new Phaser.Class({
         },
         update: function(){
             if(keys.L.isDown){
-                    
+                trust()
                 this.scene.start('levelselect')
             }
             redMovement();
@@ -1597,6 +1599,7 @@ var tutorial2 = new Phaser.Class({
         },
         update: function(){
             if(keys.L.isDown){  
+                trust()
                 this.scene.start('levelselect')
             }
             playerMovement();
@@ -1764,6 +1767,7 @@ var tutorial3 = new Phaser.Class({
         },
         update: function(){
             if(keys.L.isDown){  
+                trust()
                 this.scene.start('levelselect')
             }
             playerMovement();
@@ -1888,6 +1892,7 @@ var tutorial4 = new Phaser.Class({
         },
         update: function(){
             if(keys.L.isDown){  
+                trust()
                 this.scene.start('levelselect')
             }
             playerMovement();
@@ -2063,6 +2068,7 @@ var tutorial0 = new Phaser.Class({
         },
         update: function(){
             if(keys.L.isDown){  
+                trust()
                 this.scene.start('levelselect')
             }
             playerMovement();
@@ -2455,4 +2461,8 @@ function coinGet(player, coin){
 
 function resetPowerups(){
     playerSpeed = 270;
+}
+function trust(){
+    bgmusic.stop();
+    
 }
