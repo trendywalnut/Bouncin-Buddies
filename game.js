@@ -1359,62 +1359,7 @@ var tutorial1 = new Phaser.Class({
         preload: function(){
             totalBalloons = 1
             score = 0
-            if(loaded == false){
-                this.load.spritesheet('guy_red', 'assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
-                this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
-                this.load.image('balloon', 'assets/balloon.png');
-                //this.load.image('guy_red', 'assets/guy_idle_red.png');
-                this.load.image('sky', 'assets/background_sky2d.png');
-                this.load.image('volcano', 'assets/background_volcano.png');
-
-                this.load.image('platform', 'assets/platform_grass.png');
-                this.load.image('volcano_boulder', 'assets/volcano_boulder.png');
-                this.load.image('ground', 'assets/foreground_grass.png');
-                this.load.image('ground_volcano', 'assets/foreground_volcano.png');
-
-                this.load.image('treetrunk', 'assets/tree_trunk.png');
-                this.load.image('treeleaves', 'assets/tree_leaves.png');
-
-                this.load.image('spikepole', 'assets/spikepole.png');
-                this.load.image('spiketop', 'assets/spikeplatform_top.png')
-                this.load.image('spikebottom', 'assets/spikeplatform_bottom.png');
-
-                this.load.image('speedboost', 'assets/speedboost.png');
-                this.load.image('coin', 'assets/coin.png');
-                
-                this.load.image('one', 'assets/one.png');
-                this.load.image('two', 'assets/two.png');
-                this.load.image('three', 'assets/three.png');
-                this.load.image('four', 'assets/four.png');
-                this.load.image('five', 'assets/five.png');
-                
-                this.load.image('door', 'assets/door.png');
-
-                this.load.audio('bgmusic', ['assets/bgmusic.wav']);
-                this.load.audio('bgmusic2', ['assets/bgmusic_lvl2.wav']);
-                this.load.audio('bgmusic4', ['assets/bgmusic_lvl4.wav']);
-                this.load.audio('bgmusiclvl', ['assets/bgmusic_lvlselect.wav']);
-                this.load.audio('jump', ['assets/jump.wav']);
-                this.load.audio('error', ['assets/error.wav']);
-                this.load.audio('bump', ['assets/bump.wav']);
-                this.load.audio('pop', ['assets/pop.wav']);
-                this.load.audio('speedboostSFX', ['assets/item_speedup.wav']);
-                this.load.audio('balloonspawn', ['assets/balloonspawn.wav']);
-                this.load.audio('bonuspointSFX', ['assets/item_pointbonus.wav']);
-                
-                //tutorial image
-                this.load.image('tutorial', ['assets/tutorialscreen.jpg']);
-                this.load.image('tutorial_1', ['assets/Tutorial1.png']);
-                this.load.image('tutorial_2', ['assets/Tutorial2.png']);
-                this.load.image('tutorial_3', ['assets/Tutorial3.png']);
-                this.load.image('tutorial_4', ['assets/Tutorial4.png']);
-                this.load.image('fcollide', 'dontquestionme/colliderwide.png');
-                this.load.image('scollide', 'dontquestionme/collider_small.png');
-                this.load.image('colliders', 'dontquestionme/colliders.png');
-                this.load.image('mcollide','dontquestionme/colliders_m.png')
-                this.load.image('trcollide','dontquestionme/trunkcollide.png')
-                this.load.image('lfcollide','dontquestionme/leafcollide.png')
-            }
+            
         },
         create: function(){
                 //startup =false
@@ -2074,7 +2019,154 @@ var tutorial0 = new Phaser.Class({
             playerMovement();
         }
     });
+var lvlselect = new Phaser.Class({
+    Extends: Phaser.Scene,
+    initialize:
+    function levelselect(){
+        Phaser.Scene.call(this,{key:'lvlselect'});
+    },
+    preload: function(){
+        totalBalloons = 1
+        score = 0
+        if(loaded == false){
+            this.load.spritesheet('guy_red', 'assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
+            this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
+            this.load.image('balloon', 'assets/balloon.png');
+            //this.load.image('guy_red', 'assets/guy_idle_red.png');
+            this.load.image('sky', 'assets/background_sky2d.png');
+            this.load.image('volcano', 'assets/background_volcano.png');
 
+            this.load.image('platform', 'assets/platform_grass.png');
+            this.load.image('volcano_boulder', 'assets/volcano_boulder.png');
+            this.load.image('ground', 'assets/foreground_grass.png');
+            this.load.image('ground_volcano', 'assets/foreground_volcano.png');
+
+            this.load.image('treetrunk', 'assets/tree_trunk.png');
+            this.load.image('treeleaves', 'assets/tree_leaves.png');
+
+            this.load.image('spikepole', 'assets/spikepole.png');
+            this.load.image('spiketop', 'assets/spikeplatform_top.png')
+            this.load.image('spikebottom', 'assets/spikeplatform_bottom.png');
+
+            this.load.image('speedboost', 'assets/speedboost.png');
+            this.load.image('coin', 'assets/coin.png');
+
+            this.load.image('one', 'assets/one.png');
+            this.load.image('two', 'assets/two.png');
+            this.load.image('three', 'assets/three.png');
+            this.load.image('four', 'assets/four.png');
+            this.load.image('five', 'assets/five.png');
+
+            this.load.image('door', 'assets/door.png');
+
+            this.load.audio('bgmusic', ['assets/bgmusic.wav']);
+            this.load.audio('bgmusic2', ['assets/bgmusic_lvl2.wav']);
+            this.load.audio('bgmusic4', ['assets/bgmusic_lvl4.wav']);
+            this.load.audio('bgmusiclvl', ['assets/bgmusic_lvlselect.wav']);
+            this.load.audio('jump', ['assets/jump.wav']);
+            this.load.audio('error', ['assets/error.wav']);
+            this.load.audio('bump', ['assets/bump.wav']);
+            this.load.audio('pop', ['assets/pop.wav']);
+            this.load.audio('speedboostSFX', ['assets/item_speedup.wav']);
+            this.load.audio('balloonspawn', ['assets/balloonspawn.wav']);
+            this.load.audio('bonuspointSFX', ['assets/item_pointbonus.wav']);
+
+            //tutorial image
+            this.load.image('tutorial', ['assets/tutorialscreen.jpg']);
+            this.load.image('tutorial_1', ['assets/Tutorial1.png']);
+            this.load.image('tutorial_2', ['assets/Tutorial2.png']);
+            this.load.image('tutorial_3', ['assets/Tutorial3.png']);
+            this.load.image('tutorial_4', ['assets/Tutorial4.png']);
+            this.load.image('fcollide', 'dontquestionme/colliderwide.png');
+            this.load.image('scollide', 'dontquestionme/collider_small.png');
+            this.load.image('colliders', 'dontquestionme/colliders.png');
+            this.load.image('mcollide','dontquestionme/colliders_m.png')
+            this.load.image('trcollide','dontquestionme/trunkcollide.png')
+            this.load.image('lfcollide','dontquestionme/leafcollide.png')
+        }
+    },
+    create: function(){
+            //startup =false
+            lost = false
+
+            this.add.image(400, 300, 'sky');
+
+            //add skip text
+            this.add.text(20,20, 'Bouncin Buddies', {fontSize: '85px', fill: '#000', fontStyle: 'bold'});
+            this.add.text(225,200, 'Press T for the tutorial', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
+            this.add.text(200,300, 'Press L for the level select', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
+
+            
+            if(loaded == false){
+                this.anims.create({
+                    key: 'red_idle',
+                    frames: [ { key: 'guy_red', frame: 0}],
+                    frameRate: 10,
+                    repeat: -1
+                });
+
+
+                this.anims.create({
+                    key: 'red_move',
+                    frames: [ { key: 'guy_red', frame: 1}],
+                    frameRate: 10,
+                    repeat: -1
+                });
+
+                this.anims.create({
+                    key: 'red_jump',
+                    frames: [ { key: 'guy_red', frame: 2}],
+                    frameRate: 10,
+                    repeat: -1
+                });
+
+                this.anims.create({
+                    key: 'blue_idle',
+                    frames: [ { key: 'guy_blue', frame: 0}],
+                    frameRate: 10,
+                    repeat: -1
+                });
+
+
+                this.anims.create({
+                    key: 'blue_move',
+                    frames: [ { key: 'guy_blue', frame: 1}],
+                    frameRate: 10,
+                    repeat: -1
+                });
+
+                this.anims.create({
+                    key: 'blue_jump',
+                    frames: [ { key: 'guy_blue', frame: 2}],
+                    frameRate: 10,
+                    repeat: -1
+                });
+                loaded = true;
+            }
+
+            //audio
+            bgmusic = this.sound.add('bgmusic', {loop: true});
+            bgmusic.play();
+
+            // Input Events
+            cursors = this.input.keyboard.createCursorKeys();
+
+
+            //Second Player Keys
+            keys = this.input.keyboard.addKeys('L,T');
+
+    },
+    update: function(){
+        if(keys.L.isDown){
+            trust()
+            this.scene.start('levelselect')
+        }
+        if(keys.T.isDown){
+                trust()
+                this.scene.start('tutorial1')
+            }
+    }
+});
 
 
 
@@ -2090,7 +2182,7 @@ let config = {
         }
         
     },
-    scene: [tutorial1,tutorial2,tutorial3,tutorial4,levelselect,firstScene,secondScene,thirdScene,fourthScene,fifthScene,tutorial0]
+    scene: [lvlselect,tutorial1,tutorial2,tutorial3,tutorial4,levelselect,firstScene,secondScene,thirdScene,fourthScene,fifthScene,tutorial0]
 };
 
 let game = new Phaser.Game(config);
