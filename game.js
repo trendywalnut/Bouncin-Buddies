@@ -431,7 +431,7 @@ var secondScene = new Phaser.Class({
                 //collide players with tree
                 this.physics.add.collider(player_red, tree);
                 this.physics.add.collider(player_blue, tree);
-                this.physics.add.collider(balloons, tree);
+                this.physics.add.collider(balloons, tree,hitBalloonstop,null,this);
                 
             
                 //balloons and powerups collide with platforms
@@ -1563,13 +1563,6 @@ var tutorial2 = new Phaser.Class({
                 player_blue.setCollideWorldBounds(true);
                 player_blue.setGravityY(599);
 
-               
-                if(loaded == false){
-                    
-
-                    
-                }
-
                 //audio
                 bgmusic = this.sound.add('bgmusic', {loop: true});
                 //bgmusic.play();
@@ -2258,9 +2251,9 @@ function hitBalloonTut(player, balloon){
     
 }
 function hitBalloonstop(balloon){
-
-    balloon.setVelocityY(-100);
-    balloon.setVelocityX(-balloon.body.X.velocityX+30)
+    
+    balloon.setVelocityY(-2 * (balloon.body.velocity.y  / Math.abs(balloon.body.velocity.y)*(Math.abs(balloon.body.velocity.y) + 20)))
+    balloon.setVelocityX(  (balloon.body.velocity.x  / Math.abs(balloon.body.velocity.x)*(Math.abs(balloon.body.velocity.x) + 20)))
 
     bump.play();
     
