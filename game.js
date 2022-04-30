@@ -244,17 +244,7 @@ var secondScene = new Phaser.Class({
                 
                 
                 this.add.image(400, 150, 'treeleaves').setScale(1.75);
-                tree.create(390,150,'lfcollide').visible = true
-                
-                
-                
-                
-                
-                
-                
-               
-                
-                
+                tree.create(390,150,'lfcollide').visible = cvis
                 tree.create(400+124,300-64,'colliders').visible = cvis
                 tree.create(400+140,300-64,'colliders').visible = cvis
                 tree.create(400+148,300-64,'colliders').visible = cvis
@@ -269,9 +259,6 @@ var secondScene = new Phaser.Class({
                 tree.create(400+132,300-142,'colliders').visible = cvis
                 tree.create(400+146,300-150,'colliders').visible = cvis
                 tree.create(400+132,300-150,'colliders').visible = cvis
-                
-               
-                
                 tree.create(400+64*2,0,'scollide').visible = cvis
                 
                 tree.create(400+64*2,64,'scollide').visible = cvis
@@ -280,15 +267,9 @@ var secondScene = new Phaser.Class({
                 
                 
                 
-                tree.create(390,415,'trcollide').visible = true
+                tree.create(390,415,'trcollide').visible = cvis
                 
                 //this.add.image(400, 150, 'treeleaves').setScale(1.75);
-                
-                
-                
-                
-                
-                
                 
                 tree.create(360-8, 396+16*7, 'colliders').setScale(1).visible = cvis
                 
@@ -296,32 +277,14 @@ var secondScene = new Phaser.Class({
                 
                 tree.create(376+16*4, 396+16*7, 'colliders').setScale(1).visible = cvis
                 tree.create(376+16*4, 396+16*6, 'colliders').setScale(1).visible = cvis
-                
-                
-                
-               
-                
-               
                 tree.create(360, 396+16*4, 'colliders').setScale(1).visible = cvis
                 
                 tree.create(360, 396+16*5, 'colliders').setScale(1).visible = cvis
-            
-                
-                
                 tree.create(376+16*3, 396+16*5, 'colliders').setScale(1).visible = cvis
                 tree.create(360, 396+16*6, 'colliders').setScale(1).visible = cvis
                 
-                
-                
                 tree.create(376+16*3, 396+16*6, 'colliders').setScale(1).visible = cvis
-                
-                
-                
                 tree.create(376+16*3, 396+16*7, 'colliders').setScale(1).visible = cvis
-                
-               
-                
-                
                 tree.create(376+16*3, 396+16*8, 'colliders').setScale(1).visible = cvis
                 tree.create(376+16*4, 396+16*8, 'colliders').setScale(1).visible = cvis
                 this.add.image(400, 568, 'ground')
@@ -541,54 +504,54 @@ var thirdScene = new Phaser.Class({
                 
                 this.add.image(600, 235, 'spiketop');
                 this.add.image(175, 235, 'spiketop');
-                bounceTops.create(600,240,'scollide').visible = false
-                bounceTops.create(175,240,'scollide').visible = false
-                bounceTops.create(175-28,240,'scollide').visible = false
-                bounceTops.create(175+28,240,'scollide').visible = false
-                bounceTops.create(175-64,240-6,'mcollide').visible = false
-                bounceTops.create(175+64,240-6,'mcollide').visible = false
-                bounceTops.create(175-64,240+10,'mcollide').visible = false
-                bounceTops.create(175+64,240+10,'mcollide').visible = false
-                bounceTops.create(175-64,240+16,'mcollide').visible = false
-                bounceTops.create(175+64,240+16,'mcollide').visible = false
-                bounceTops.create(175-64-19,240+16,'mcollide').visible = false
-                bounceTops.create(175+64+19,240+16,'mcollide').visible = false
-                bounceTops.create(175-64-19+8,240+8,'mcollide').visible = false
-                bounceTops.create(175+64+19-8,240+8,'mcollide').visible = false
-                bounceTops.create(175-64-19+12,240+4,'mcollide').visible = false
-                bounceTops.create(175+64+19-12,240+4,'mcollide').visible = false
-                bounceTops.create(175-64-19+14,240+2,'mcollide').visible = false
-                bounceTops.create(175+64+19-14,240+2,'mcollide').visible = false
-                bounceTops.create(175-64-19+15,240+1,'mcollide').visible = false
-                bounceTops.create(175+64+19-15,240+1,'mcollide').visible = false
-                bounceTops.create(175-64-19+13,240+3,'mcollide').visible = false
-                bounceTops.create(175+64+19-13,240+3,'mcollide').visible = false
+                bounceTops.create(600,240,'scollide').visible = cvis
+                bounceTops.create(175,240,'scollide').visible = cvis
+                bounceTops.create(175-28,240,'scollide').visible = cvis
+                bounceTops.create(175+28,240,'scollide').visible = cvis
+                bounceTops.create(175-64,240-6,'mcollide').visible = cvis
+                bounceTops.create(175+64,240-6,'mcollide').visible = cvis
+                bounceTops.create(175-64,240+10,'mcollide').visible = cvis
+                bounceTops.create(175+64,240+10,'mcollide').visible = cvis
+                bounceTops.create(175-64,240+16,'mcollide').visible = cvis
+                bounceTops.create(175+64,240+16,'mcollide').visible = cvis
+                bounceTops.create(175-64-19,240+16,'mcollide').visible = cvis
+                bounceTops.create(175+64+19,240+16,'mcollide').visible = cvis
+                bounceTops.create(175-64-19+8,240+8,'mcollide').visible = cvis
+                bounceTops.create(175+64+19-8,240+8,'mcollide').visible = cvis
+                bounceTops.create(175-64-19+12,240+4,'mcollide').visible = cvis
+                bounceTops.create(175+64+19-12,240+4,'mcollide').visible = cvis
+                bounceTops.create(175-64-19+14,240+2,'mcollide').visible = cvis
+                bounceTops.create(175+64+19-14,240+2,'mcollide').visible = cvis
+                bounceTops.create(175-64-19+15,240+1,'mcollide').visible = cvis
+                bounceTops.create(175+64+19-15,240+1,'mcollide').visible = cvis
+                bounceTops.create(175-64-19+13,240+3,'mcollide').visible = cvis
+                bounceTops.create(175+64+19-13,240+3,'mcollide').visible = cvis
                 
-                bounceTops.create(600-64,240-6,'mcollide').visible = false
-                bounceTops.create(600+64,240-6,'mcollide').visible = false
-                bounceTops.create(600-64,240+10,'mcollide').visible = false
-                bounceTops.create(600+64,240+10,'mcollide').visible = false
-                bounceTops.create(600-64,240+16,'mcollide').visible = false
-                bounceTops.create(600+64,240+16,'mcollide').visible = false
-                bounceTops.create(600-64-19,240+16,'mcollide').visible = false
-                bounceTops.create(600+64+19,240+16,'mcollide').visible = false
-                bounceTops.create(600-64-19+8,240+8,'mcollide').visible = false
-                bounceTops.create(600+64+19-8,240+8,'mcollide').visible = false
-                bounceTops.create(600-64-19+12,240+4,'mcollide').visible = false
-                bounceTops.create(600+64+19-12,240+4,'mcollide').visible = false
-                bounceTops.create(600-64-19+14,240+2,'mcollide').visible = false
-                bounceTops.create(600+64+19-14,240+2,'mcollide').visible = false
-                bounceTops.create(600-64-19+15,240+1,'mcollide').visible = false
-                bounceTops.create(600+64+19-15,240+1,'mcollide').visible = false
-                bounceTops.create(600-64-19+13,240+3,'mcollide').visible = false
-                bounceTops.create(600+64+19-13,240+3,'mcollide').visible = false
-                
-            
-                
+                bounceTops.create(600-64,240-6,'mcollide').visible = cvis
+                bounceTops.create(600+64,240-6,'mcollide').visible = cvis
+                bounceTops.create(600-64,240+10,'mcollide').visible = cvis
+                bounceTops.create(600+64,240+10,'mcollide').visible = cvis
+                bounceTops.create(600-64,240+16,'mcollide').visible = cvis
+                bounceTops.create(600+64,240+16,'mcollide').visible = cvis
+                bounceTops.create(600-64-19,240+16,'mcollide').visible = cvis
+                bounceTops.create(600+64+19,240+16,'mcollide').visible = cvis
+                bounceTops.create(600-64-19+8,240+8,'mcollide').visible = cvis
+                bounceTops.create(600+64+19-8,240+8,'mcollide').visible = cvis
+                bounceTops.create(600-64-19+12,240+4,'mcollide').visible = cvis
+                bounceTops.create(600+64+19-12,240+4,'mcollide').visible = cvis
+                bounceTops.create(600-64-19+14,240+2,'mcollide').visible = cvis
+                bounceTops.create(600+64+19-14,240+2,'mcollide').visible = cvis
+                bounceTops.create(600-64-19+15,240+1,'mcollide').visible = cvis
+                bounceTops.create(600+64+19-15,240+1,'mcollide').visible = cvis
+                bounceTops.create(600-64-19+13,240+3,'mcollide').visible = cvis
+                bounceTops.create(600+64+19-13,240+3,'mcollide').visible = cvis
                 
             
-                bounceTops.create(600-28,240,'scollide').visible = false
-                bounceTops.create(600+28,240,'scollide').visible = false
+                
+                
+            
+                bounceTops.create(600-28,240,'scollide').visible = cvis
+                bounceTops.create(600+28,240,'scollide').visible = cvis
                 spikeBottoms.create(600, 280, 'spikebottom');
                 spikeBottoms.create(175, 280, 'spikebottom');
 
@@ -2178,6 +2141,7 @@ if(true){
     var lost = false;
     var loseText;
     var cvis = true
+    
     //var startup;
 };
 //var bgmusic;
@@ -2296,7 +2260,7 @@ function hitBalloonTut(player, balloon){
 function hitBalloonstop(balloon){
 
     balloon.setVelocityY(-100);
-    balloon.setVelocityX(-ballon.X.velocity+30)
+    balloon.setVelocityX(-balloon.body.X.velocityX+30)
 
     bump.play();
     
@@ -2318,8 +2282,6 @@ function popBalloon(balloon, ground){
         error.play();
         popSFX.play();
         bgmusic.stop();
-        bgmusic2.stop();
-        bgmusic4.stop();
         player_red.anims.play('red_idle', true);
         player_blue.anims.play('blue_idle', true);
         player_blue.setVelocityX(0);
