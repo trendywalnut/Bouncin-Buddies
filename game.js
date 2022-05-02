@@ -1691,56 +1691,8 @@ var tutorial1 = new Phaser.Class({
                 //bgmusic = this.sound.add('bgmusic', {loop: true});
                 //bgmusic.play();
                
-                if(loaded == false){
-                    this.anims.create({
-                        key: 'red_idle',
-                        frames: [ { key: 'guy_red', frame: 0}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-
-                    this.anims.create({
-                        key: 'red_move',
-                        frames: [ { key: 'guy_red', frame: 1}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-                    this.anims.create({
-                        key: 'red_jump',
-                        frames: [ { key: 'guy_red', frame: 2}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-                    this.anims.create({
-                        key: 'blue_idle',
-                        frames: [ { key: 'guy_blue', frame: 0}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-
-                    this.anims.create({
-                        key: 'blue_move',
-                        frames: [ { key: 'guy_blue', frame: 1}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-                    this.anims.create({
-                        key: 'blue_jump',
-                        frames: [ { key: 'guy_blue', frame: 2}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-                    loaded = true;
-                }
-
-                //audio
-                bgmusic = this.sound.add('bgmusic', {loop: true});
-                bgmusic.play();
+                
+                
                 
                 bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
                 
@@ -1813,7 +1765,7 @@ var tutorial2 = new Phaser.Class({
                 player_blue.setGravityY(599);
 
                 //audio
-                bgmusic = this.sound.add('bgmusic', {loop: true});
+                
                 //bgmusic.play();
                 
                 bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
@@ -1889,56 +1841,6 @@ var tutorial3 = new Phaser.Class({
                 player_blue.setCollideWorldBounds(true);
                 player_blue.setGravityY(599);
 
-               
-                if(loaded == false){
-                    this.anims.create({
-                        key: 'red_idle',
-                        frames: [ { key: 'guy_red', frame: 0}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-
-                    this.anims.create({
-                        key: 'red_move',
-                        frames: [ { key: 'guy_red', frame: 1}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-                    this.anims.create({
-                        key: 'red_jump',
-                        frames: [ { key: 'guy_red', frame: 2}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-                    this.anims.create({
-                        key: 'blue_idle',
-                        frames: [ { key: 'guy_blue', frame: 0}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-
-                    this.anims.create({
-                        key: 'blue_move',
-                        frames: [ { key: 'guy_blue', frame: 1}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-                    this.anims.create({
-                        key: 'blue_jump',
-                        frames: [ { key: 'guy_blue', frame: 2}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-                    loaded = true;
-                }
-
-                //audio
-                bgmusic = this.sound.add('bgmusic', {loop: true});
                 //bgmusic.play();
                 
                 bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
@@ -2058,55 +1960,10 @@ var tutorial4 = new Phaser.Class({
                 player_blue.setGravityY(599);
 
                
-                if(loaded == false){
-                    this.anims.create({
-                        key: 'red_idle',
-                        frames: [ { key: 'guy_red', frame: 0}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-
-                    this.anims.create({
-                        key: 'red_move',
-                        frames: [ { key: 'guy_red', frame: 1}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-                    this.anims.create({
-                        key: 'red_jump',
-                        frames: [ { key: 'guy_red', frame: 2}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-                    this.anims.create({
-                        key: 'blue_idle',
-                        frames: [ { key: 'guy_blue', frame: 0}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-
-                    this.anims.create({
-                        key: 'blue_move',
-                        frames: [ { key: 'guy_blue', frame: 1}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-                    this.anims.create({
-                        key: 'blue_jump',
-                        frames: [ { key: 'guy_blue', frame: 2}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-                    loaded = true;
-                }
+                
 
                 //audio
-                bgmusic = this.sound.add('bgmusic', {loop: true});
+                
                 //bgmusic.play();
                 
                 bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
@@ -2121,10 +1978,12 @@ var tutorial4 = new Phaser.Class({
 
                 
                 this.physics.add.collider(lvl4,player_red, function(){
+                    trust()
                     this.scene.start('levelselect')
                     }
                 , null, this);
                 this.physics.add.collider(lvl4,player_blue, function(){
+                    trust()
                     this.scene.start('levelselect')
                     }
                 , null, this);                
@@ -2468,7 +2327,7 @@ var lvlselect = new Phaser.Class({
             this.scene.start('levelselect')
         }
         if(keys.T.isDown){
-                trust()
+                
                 this.scene.start('tutorial1')
             }
     }
