@@ -2224,6 +2224,7 @@ var lvlselect = new Phaser.Class({
             this.load.audio('bgmusic2', ['assets/bgmusic_lvl2.wav']);
             this.load.audio('bgmusic4', ['assets/bgmusic_lvl4.wav']);
             this.load.audio('bgmusiclvl', ['assets/bgmusic_lvlselect.wav']);
+            this.load.audio('bgmusictitle', ['assets/title_tutorial_music.wav']);
             this.load.audio('jump', ['assets/jump.wav']);
             this.load.audio('error', ['assets/error.wav']);
             this.load.audio('bump', ['assets/bump.wav']);
@@ -2310,7 +2311,7 @@ var lvlselect = new Phaser.Class({
             }
 
             //audio
-            bgmusic = this.sound.add('bgmusic', {loop: true});
+            bgmusic = this.sound.add('bgmusictitle', {loop: true});
             bgmusic.play();
 
             // Input Events
@@ -2399,7 +2400,7 @@ if(true){
     var lives5 = 8
     var lost = false;
     var loseText;
-    var cvis = true
+    var cvis = false
     
     //var startup;
 };
