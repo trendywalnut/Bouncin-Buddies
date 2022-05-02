@@ -989,8 +989,8 @@ var fourthScene = new Phaser.Class({
                 platforms.create(400,600-30,'fcollide').setScale(1)
                 this.add.image(400, 568, 'ground_volcano')
 
-                platforms.create(700, 500, 'volcano_boulder');
-                platforms.create(75, 500, 'volcano_boulder');
+                platforms.create(675, 500, 'volcano_boulder');
+                platforms.create(125, 500, 'volcano_boulder');
                 platforms.create(400, 350, 'spikepole');
 
                 player_red = this.physics.add.sprite(100, 375, 'guy_red').setScale(0.2);
