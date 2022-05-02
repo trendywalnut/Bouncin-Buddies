@@ -2385,6 +2385,9 @@ var lvlselect = new Phaser.Class({
             this.load.image('mcollide','dontquestionme/colliders_m.png')
             this.load.image('trcollide','dontquestionme/trunkcollide.png')
             this.load.image('lfcollide','dontquestionme/leafcollide.png')
+            
+            //title
+            this.load.image('logo', ['assets/logo.png']);
         }
     },
     create: function(){
@@ -2392,11 +2395,12 @@ var lvlselect = new Phaser.Class({
             lost = false
 
             this.add.image(400, 300, 'sky');
+            logo = this.add.image(400, 150, 'logo');
+            logo.setScale(0.75);
 
             //add skip text
-            this.add.text(20,20, 'Bouncin Buddies', {fontSize: '85px', fill: '#000', fontStyle: 'bold'});
-            this.add.text(225,200, 'Press T for the tutorial', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
-            this.add.text(200,300, 'Press L for the level select', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
+            this.add.text(225,400, 'Press T for tutorial', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
+            this.add.text(200,450, 'Press L for level select', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
 
             
             if(loaded == false){
