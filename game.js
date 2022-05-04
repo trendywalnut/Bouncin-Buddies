@@ -56,22 +56,6 @@ var firstScene = new Phaser.Class({
                     ).setOrigin(0.5);
 
                 loseText.visible = false;
-            
-                pauseText = this.add.text(
-                            400, 
-                            200, 
-                            "PAUSED - CLICK TO RESUME", 
-                        {
-                            fontSize: 50,
-                            color: "#000000",
-                            fontStyle: "bold"
-                        }
-                    ).setOrigin(0.5);
-                pauseText.visible = false;
-
-                
-                
-               
 
                 //audio
                 bgmusic = this.sound.add('bgmusic', {loop: true});
@@ -211,71 +195,10 @@ var firstScene = new Phaser.Class({
 
                 //Player Keys
                 keys = this.input.keyboard.addKeys('A,W,S,D,space');
-            
-                pause_label = this.add.text(500, 20, 'Click to Pause', { fontSize: '32px', fill: '#000', fontStyle: 'bold'});
-                this.input.on('pointerdown', function(){
-                    paused = !paused;
                     
-                    if(paused){
-                        pauseText.visible = true;
-                    }else{
-                        pauseText.visible = false;
-                    }
-                    
-                });
+
         },
         update: function(){
-            if(paused){
-                balloons.children.iterate(function(child){
-                    child.setVelocity(0,0);
-                    child.setMass(0);
-                    child.allowGravity = false;
-                    child.setGravityY(0);
-                    child.allowRotation = false;
-                })
-                speedboosts.children.iterate(function(child){
-                    child.setVelocity(0,0);
-                    child.setMass(0);
-                    child.allowGravity = false;
-                    child.setGravityY(0);
-                    child.allowRotation = false;
-                })
-                coins.children.iterate(function(child){
-                    child.setVelocity(0,0);
-                    child.setMass(0);
-                    child.allowGravity = false;
-                    child.setGravityY(0);
-                    child.allowRotation = false;
-                })
-                player_blue.allowGravity = false;
-                player_red.allowGravity = false;
-                timer.paused = true;
-                powerupTimer.paused = true;
-                
-            }else{
-                balloons.children.iterate(function(child){
-                    child.setMass(0.3);
-                    child.allowGravity = true;
-                    child.setGravityY(1);
-                    child.allowRotation = true;
-                })
-                speedboosts.children.iterate(function(child){
-                    child.setMass(0.3);
-                    child.allowGravity = true;
-                    child.setGravityY(1);
-                    child.allowRotation = true;
-                })
-                coins.children.iterate(function(child){
-                    child.setMass(0.3);
-                    child.allowGravity = true;
-                    child.setGravityY(1);
-                    child.allowRotation = true;
-                })
-                player_blue.allowGravity = true;
-                player_red.allowGravity = true;
-                timer.paused = false;
-                powerupTimer.paused = false;
-            }
             if(lost == true){
                 if(keys.space.isDown){
                     
@@ -283,9 +206,7 @@ var firstScene = new Phaser.Class({
                 }
             }
             else{
-                if(!paused){
-                    playerMovement();
-                }
+                playerMovement();
             }
         }
     });
@@ -390,19 +311,7 @@ var secondScene = new Phaser.Class({
                     ).setOrigin(0.5);
 
                 loseText.visible = false;
-                pauseText = this.add.text(
-                            400, 
-                            200, 
-                            "PAUSED - CLICK TO RESUME", 
-                        {
-                            fontSize: 50,
-                            color: "#000000",
-                            fontStyle: "bold"
-                        }
-                    ).setOrigin(0.5);
-                pauseText.visible = false;
-
-                
+                                
                 //audio
                 bgmusic = this.sound.add('bgmusic2', {loop: true});
                 bgmusic.play();
@@ -547,73 +456,9 @@ var secondScene = new Phaser.Class({
 
                 //Second Player Keys
                 keys = this.input.keyboard.addKeys('A,W,S,D,space');
-            
-                pause_label = this.add.text(500, 20, 'Click to Pause', { fontSize: '32px', fill: '#000', fontStyle: 'bold'});
-                this.input.on('pointerdown', function(){
-                    paused = !paused;
-                    
-                    if(paused){
-                        pauseText.visible = true;
-                    }else{
-                        pauseText.visible = false;
-                    }
-                    
-                });
-    
 
         },
         update: function(){
-            if(paused){
-                balloons.children.iterate(function(child){
-                    child.setVelocity(0,0);
-                    child.setMass(0);
-                    child.allowGravity = false;
-                    child.setGravityY(0);
-                    child.allowRotation = false;
-                })
-                speedboosts.children.iterate(function(child){
-                    child.setVelocity(0,0);
-                    child.setMass(0);
-                    child.allowGravity = false;
-                    child.setGravityY(0);
-                    child.allowRotation = false;
-                })
-                coins.children.iterate(function(child){
-                    child.setVelocity(0,0);
-                    child.setMass(0);
-                    child.allowGravity = false;
-                    child.setGravityY(0);
-                    child.allowRotation = false;
-                })
-                player_blue.allowGravity = false;
-                player_red.allowGravity = false;
-                timer.paused = true;
-                powerupTimer.paused = true;
-                
-            }else{
-                balloons.children.iterate(function(child){
-                    child.setMass(0.3);
-                    child.allowGravity = true;
-                    child.setGravityY(1);
-                    child.allowRotation = true;
-                })
-                speedboosts.children.iterate(function(child){
-                    child.setMass(0.3);
-                    child.allowGravity = true;
-                    child.setGravityY(1);
-                    child.allowRotation = true;
-                })
-                coins.children.iterate(function(child){
-                    child.setMass(0.3);
-                    child.allowGravity = true;
-                    child.setGravityY(1);
-                    child.allowRotation = true;
-                })
-                player_blue.allowGravity = true;
-                player_red.allowGravity = true;
-                timer.paused = false;
-                powerupTimer.paused = false;
-            }
             if(lost == true){
                 if(keys.space.isDown){
                     
@@ -621,9 +466,7 @@ var secondScene = new Phaser.Class({
                 }
             }
             else{
-                if(!paused){
-                    playerMovement();
-                }
+                playerMovement();
             }
         }
     });
@@ -728,20 +571,7 @@ var thirdScene = new Phaser.Class({
                         }
                     ).setOrigin(0.5);
 
-                loseText.visible = false;
-                pauseText = this.add.text(
-                            400, 
-                            200, 
-                            "PAUSED - CLICK TO RESUME", 
-                        {
-                            fontSize: 50,
-                            color: "#000000",
-                            fontStyle: "bold"
-                        }
-                    ).setOrigin(0.5);
-                pauseText.visible = false;
-
-                
+                loseText.visible = false;                
 
                 //audio
                 bgmusic = this.sound.add('bgmusic2', {loop: true});
@@ -886,72 +716,9 @@ var thirdScene = new Phaser.Class({
                 //Second Player Keys
                 keys = this.input.keyboard.addKeys('A,W,S,D,space');
                 
-                pause_label = this.add.text(500, 20, 'Click to Pause', { fontSize: '32px', fill: '#000', fontStyle: 'bold'});
-                this.input.on('pointerdown', function(){
-                    paused = !paused;
-                    
-                    if(paused){
-                        pauseText.visible = true;
-                    }else{
-                        pauseText.visible = false;
-                    }
-                    
-                });
-    
 
         },
         update: function(){
-            if(paused){
-                balloons.children.iterate(function(child){
-                    child.setVelocity(0,0);
-                    child.setMass(0);
-                    child.allowGravity = false;
-                    child.setGravityY(0);
-                    child.allowRotation = false;
-                })
-                speedboosts.children.iterate(function(child){
-                    child.setVelocity(0,0);
-                    child.setMass(0);
-                    child.allowGravity = false;
-                    child.setGravityY(0);
-                    child.allowRotation = false;
-                })
-                coins.children.iterate(function(child){
-                    child.setVelocity(0,0);
-                    child.setMass(0);
-                    child.allowGravity = false;
-                    child.setGravityY(0);
-                    child.allowRotation = false;
-                })
-                player_blue.allowGravity = false;
-                player_red.allowGravity = false;
-                timer.paused = true;
-                powerupTimer.paused = true;
-                
-            }else{
-                balloons.children.iterate(function(child){
-                    child.setMass(0.3);
-                    child.allowGravity = true;
-                    child.setGravityY(1);
-                    child.allowRotation = true;
-                })
-                speedboosts.children.iterate(function(child){
-                    child.setMass(0.3);
-                    child.allowGravity = true;
-                    child.setGravityY(1);
-                    child.allowRotation = true;
-                })
-                coins.children.iterate(function(child){
-                    child.setMass(0.3);
-                    child.allowGravity = true;
-                    child.setGravityY(1);
-                    child.allowRotation = true;
-                })
-                player_blue.allowGravity = true;
-                player_red.allowGravity = true;
-                timer.paused = false;
-                powerupTimer.paused = false;
-            }
             if(lost == true){
                 if(keys.space.isDown){
                     
@@ -959,9 +726,7 @@ var thirdScene = new Phaser.Class({
                 }
             }
             else{
-                if(!paused){
-                    playerMovement();
-                }
+                playerMovement();
             }
         }
     });
@@ -1015,20 +780,7 @@ var fourthScene = new Phaser.Class({
                         }
                     ).setOrigin(0.5);
 
-                loseText.visible = false;
-                pauseText = this.add.text(
-                            400, 
-                            200, 
-                            "PAUSED - CLICK TO RESUME", 
-                        {
-                            fontSize: 50,
-                            color: "#000000",
-                            fontStyle: "bold"
-                        }
-                    ).setOrigin(0.5);
-                pauseText.visible = false;
-
-               
+                loseText.visible = false;       
 
                 //audio
                 bgmusic = this.sound.add('bgmusic4', {loop: true});
@@ -1167,72 +919,10 @@ var fourthScene = new Phaser.Class({
 
                 //Second Player Keys
                 keys = this.input.keyboard.addKeys('A,W,S,D,space');
-                pause_label = this.add.text(500, 20, 'Click to Pause', { fontSize: '32px', fill: '#000', fontStyle: 'bold'});
-                this.input.on('pointerdown', function(){
-                    paused = !paused;
-                    
-                    if(paused){
-                        pauseText.visible = true;
-                    }else{
-                        pauseText.visible = false;
-                    }
-                    
-                });
     
 
         },
         update: function(){
-            if(paused){
-                balloons.children.iterate(function(child){
-                    child.setVelocity(0,0);
-                    child.setMass(0);
-                    child.allowGravity = false;
-                    child.setGravityY(0);
-                    child.allowRotation = false;
-                })
-                speedboosts.children.iterate(function(child){
-                    child.setVelocity(0,0);
-                    child.setMass(0);
-                    child.allowGravity = false;
-                    child.setGravityY(0);
-                    child.allowRotation = false;
-                })
-                coins.children.iterate(function(child){
-                    child.setVelocity(0,0);
-                    child.setMass(0);
-                    child.allowGravity = false;
-                    child.setGravityY(0);
-                    child.allowRotation = false;
-                })
-                player_blue.allowGravity = false;
-                player_red.allowGravity = false;
-                timer.paused = true;
-                powerupTimer.paused = true;
-                
-            }else{
-                balloons.children.iterate(function(child){
-                    child.setMass(0.3);
-                    child.allowGravity = true;
-                    child.setGravityY(1);
-                    child.allowRotation = true;
-                })
-                speedboosts.children.iterate(function(child){
-                    child.setMass(0.3);
-                    child.allowGravity = true;
-                    child.setGravityY(1);
-                    child.allowRotation = true;
-                })
-                coins.children.iterate(function(child){
-                    child.setMass(0.3);
-                    child.allowGravity = true;
-                    child.setGravityY(1);
-                    child.allowRotation = true;
-                })
-                player_blue.allowGravity = true;
-                player_red.allowGravity = true;
-                timer.paused = false;
-                powerupTimer.paused = false;
-            }
             if(lost == true){
                 if(keys.space.isDown){
                     
@@ -1240,9 +930,7 @@ var fourthScene = new Phaser.Class({
                 }
             }
             else{
-                if(!paused){
-                    playerMovement();
-                }
+                playerMovement();
             }
         }
     });
@@ -2370,12 +2058,9 @@ if(true){
     var spawnedCoinGroup = false;
     var loaded = false;
     var loaded2 = false;
-    var paused = false;
     var score = 0;
     var scoreText;
     var livesText;
-    var pauseText;
-    var pause_label;
 
     var timer;
     var totalBalloons = 1;
@@ -2535,7 +2220,7 @@ function popBalloon(balloon, ground){
     totalBalloons -= 1;
     lives -=1
     livesText.setText('Lives: '+lives)
-    if (lives == 0 || paused) {
+    if (lives == 0) {
         loseText.visible = true;
         lost = true;
         timer.remove();
@@ -2558,7 +2243,7 @@ function popBalloonTut(balloon, ground){
 }
 
 function spawnBalloon(){
-    if(totalBalloons<=max || !paused){
+    if(totalBalloons<=max){
         totalBalloons++;
         console.log(totalBalloons)
         var x = Phaser.Math.Between(0, 800);
@@ -2582,16 +2267,9 @@ function spawnBalloon(){
         //play SFX
         balloonSpawn.play();
     }
-    if(paused){
-        balloon.allowGravity = false;
-        balloon.setVelocity(0,0);
-    }else{
-        balloon.allowGravity = true;
-        balloon.setVelocity(Phaser.Math.Between(-200, 200), 20);
-    }
 }
 function spawnBalloon2(){
-    if(totalBalloons<=max || !paused){
+    if(totalBalloons<=max){
         totalBalloons++;
         console.log(totalBalloons)
         var x = Phaser.Math.Between(0, 200);
@@ -2620,13 +2298,6 @@ function spawnBalloon2(){
 
         //play SFX
         balloonSpawn.play();
-    }
-    if(paused){
-        balloon.allowGravity = false;
-        balloon.setVelocity(0,0);
-    }else{
-        balloon.allowGravity = true;
-        balloon.setVelocity(Phaser.Math.Between(-200, 200), 20);
     }
 }
 
