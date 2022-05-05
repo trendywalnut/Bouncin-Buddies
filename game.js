@@ -58,14 +58,15 @@ var firstScene = new Phaser.Class({
                 loseText.visible = false;
 
                 //audio
-                bgmusic = this.sound.add('bgmusic', {loop: true});
-                bgmusic.play();
-                popSFX = this.sound.add('pop', {loop: false});
-                bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
-                error = this.sound.add('error', {loop: false});
-                jump = this.sound.add('jump', {loop: false});
-                balloonSpawn = this.sound.add('balloonspawn', {loop: false});
-
+                if(sound == true){
+                    bgmusic = this.sound.add('bgmusic', {loop: true}); 
+                    bgmusic.play();
+                    popSFX = this.sound.add('pop', {loop: false});
+                    bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
+                    error = this.sound.add('error', {loop: false});
+                    jump = this.sound.add('jump', {loop: false});
+                    balloonSpawn = this.sound.add('balloonspawn', {loop: false});
+                }
                 
             
                 //create powerup timer
@@ -313,13 +314,15 @@ var secondScene = new Phaser.Class({
                 loseText.visible = false;
                                 
                 //audio
-                bgmusic = this.sound.add('bgmusic2', {loop: true});
-                bgmusic.play();
-                popSFX = this.sound.add('pop', {loop: false});
-                bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
-                error = this.sound.add('error', {loop: false});
-                jump = this.sound.add('jump', {loop: false});
-                balloonSpawn = this.sound.add('balloonspawn', {loop: false});
+                if(sound == true){
+                    bgmusic = this.sound.add('bgmusic2', {loop: true});
+                    bgmusic.play();
+                    popSFX = this.sound.add('pop', {loop: false});
+                    bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
+                    error = this.sound.add('error', {loop: false});
+                    jump = this.sound.add('jump', {loop: false});
+                    balloonSpawn = this.sound.add('balloonspawn', {loop: false});
+                }
 
                 
             
@@ -574,13 +577,15 @@ var thirdScene = new Phaser.Class({
                 loseText.visible = false;                
 
                 //audio
-                bgmusic = this.sound.add('bgmusic2', {loop: true});
-                bgmusic.play();
-                popSFX = this.sound.add('pop', {loop: false});
-                bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
-                error = this.sound.add('error', {loop: false});
-                jump = this.sound.add('jump', {loop: false});
-                balloonSpawn = this.sound.add('balloonspawn', {loop: false});
+                if(sound == true){
+                    bgmusic = this.sound.add('bgmusic2', {loop: true});
+                    bgmusic.play();
+                    popSFX = this.sound.add('pop', {loop: false});
+                    bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
+                    error = this.sound.add('error', {loop: false});
+                    jump = this.sound.add('jump', {loop: false});
+                    balloonSpawn = this.sound.add('balloonspawn', {loop: false});
+                }
 
                 
             
@@ -783,13 +788,15 @@ var fourthScene = new Phaser.Class({
                 loseText.visible = false;       
 
                 //audio
-                bgmusic = this.sound.add('bgmusic4', {loop: true});
-                bgmusic.play();
-                popSFX = this.sound.add('pop', {loop: false});
-                bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
-                error = this.sound.add('error', {loop: false});
-                jump = this.sound.add('jump', {loop: false});
-                balloonSpawn = this.sound.add('balloonspawn', {loop: false});
+                if(sound == true){
+                    bgmusic = this.sound.add('bgmusic4', {loop: true});
+                    bgmusic.play();
+                    popSFX = this.sound.add('pop', {loop: false});
+                    bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
+                    error = this.sound.add('error', {loop: false});
+                    jump = this.sound.add('jump', {loop: false});
+                    balloonSpawn = this.sound.add('balloonspawn', {loop: false});
+                }
 
                 
             
@@ -987,13 +994,15 @@ var fifthScene = new Phaser.Class({
                 
 
                 //audio
-                bgmusic = this.sound.add('bgmusic', {loop: true});
-                bgmusic.play();
-                popSFX = this.sound.add('pop', {loop: false});
-                bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
-                error = this.sound.add('error', {loop: false});
-                jump = this.sound.add('jump', {loop: false});
-                balloonSpawn = this.sound.add('balloonspawn', {loop: false});
+                if(sound == true){
+                    bgmusic = this.sound.add('bgmusic', {loop: true});
+                    bgmusic.play();
+                    popSFX = this.sound.add('pop', {loop: false});
+                    bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
+                    error = this.sound.add('error', {loop: false});
+                    jump = this.sound.add('jump', {loop: false});
+                    balloonSpawn = this.sound.add('balloonspawn', {loop: false});
+                }
 
                 
             
@@ -1203,63 +1212,18 @@ var levelselect = new Phaser.Class({
                     ).setOrigin(0.5);
 
                 
-                if(loaded == false){
-                    this.anims.create({
-                        key: 'red_idle',
-                        frames: [ { key: 'guy_red', frame: 0}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-
-                    this.anims.create({
-                        key: 'red_move',
-                        frames: [ { key: 'guy_red', frame: 1}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-                    this.anims.create({
-                        key: 'red_jump',
-                        frames: [ { key: 'guy_red', frame: 2}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-                    this.anims.create({
-                        key: 'blue_idle',
-                        frames: [ { key: 'guy_blue', frame: 0}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-
-                    this.anims.create({
-                        key: 'blue_move',
-                        frames: [ { key: 'guy_blue', frame: 1}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-
-                    this.anims.create({
-                        key: 'blue_jump',
-                        frames: [ { key: 'guy_blue', frame: 2}],
-                        frameRate: 10,
-                        repeat: -1
-                    });
-                    loaded = true;
-                }
-
+               
                 //audio
+                if(sound == true){
                 
-                
-                bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
-                
-                jump = this.sound.add('jump', {loop: false});
-                speedboostSFX = this.sound.add('speedboostSFX', {loop: false});
-                bonuspointSFX = this.sound.add('bonuspointSFX', {loop: false});
-                bgmusic = this.sound.add('bgmusiclvl', {loop: true});
-                bgmusic.play()
+                    bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
+
+                    jump = this.sound.add('jump', {loop: false});
+                    speedboostSFX = this.sound.add('speedboostSFX', {loop: false});
+                    bonuspointSFX = this.sound.add('bonuspointSFX', {loop: false});
+                    bgmusic = this.sound.add('bgmusiclvl', {loop: true});
+                    bgmusic.play()
+                }
 
 
 
@@ -1326,12 +1290,33 @@ var levelselect = new Phaser.Class({
 
 
                 //Second Player Keys
-                keys = this.input.keyboard.addKeys('A,W,S,D,space');
+                keys = this.input.keyboard.addKeys('A,W,S,D,H,M,space');
     
 
         },
         update: function(){
             playerMovement();
+            if(keys.H.isDown){
+                this.scene.start('title')
+            }
+            if(keys.M.isDown){
+                if(sound == true){
+                    this.game.sound.stopAll();
+                    sound = false
+                }
+                else{
+                    sound = true
+                    bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
+
+                    jump = this.sound.add('jump', {loop: false});
+                    speedboostSFX = this.sound.add('speedboostSFX', {loop: false});
+                    bonuspointSFX = this.sound.add('bonuspointSFX', {loop: false});
+                    bgmusic = this.sound.add('bgmusiclvl', {loop: true});
+                    bgmusic.play()
+                }
+                
+            }
+            
         }
     });
 //  _____     _             _       _   _____            
@@ -1453,14 +1438,15 @@ var tutorial2 = new Phaser.Class({
                 player_blue.setGravityY(599);
 
                 //audio
-                
-                //bgmusic.play();
-                
-                bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
-                
-                jump = this.sound.add('jump', {loop: false});
-                speedboostSFX = this.sound.add('speedboostSFX', {loop: false});
-                bonuspointSFX = this.sound.add('bonuspointSFX', {loop: false});
+                if(sound == true){
+                    //bgmusic.play();
+
+                    bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
+
+                    jump = this.sound.add('jump', {loop: false});
+                    speedboostSFX = this.sound.add('speedboostSFX', {loop: false});
+                    bonuspointSFX = this.sound.add('bonuspointSFX', {loop: false});
+                }
                 
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
@@ -1530,16 +1516,17 @@ var tutorial3 = new Phaser.Class({
                 player_blue.setGravityY(599);
 
                 //bgmusic.play();
-                
-                bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
-                popSFX = this.sound.add('pop', {loop: false});
-                error = this.sound.add('error', {loop: false});
-                jump = this.sound.add('jump', {loop: false});
-                balloonSpawn = this.sound.add('balloonspawn', {loop: false});
-                
-                jump = this.sound.add('jump', {loop: false});
-                speedboostSFX = this.sound.add('speedboostSFX', {loop: false});
-                bonuspointSFX = this.sound.add('bonuspointSFX', {loop: false});
+                if(sound == true){
+                    bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
+                    popSFX = this.sound.add('pop', {loop: false});
+                    error = this.sound.add('error', {loop: false});
+                    jump = this.sound.add('jump', {loop: false});
+                    balloonSpawn = this.sound.add('balloonspawn', {loop: false});
+
+                    jump = this.sound.add('jump', {loop: false});
+                    speedboostSFX = this.sound.add('speedboostSFX', {loop: false});
+                    bonuspointSFX = this.sound.add('bonuspointSFX', {loop: false});
+                }
             
             //Create Balloon Timer
                 timer = this.time.addEvent({
@@ -1651,14 +1638,15 @@ var tutorial4 = new Phaser.Class({
                 
 
                 //audio
-                
-                //bgmusic.play();
-                
-                bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
-                
-                jump = this.sound.add('jump', {loop: false});
-                speedboostSFX = this.sound.add('speedboostSFX', {loop: false});
-                bonuspointSFX = this.sound.add('bonuspointSFX', {loop: false});
+                if(sound == true){
+                    //bgmusic.play();
+
+                    bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
+
+                    jump = this.sound.add('jump', {loop: false});
+                    speedboostSFX = this.sound.add('speedboostSFX', {loop: false});
+                    bonuspointSFX = this.sound.add('bonuspointSFX', {loop: false});
+                }
                 
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
@@ -1829,14 +1817,16 @@ var tutorial0 = new Phaser.Class({
                 }
 
                 //audio
-                bgmusic = this.sound.add('bgmusic', {loop: true});
-                //bgmusic.play();
-                
-                bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
-                
-                jump = this.sound.add('jump', {loop: false});
-                speedboostSFX = this.sound.add('speedboostSFX', {loop: false});
-                bonuspointSFX = this.sound.add('bonuspointSFX', {loop: false});
+                if(sound == true){
+                    bgmusic = this.sound.add('bgmusic', {loop: true});
+                    //bgmusic.play();
+
+                    bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
+
+                    jump = this.sound.add('jump', {loop: false});
+                    speedboostSFX = this.sound.add('speedboostSFX', {loop: false});
+                    bonuspointSFX = this.sound.add('bonuspointSFX', {loop: false});
+                }
                 
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
@@ -1868,11 +1858,11 @@ var tutorial0 = new Phaser.Class({
             playerMovement();
         }
     });
-var lvlselect = new Phaser.Class({
+var title = new Phaser.Class({
     Extends: Phaser.Scene,
     initialize:
-    function levelselect(){
-        Phaser.Scene.call(this,{key:'lvlselect'});
+    function title(){
+        Phaser.Scene.call(this,{key:'title'});
     },
     preload: function(){
         totalBalloons = 1
@@ -1999,15 +1989,17 @@ var lvlselect = new Phaser.Class({
             }
 
             //audio
-            bgmusic = this.sound.add('bgmusictitle', {loop: true});
-            bgmusic.play();
+            if(sound == true){
+                bgmusic = this.sound.add('bgmusictitle', {loop: true});
+                bgmusic.play();
+            }
 
             // Input Events
-            cursors = this.input.keyboard.createCursorKeys();
+            
 
 
             //Second Player Keys
-            keys = this.input.keyboard.addKeys('L,T');
+            keys = this.input.keyboard.addKeys('L,T,M');
 
     },
     update: function(){
@@ -2017,12 +2009,72 @@ var lvlselect = new Phaser.Class({
         }
         if(keys.T.isDown){
                 
-                this.scene.start('tutorial1')
+            this.scene.start('tutorial1')
+        }
+        if(keys.M.isDown){
+                if(sound == true){
+                    this.game.sound.stopAll();
+                    sound = false
+                }
+                else{
+                    sound = true
+                    bgmusic = this.sound.add('bgmusictitle', {loop: true});
+                    bgmusic.play();
+                }
+                
             }
     }
 });
 
+var credits = new Phaser.Class({
+        Extends: Phaser.Scene,
+        initialize:
+        function credits(){
+            Phaser.Scene.call(this,{key:'credits'});
+        },
+        preload: function(){
+            
+            
+        },
+        create: function(){
+                
+                //startup =false
+                lost = false
+                this.add.image(400, 300, 'sky');
 
+                
+                //audio
+                if(sound == true){
+                
+                    bgmusic = this.sound.add('bgmusiclvl', {loop: true});
+                    bgmusic.play()
+                }
+                //Second Player Keys
+                keys = this.input.keyboard.addKeys('H,M');
+    
+
+        },
+        update: function(){
+            if(keys.H.isDown){
+                this.scene.start('title')
+            }
+            if(keys.M.isDown){
+                if(sound == true){
+                    this.game.sound.stopAll();
+                    sound = false
+                }
+                else{
+                    sound = true
+                    
+                    b
+                    bgmusic = this.sound.add('bgmusiclvl', {loop: true});
+                    bgmusic.play()
+                }
+                
+            }
+            
+        }
+    });
 
 let config = {
     type: Phaser.AUTO,
@@ -2036,7 +2088,7 @@ let config = {
         }
         
     },
-    scene: [lvlselect,tutorial1,tutorial2,tutorial3,tutorial4,levelselect,firstScene,secondScene,thirdScene,fourthScene,fifthScene,tutorial0]
+    scene: [title,tutorial1,tutorial2,tutorial3,tutorial4,levelselect,firstScene,secondScene,thirdScene,fourthScene,fifthScene,tutorial0,credits]
 };
 
 var game = new Phaser.Game(config);
@@ -2086,7 +2138,7 @@ if(true){
     var lost = false;
     var loseText;
     var cvis = false
-    
+    var sound =false
     //var startup;
 };
 //var bgmusic;
@@ -2118,7 +2170,9 @@ function playerMovement () {
         player_red.anims.play('red_idle', true);
     }
     if (keys.W.isDown && player_red.body.touching.down) {
-        jump.play();
+        if(sound == true){
+            jump.play();
+        }
         player_red.setVelocityY(-jumpSpeed);
         //player_red.anims.play('jump', true);
     }
@@ -2142,7 +2196,9 @@ function playerMovement () {
         player_blue.anims.play('blue_idle', true);
     }
     if (cursors.up.isDown && player_blue.body.touching.down) {
-        jump.play();
+        if(sound == true){
+            jump.play();
+        }
         player_blue.setVelocityY(-jumpSpeed);
     } 
     if (!player_blue.body.touching.down){
@@ -2168,7 +2224,9 @@ function redMovement () {
         player_red.anims.play('red_idle', true);
     }
     if (keys.W.isDown && player_red.body.touching.down) {
-        jump.play();
+        if(sound == true){
+            jump.play();
+        }
         player_red.setVelocityY(-jumpSpeed);
         //player_red.anims.play('jump', true);
     }
@@ -2186,8 +2244,9 @@ function hitBalloon(player, balloon){
     if(lives >0){
         balloon.setVelocityY(-260);
         player.setVelocityY(200);
-
-        bump.play();
+        if(sound == true){
+            bump.play();
+        }
 
         score += 1;
         scoreText.setText('Score:' + score);
@@ -2224,15 +2283,19 @@ function popBalloon(balloon, ground){
         loseText.visible = true;
         lost = true;
         timer.remove();
-        error.play();
-        popSFX.play();
-        bgmusic.stop();
+        if(sound == true){
+            error.play();
+            popSFX.play();
+            bgmusic.stop();
+        }
         player_red.anims.play('red_idle', true);
         player_blue.anims.play('blue_idle', true);
         player_blue.setVelocityX(0);
         player_red.setVelocityX(0);
     }else{
-        popSFX.play();
+        if(sound == true){
+            popSFX.play();
+        }
     }
     balloon.destroy();
 }
@@ -2265,7 +2328,9 @@ function spawnBalloon(){
         balloon.setCollideWorldBounds(true);  
 
         //play SFX
-        balloonSpawn.play();
+        if(sound == true){
+            balloonSpawn.play();
+        }
     }
 }
 function spawnBalloon2(){
@@ -2297,7 +2362,9 @@ function spawnBalloon2(){
         balloon.setCollideWorldBounds(true);
 
         //play SFX
-        balloonSpawn.play();
+        if(sound == true){
+            balloonSpawn.play();
+        }
     }
 }
 
@@ -2324,7 +2391,9 @@ function spawnBalloonTut(){
     balloon.setCollideWorldBounds(true);  
 
     //play SFX
-    balloonSpawn.play();
+    if(sound == true){
+        balloonSpawn.play();
+    }
     
 }
 // ______                        _   _       
@@ -2389,7 +2458,9 @@ function spawnPowerup(){
 function speedBoost(player, speedboost){
     //var balloonCount = totalBalloons;
     playerSpeed = 450;
-    speedboostSFX.play();
+    if(sound == true){
+        speedboostSFX.play();
+    }
     speedboost.destroy();
     powerupTimer = this.time.addEvent({
         delay: 4000,
@@ -2400,7 +2471,9 @@ function speedBoost(player, speedboost){
 
 function coinGet(player, coin){
     score += 10;
-    bonuspointSFX.play();
+    if(sound == true){
+        bonuspointSFX.play();
+    }
     scoreText.setText('Score:' + score);
     coin.destroy();
 }
@@ -2409,6 +2482,8 @@ function resetPowerups(){
     playerSpeed = 270;
 }
 function trust(){
-    bgmusic.stop();
+    if(sound == true){
+        bgmusic.stop();
+    }
     
 }
