@@ -1228,6 +1228,8 @@ var levelselect = new Phaser.Class({
 
 
                 //text
+                this.add.text(460,575, 'Press H to return to the Title', {fontSize: '18px', fill: '#000', fontStyle: 'bold'});
+                this.add.text(10,575, 'Press M to enable/disable audio', {fontSize: '18px', fill: '#000', fontStyle: 'bold'});
                 
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
@@ -1858,6 +1860,7 @@ var tutorial0 = new Phaser.Class({
             playerMovement();
         }
     });
+//title screen
 var title = new Phaser.Class({
     Extends: Phaser.Scene,
     initialize:
@@ -1925,7 +1928,7 @@ var title = new Phaser.Class({
             this.load.image('lfcollide','dontquestionme/leafcollide.png')
             
             //title
-            this.load.image('logo', ['assets/logo.png']);
+            this.load.image('logo', 'assets/logo.png');
         }
     },
     create: function(){
@@ -1937,8 +1940,10 @@ var title = new Phaser.Class({
             logo.setScale(0.75);
 
             //add skip text
-            this.add.text(225,400, 'Press T for tutorial', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
-            this.add.text(200,450, 'Press L for level select', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
+            this.add.text(225,350, 'Press T for tutorial', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
+            this.add.text(200,400, 'Press L for level select', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
+            this.add.text(235,450, 'Press C for credits', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
+            this.add.text(10,575, 'Press M to enable/disable audio', {fontSize: '18px', fill: '#000', fontStyle: 'bold'});
 
             
             if(loaded == false){
@@ -2045,6 +2050,16 @@ var credits = new Phaser.Class({
                 //startup =false
                 lost = false
                 this.add.image(400, 300, 'sky');
+            
+            this.add.text(460,575, 'Press H to return to the Title', {fontSize: '18px', fill: '#000', fontStyle: 'bold'});
+            this.add.text(10,575, 'Press M to enable/disable audio', {fontSize: '18px', fill: '#000', fontStyle: 'bold'});
+            
+            //credits
+            this.add.text(225,100, 'Developed by Team Team:', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
+            this.add.text(90,200, 'Connor Blankenship - Programming & Design', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
+            this.add.text(100,250, 'Ethan Godwin - Programming, Design & Art', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
+            this.add.text(125,300, 'Joseph Horak - Programming & Design', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
+            this.add.text(160,350, 'Beatrix Jackman - Programming', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
 
                 
                 //audio
