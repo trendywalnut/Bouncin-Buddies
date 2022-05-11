@@ -1299,6 +1299,7 @@ var levelselect = new Phaser.Class({
         update: function(){
             playerMovement();
             if(keys.H.isDown){
+                bgmusic.stop()
                 this.scene.start('title')
             }
             if(keys.M.isDown){
