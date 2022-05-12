@@ -1930,11 +1930,13 @@ var title = new Phaser.Class({
             
             //title
             this.load.image('logo', 'assets/logo.png');
+            this.load.image('credits', 'assets/credits.png');
         }
     },
     create: function(){
             //startup =false
             lost = false
+            sound = true
 
             this.add.image(400, 300, 'sky');
             logo = this.add.image(400, 150, 'logo');
@@ -2052,17 +2054,11 @@ var credits = new Phaser.Class({
                 lost = false
                 this.add.image(400, 300, 'sky');
             
-            this.add.text(460,575, 'Press H to return to the Title', {fontSize: '18px', fill: '#000', fontStyle: 'bold'});
-            this.add.text(10,575, 'Press M to enable/disable audio', {fontSize: '18px', fill: '#000', fontStyle: 'bold'});
+                this.add.text(460,575, 'Press H to return to the Title', {fontSize: '18px', fill: '#000', fontStyle: 'bold'});
+                this.add.text(10,575, 'Press M to enable/disable audio', {fontSize: '18px', fill: '#000', fontStyle: 'bold'});
             
-            //credits
-            this.add.text(225,100, 'Developed by Team Team:', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
-            this.add.text(90,200, 'Connor Blankenship - Programming & Design', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
-            this.add.text(100,250, 'Ethan Godwin - Programming, Design & Art', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
-            this.add.text(125,300, 'Joseph Horak - Programming & Design', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
-            this.add.text(160,350, 'Beatrix Jackman - Programming', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
-
-                
+                this.add.image(400, 300, 'credits');    
+            
                 //audio
                 if(sound == true){
                 
