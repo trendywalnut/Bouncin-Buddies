@@ -88,7 +88,7 @@ var firstScene = new Phaser.Class({
                 balloons = this.physics.add.group({
                     key: 'balloon',
                     repeat: 0,
-                    setXY: {x: 12, y: 0, stepX: 70},
+                    setXY: {x: 400, y: 0, stepX: 70},
                     mass: 0.3
                 });
                 
@@ -161,6 +161,31 @@ var firstScene = new Phaser.Class({
 
                     child.setCollideWorldBounds(true);
                 })
+            
+                //1up group
+                oneups = this.physics.add.group({
+                    key: "oneup",
+                    repeat: 0,
+                    setXY: {x: 12, y: 0, stepX: 70},
+                    mass: 0.3
+                });
+            
+                oneups.children.iterate(function(child) {
+                    child.setScale(0.5);
+                    child.setVelocity(Phaser.Math.Between(-200, 200), 20);
+                    child.setMass(0.3);
+                    child.allowGravity = true;
+                    child.setBounce(0.2);
+                    child.setGravityY(1);
+                    child.useDamping = true;
+                    child.allowDrag = true;
+                    child.allowRotation = true;
+                    child.setAngularAcceleration(1);
+                    child.isCircle = true;
+                    child.setCircle(50, 0, 0);
+                    child.setMaxSpeed = 2;
+                    child.setCollideWorldBounds(false);
+                })
 
                 //text
                 scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000', fontStyle: 'bold'}); 
@@ -186,6 +211,10 @@ var firstScene = new Phaser.Class({
                 //player colliders with coin
                 this.physics.add.collider(player_red, coins, coinGet, null, this);
                 this.physics.add.collider(player_blue, coins, coinGet, null, this);
+            
+                //player colliders with oneups
+                this.physics.add.collider(player_red, oneups, oneUp, null, this);
+                this.physics.add.collider(player_blue, oneups, oneUp, null, this);   
 
                 //let balloons collide with each other
                 //this.physics.add.collider(balloons, balloons);
@@ -343,7 +372,7 @@ var secondScene = new Phaser.Class({
                 balloons = this.physics.add.group({
                     key: 'balloon',
                     repeat: 0,
-                    setXY: {x: 12, y: 0, stepX: 70},
+                    setXY: {x: 650, y: 0, stepX: 70},
                     mass: 0.3
                 });
                 
@@ -417,6 +446,35 @@ var secondScene = new Phaser.Class({
 
                     child.setCollideWorldBounds(true);
                 })
+            
+                //1up group
+                oneups = this.physics.add.group({
+                    key: "oneup",
+                    repeat: 0,
+                    setXY: {x: 12, y: 0, stepX: 70},
+                    mass: 0.3
+                });
+            
+                oneups.children.iterate(function(child) {
+                    child.setScale(0.5);
+                    child.setVelocity(Phaser.Math.Between(-200, 200), 20);
+                    child.setMass(0.3);
+                    child.allowGravity = true;
+                    child.setBounce(0.2);
+                    child.setGravityY(1);
+                    child.useDamping = true;
+                    child.allowDrag = true;
+                    child.allowRotation = true;
+                    child.setAngularAcceleration(1);
+                    child.isCircle = true;
+                    child.setCircle(50, 0, 0);
+                    child.setMaxSpeed = 2;
+                    child.setCollideWorldBounds(true);
+                })
+                
+                //player colliders with oneups
+                this.physics.add.collider(player_red, oneups, oneUp, null, this);
+                this.physics.add.collider(player_blue, oneups, oneUp, null, this);
 
                 //text
                 scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000', fontStyle: 'bold'}); 
@@ -606,7 +664,7 @@ var thirdScene = new Phaser.Class({
                 balloons = this.physics.add.group({
                     key: 'balloon',
                     repeat: 0,
-                    setXY: {x: 12, y: 0, stepX: 70},
+                    setXY: {x: 400, y: 0, stepX: 70},
                     mass: 0.3
                 });
                 
@@ -678,6 +736,34 @@ var thirdScene = new Phaser.Class({
 
                     child.setCollideWorldBounds(true);
                 })
+            
+                //1up group
+                oneups = this.physics.add.group({
+                    key: "oneup",
+                    repeat: 0,
+                    setXY: {x: 12, y: 0, stepX: 70},
+                    mass: 0.3
+                });
+            
+                oneups.children.iterate(function(child) {
+                    child.setScale(0.5);
+                    child.setVelocity(Phaser.Math.Between(-200, 200), 20);
+                    child.setMass(0.3);
+                    child.allowGravity = true;
+                    child.setBounce(0.2);
+                    child.setGravityY(1);
+                    child.useDamping = true;
+                    child.allowDrag = true;
+                    child.allowRotation = true;
+                    child.setAngularAcceleration(1);
+                    child.isCircle = true;
+                    child.setCircle(50, 0, 0);
+                    child.setMaxSpeed = 2;
+                    child.setCollideWorldBounds(true);
+                })
+                //player colliders with oneups
+                this.physics.add.collider(player_red, oneups, oneUp, null, this);
+                this.physics.add.collider(player_blue, oneups, oneUp, null, this);
 
                 //text
                 scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000', fontStyle: 'bold'}); 
@@ -817,7 +903,7 @@ var fourthScene = new Phaser.Class({
                 balloons = this.physics.add.group({
                     key: 'balloon',
                     repeat: 0,
-                    setXY: {x: 12, y: 0, stepX: 70},
+                    setXY: {x: 400, y: 0, stepX: 70},
                     mass: 0.3
                 });
                 
@@ -890,6 +976,34 @@ var fourthScene = new Phaser.Class({
 
                     child.setCollideWorldBounds(true);
                 })
+            
+                //1up group
+                oneups = this.physics.add.group({
+                    key: "oneup",
+                    repeat: 0,
+                    setXY: {x: 12, y: 0, stepX: 70},
+                    mass: 0.3
+                });
+            
+                oneups.children.iterate(function(child) {
+                    child.setScale(0.5);
+                    child.setVelocity(Phaser.Math.Between(-200, 200), 20);
+                    child.setMass(0.3);
+                    child.allowGravity = true;
+                    child.setBounce(0.2);
+                    child.setGravityY(1);
+                    child.useDamping = true;
+                    child.allowDrag = true;
+                    child.allowRotation = true;
+                    child.setAngularAcceleration(1);
+                    child.isCircle = true;
+                    child.setCircle(50, 0, 0);
+                    child.setMaxSpeed = 2;
+                    child.setCollideWorldBounds(true);
+                })
+                //player colliders with oneups
+                this.physics.add.collider(player_red, oneups, oneUp, null, this);
+                this.physics.add.collider(player_blue, oneups, oneUp, null, this);
 
                 //text
                 scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000', fontStyle: 'bold'}); 
@@ -1025,7 +1139,7 @@ var fifthScene = new Phaser.Class({
                 balloons = this.physics.add.group({
                     key: 'balloon',
                     repeat: 0,
-                    setXY: {x: 12, y: 0, stepX: 70},
+                    setXY: {x: 650, y: 0, stepX: 70},
                     mass: 0.3
                 });
                 
@@ -1098,6 +1212,34 @@ var fifthScene = new Phaser.Class({
 
                     child.setCollideWorldBounds(true);
                 })
+            
+                //1up group
+                oneups = this.physics.add.group({
+                    key: "oneup",
+                    repeat: 0,
+                    setXY: {x: 12, y: 0, stepX: 70},
+                    mass: 0.3
+                });
+            
+                oneups.children.iterate(function(child) {
+                    child.setScale(0.5);
+                    child.setVelocity(Phaser.Math.Between(-200, 200), 20);
+                    child.setMass(0.3);
+                    child.allowGravity = true;
+                    child.setBounce(0.2);
+                    child.setGravityY(1);
+                    child.useDamping = true;
+                    child.allowDrag = true;
+                    child.allowRotation = true;
+                    child.setAngularAcceleration(1);
+                    child.isCircle = true;
+                    child.setCircle(50, 0, 0);
+                    child.setMaxSpeed = 2;
+                    child.setCollideWorldBounds(true);
+                })
+                //player colliders with oneups
+                this.physics.add.collider(player_red, oneups, oneUp, null, this);
+                this.physics.add.collider(player_blue, oneups, oneUp, null, this);
 
                 //text
                 scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000', fontStyle: 'bold'}); 
@@ -1898,6 +2040,7 @@ var title = new Phaser.Class({
 
             this.load.image('speedboost', 'assets/speedboost.png');
             this.load.image('coin', 'assets/coin.png');
+            this.load.image('oneup', 'assets/balloon1up.png');
 
             this.load.image('one', 'assets/one.png');
             this.load.image('two', 'assets/two.png');
@@ -2488,6 +2631,23 @@ function spawnPowerup(){
         //    startup = true
         //    console.log(startup)
         //}
+    } else if (0.3 <= powerup <= 0.5) {
+        var oneup = oneups.create(x, 0, 'oneup');
+        oneup.setScale(0.5);
+        oneup.setVelocity(Phaser.Math.Between(-200, 200), 20);
+        oneup.setMass(0.3);
+        oneup.allowGravity = true;
+        oneup.setBounce(0.2);
+        oneup.setGravityY(1);
+        oneup.useDamping = true;
+        oneup.allowDrag = true;
+        oneup.allowRotation = true;
+        oneup.setAngularAcceleration(1);
+        oneup.isCircle = true;
+        oneup.setCircle(50, 0, 0);
+        oneup.setMaxSpeed = 2;
+
+        coin.setCollideWorldBounds(true);
     }
     }
     
@@ -2514,6 +2674,15 @@ function coinGet(player, coin){
     }
     scoreText.setText('Score:' + score);
     coin.destroy();
+}
+
+function oneUp(player, oneUp) {
+    lives += 1;
+    if (sound == true) {
+        bonuspointSFX.play();
+    }
+    livesText.setText("Lives:" + lives)
+    oneUp.destroy();
 }
 
 function resetPowerups(){
