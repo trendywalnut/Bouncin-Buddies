@@ -1303,21 +1303,26 @@ var levelselect = new Phaser.Class({
                 this.scene.start('title')
             }
             if(keys.M.isDown){
-                if(sound == true){
-                    this.game.sound.stopAll();
-                    sound = false
-                }
-                else{
-                    sound = true
-                    bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
+                if(mhold == false){
+                    mhold = true
+                    if(sound == true){
+                        this.game.sound.stopAll();
+                        sound = false
+                    }
+                    else{
+                        sound = true
+                        bump = this.sound.add('bump', {loop: false}, {volume: 0.2});
 
-                    jump = this.sound.add('jump', {loop: false});
-                    speedboostSFX = this.sound.add('speedboostSFX', {loop: false});
-                    bonuspointSFX = this.sound.add('bonuspointSFX', {loop: false});
-                    bgmusic = this.sound.add('bgmusiclvl', {loop: true});
-                    bgmusic.play()
+                        jump = this.sound.add('jump', {loop: false});
+                        speedboostSFX = this.sound.add('speedboostSFX', {loop: false});
+                        bonuspointSFX = this.sound.add('bonuspointSFX', {loop: false});
+                        bgmusic = this.sound.add('bgmusiclvl', {loop: true});
+                        bgmusic.play()
+                    }
                 }
-                
+            }
+            else{
+                mhold = false
             }
             
         }
@@ -1931,12 +1936,13 @@ var title = new Phaser.Class({
             //title
             this.load.image('logo', 'assets/logo.png');
             this.load.image('credits', 'assets/credits.png');
+            sound = true
         }
     },
     create: function(){
             //startup =false
             lost = false
-            sound = true
+            
 
             this.add.image(400, 300, 'sky');
             logo = this.add.image(400, 150, 'logo');
@@ -2024,6 +2030,8 @@ var title = new Phaser.Class({
             this.scene.start('tutorial1')
         }
         if(keys.M.isDown){
+            if(mhold == false){
+                mhold = true
                 if(sound == true){
                     this.game.sound.stopAll();
                     sound = false
@@ -2033,8 +2041,11 @@ var title = new Phaser.Class({
                     bgmusic = this.sound.add('bgmusictitle', {loop: true});
                     bgmusic.play();
                 }
-                
             }
+        }
+        else{
+            mhold = false
+        }
     }
 });
 
@@ -2074,20 +2085,30 @@ var credits = new Phaser.Class({
             if(keys.H.isDown){
                 this.scene.start('title')
             }
-            if(keys.M.isDown){
-                if(sound == true){
-                    this.game.sound.stopAll();
-                    sound = false
+            console.log(mhold)
+            
+                if(keys.M.isDown){
+                    if(mhold == false){
+                    mhold = true
+                    if(sound == true){
+                        this.game.sound.stopAll();
+                        sound = false
+                    }
+                    else{
+                        sound = true
+
+                        
+                        bgmusic = this.sound.add('bgmusiclvl', {loop: true});
+                        bgmusic.play()
+                    }
+                }
+
                 }
                 else{
-                    sound = true
-                    
-                    b
-                    bgmusic = this.sound.add('bgmusiclvl', {loop: true});
-                    bgmusic.play()
+                    mhold = false
                 }
-                
-            }
+            
+            
             
         }
     });
@@ -2129,6 +2150,7 @@ if(true){
     var score = 0;
     var scoreText;
     var livesText;
+    var mhold = false
 
     var timer;
     var totalBalloons = 1;
