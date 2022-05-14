@@ -1842,33 +1842,33 @@ var tutorial0 = new Phaser.Class({
             totalBalloons = 1
             score = 0
             if(loaded == false){
-                this.load.spritesheet('guy_red', 'assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
-                this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
-                this.load.image('balloon', 'assets/balloon.png');
+                this.load.spritesheet('guy_red', 'Assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
+                this.load.spritesheet('guy_blue', 'Assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
+                this.load.image('balloon', 'Assets/balloon.png');
                 //this.load.image('guy_red', 'assets/guy_idle_red.png');
                 this.load.image('sky', 'assets/background_sky2d.png');
-                this.load.image('volcano', 'assets/background_volcano.png');
+                this.load.image('volcano', 'Assets/background_volcano.png');
 
                 this.load.image('platform', 'assets/platform_grass.png');
                 this.load.image('volcano_boulder', 'assets/volcano_boulder.png');
-                this.load.image('ground', 'assets/foreground_grass.png');
-                this.load.image('ground_volcano', 'assets/foreground_volcano.png');
+                this.load.image('ground', 'Assets/foreground_grass.png');
+                this.load.image('ground_volcano', 'Assets/foreground_volcano.png');
 
-                this.load.image('treetrunk', 'assets/tree_trunk.png');
-                this.load.image('treeleaves', 'assets/tree_leaves.png');
+                this.load.image('treetrunk', 'Assets/tree_trunk.png');
+                this.load.image('treeleaves', 'Assets/tree_leaves.png');
 
                 this.load.image('spikepole', 'assets/spikepole.png');
                 this.load.image('spiketop', 'assets/spikeplatform_top.png')
                 this.load.image('spikebottom', 'assets/spikeplatform_bottom.png');
 
-                this.load.image('speedboost', 'assets/speedboost.png');
+                this.load.image('speedboost', 'Assets/speedboost.png');
                 this.load.image('coin', 'assets/coin.png');
                 
                 this.load.image('one', 'assets/one.png');
                 this.load.image('two', 'assets/two.png');
                 this.load.image('three', 'assets/three.png');
                 this.load.image('four', 'assets/four.png');
-                this.load.image('five', 'assets/five.png');
+                //this.load.image('five', 'Assets/five.png');
                 
                 this.load.image('door', 'assets/door.png');
 
@@ -1883,10 +1883,10 @@ var tutorial0 = new Phaser.Class({
                 
                 //tutorial image
                 this.load.image('tutorial', ['assets/tutorialscreen.jpg']);
-                this.load.image('tutorial_1', ['assets/Tutorial1.png']);
-                this.load.image('tutorial_2', ['assets/Tutorial2.png']);
-                this.load.image('tutorial_3', ['assets/Tutorial3.png']);
-                this.load.image('tutorial_4', ['assets/Tutorial4.png']);
+                this.load.image('tutorial_1', ['Assets/Tutorial1.png']);
+                this.load.image('tutorial_2', ['Assets/Tutorial2.png']);
+                this.load.image('tutorial_3', ['Assets/Tutorial3.png']);
+                this.load.image('tutorial_4', ['Assets/Tutorial4.png']);
                 this.load.image('fcollide', 'dontquestionme/colliderwide.png');
                 this.load.image('scollide', 'dontquestionme/collider_small.png');
                 this.load.image('colliders', 'dontquestionme/colliders.png');
@@ -2019,56 +2019,56 @@ var title = new Phaser.Class({
         totalBalloons = 1
         score = 0
         if(loaded == false){
-            this.load.spritesheet('guy_red', 'assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
-            this.load.spritesheet('guy_blue', 'assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
-            this.load.image('balloon', 'assets/balloon.png');
+            this.load.spritesheet('guy_red', 'Assets/guy_spritesheet_red.png', { frameWidth: 366, frameHeight: 252});
+            this.load.spritesheet('guy_blue', 'Assets/guy_spritesheet_blue.png', { frameWidth: 366, frameHeight: 252});
+            this.load.image('balloon', 'Assets/balloon.png');
             //this.load.image('guy_red', 'assets/guy_idle_red.png');
-            this.load.image('sky', 'assets/background_sky2d.png');
-            this.load.image('volcano', 'assets/background_volcano.png');
+            this.load.image('sky', 'Assets/background_sky2d.png');
+            this.load.image('volcano', 'Assets/background_volcano.png');
 
-            this.load.image('platform', 'assets/platform_grass.png');
-            this.load.image('volcano_boulder', 'assets/volcano_boulder.png');
-            this.load.image('ground', 'assets/foreground_grass.png');
-            this.load.image('ground_volcano', 'assets/foreground_volcano.png');
+            this.load.image('platform', 'Assets/platform_grass.png');
+            this.load.image('volcano_boulder', 'Assets/volcano_boulder.png');
+            this.load.image('ground', 'Assets/foreground_grass.png');
+            this.load.image('ground_volcano', 'Assets/foreground_volcano.png');
 
-            this.load.image('treetrunk', 'assets/tree_trunk.png');
-            this.load.image('treeleaves', 'assets/tree_leaves.png');
+            this.load.image('treetrunk', 'Assets/tree_trunk.png');
+            this.load.image('treeleaves', 'Assets/tree_leaves.png');
 
-            this.load.image('spikepole', 'assets/spikepole.png');
-            this.load.image('spiketop', 'assets/spikeplatform_top.png')
-            this.load.image('spikebottom', 'assets/spikeplatform_bottom.png');
+            this.load.image('spikepole', 'Assets/spikepole.png');
+            this.load.image('spiketop', 'Assets/spikeplatform_top.png')
+            this.load.image('spikebottom', 'Assets/spikeplatform_bottom.png');
 
-            this.load.image('speedboost', 'assets/speedboost.png');
-            this.load.image('coin', 'assets/coin.png');
-            this.load.image('oneup', 'assets/balloon1up.png');
+            this.load.image('speedboost', 'Assets/speedboost.png');
+            this.load.image('coin', 'Assets/coin.png');
+            this.load.image('oneup', 'Assets/balloon1up.png');
 
-            this.load.image('one', 'assets/one.png');
-            this.load.image('two', 'assets/two.png');
-            this.load.image('three', 'assets/three.png');
-            this.load.image('four', 'assets/four.png');
-            this.load.image('five', 'assets/five.png');
+            this.load.image('one', 'Assets/one.png');
+            this.load.image('two', 'Assets/two.png');
+            this.load.image('three', 'Assets/three.png');
+            this.load.image('four', 'Assets/four.png');
+            //this.load.image('five', 'Assets/five.png');
 
-            this.load.image('door', 'assets/door.png');
+            this.load.image('door', 'Assets/door.png');
 
-            this.load.audio('bgmusic', ['assets/bgmusic.wav']);
-            this.load.audio('bgmusic2', ['assets/bgmusic_lvl2.wav']);
-            this.load.audio('bgmusic4', ['assets/bgmusic_lvl4.wav']);
-            this.load.audio('bgmusiclvl', ['assets/bgmusic_lvlselect.wav']);
-            this.load.audio('bgmusictitle', ['assets/title_tutorial_music.wav']);
-            this.load.audio('jump', ['assets/jump.wav']);
-            this.load.audio('error', ['assets/error.wav']);
-            this.load.audio('bump', ['assets/bump.wav']);
-            this.load.audio('pop', ['assets/pop.wav']);
-            this.load.audio('speedboostSFX', ['assets/item_speedup.wav']);
-            this.load.audio('balloonspawn', ['assets/balloonspawn.wav']);
-            this.load.audio('bonuspointSFX', ['assets/item_pointbonus.wav']);
+            this.load.audio('bgmusic', ['Assets/bgmusic.wav']);
+            this.load.audio('bgmusic2', ['Assets/bgmusic_lvl2.wav']);
+            this.load.audio('bgmusic4', ['Assets/bgmusic_lvl4.wav']);
+            this.load.audio('bgmusiclvl', ['Assets/bgmusic_lvlselect.wav']);
+            this.load.audio('bgmusictitle', ['Assets/title_tutorial_music.wav']);
+            this.load.audio('jump', ['Assets/jump.wav']);
+            this.load.audio('error', ['Assets/error.wav']);
+            this.load.audio('bump', ['Assets/bump.wav']);
+            this.load.audio('pop', ['Assets/pop.wav']);
+            this.load.audio('speedboostSFX', ['Assets/item_speedup.wav']);
+            this.load.audio('balloonspawn', ['Assets/balloonspawn.wav']);
+            this.load.audio('bonuspointSFX', ['Assets/item_pointbonus.wav']);
 
             //tutorial image
-            this.load.image('tutorial', ['assets/tutorialscreen.jpg']);
-            this.load.image('tutorial_1', ['assets/Tutorial1.png']);
-            this.load.image('tutorial_2', ['assets/Tutorial2.png']);
-            this.load.image('tutorial_3', ['assets/Tutorial3.png']);
-            this.load.image('tutorial_4', ['assets/Tutorial4.png']);
+            this.load.image('tutorial', ['Assets/tutorialscreen.jpg']);
+            this.load.image('tutorial_1', ['Assets/Tutorial1.png']);
+            this.load.image('tutorial_2', ['Assets/Tutorial2.png']);
+            this.load.image('tutorial_3', ['Assets/Tutorial3.png']);
+            this.load.image('tutorial_4', ['Assets/Tutorial4.png']);
             this.load.image('fcollide', 'dontquestionme/colliderwide.png');
             this.load.image('scollide', 'dontquestionme/collider_small.png');
             this.load.image('colliders', 'dontquestionme/colliders.png');
@@ -2077,8 +2077,8 @@ var title = new Phaser.Class({
             this.load.image('lfcollide','dontquestionme/leafcollide.png')
             
             //title
-            this.load.image('logo', 'assets/logo.png');
-            this.load.image('credits', 'assets/credits.png');
+            this.load.image('logo', 'Assets/logo.png');
+            this.load.image('credits', 'Assets/credits.png');
             sound = true
         }
     },
@@ -2226,6 +2226,7 @@ var credits = new Phaser.Class({
         },
         update: function(){
             if(keys.H.isDown){
+                bgmusic.stop()
                 this.scene.start('title')
             }
             console.log(mhold)
@@ -2259,7 +2260,7 @@ var credits = new Phaser.Class({
 let config = {
     type: Phaser.AUTO,
     width: 800,
-    height: 600,
+    height: 700,
     physics: {
         default: 'arcade',
         arcade: {
