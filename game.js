@@ -51,7 +51,7 @@ var firstScene = new Phaser.Class({
                         {
                             fontSize: 50,
                             color: "#000000",
-                            fontStyle: "bold"
+                            fontFamily: 'font1'
                         }
                     ).setOrigin(0.5);
 
@@ -188,8 +188,8 @@ var firstScene = new Phaser.Class({
                 })
 
                 //text
-                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000', fontStyle: 'bold'}); 
-                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000', fontStyle: 'bold'}); 
+                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000', fontFamily: 'font1'}); 
+                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000', fontFamily: 'font1'}); 
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
                 this.physics.add.collider(player_blue, platforms);
@@ -336,7 +336,7 @@ var secondScene = new Phaser.Class({
                         {
                             fontSize: 50,
                             color: "#000000",
-                            fontStyle: "bold"
+                            fontFamily: 'font1'
                         }
                     ).setOrigin(0.5);
 
@@ -477,8 +477,8 @@ var secondScene = new Phaser.Class({
                 this.physics.add.collider(player_blue, oneups, oneUp, null, this);
 
                 //text
-                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000', fontStyle: 'bold'}); 
-                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000', fontStyle: 'bold'});  
+                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000', fontFamily: 'font1'}); 
+                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000', fontFamily: 'font1'});  
 
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
@@ -628,7 +628,7 @@ var thirdScene = new Phaser.Class({
                         {
                             fontSize: 50,
                             color: "#000000",
-                            fontStyle: "bold"
+                            fontFamily: 'font1'
                         }
                     ).setOrigin(0.5);
 
@@ -766,8 +766,8 @@ var thirdScene = new Phaser.Class({
                 this.physics.add.collider(player_blue, oneups, oneUp, null, this);
 
                 //text
-                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000', fontStyle: 'bold'}); 
-                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000', fontStyle: 'bold'}); 
+                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000', fontFamily: 'font1'}); 
+                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000', fontFamily: 'font1'}); 
 
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
@@ -867,7 +867,7 @@ var fourthScene = new Phaser.Class({
                         {
                             fontSize: 50,
                             color: "#000000",
-                            fontStyle: "bold"
+                            fontFamily: 'font1'
                         }
                     ).setOrigin(0.5);
 
@@ -1006,8 +1006,8 @@ var fourthScene = new Phaser.Class({
                 this.physics.add.collider(player_blue, oneups, oneUp, null, this);
 
                 //text
-                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000', fontStyle: 'bold'}); 
-                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000', fontStyle: 'bold'});  
+                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000', fontFamily: 'font1'}); 
+                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000', fontFamily: 'font1'});  
 
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
@@ -1099,7 +1099,7 @@ var fifthScene = new Phaser.Class({
                         {
                             fontSize: 50,
                             color: "#000000",
-                            fontStyle: "bold"
+                            fontFamily: 'font1'
                         }
                     ).setOrigin(0.5);
 
@@ -1242,8 +1242,8 @@ var fifthScene = new Phaser.Class({
                 this.physics.add.collider(player_blue, oneups, oneUp, null, this);
 
                 //text
-                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000', fontStyle: 'bold'}); 
-                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000', fontStyle: 'bold'});  
+                scoreText = this.add.text(200,16, 'Score: 0', {fontSize: '32px', fill: '#000', fontFamily: 'font1'}); 
+                livesText = this.add.text(16,16, 'Lives: '+lives, {fontSize: '32px', fill: '#000', fontFamily: 'font1'});  
 
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
@@ -1349,7 +1349,7 @@ var levelselect = new Phaser.Class({
                         {
                             fontSize: 50,
                             color: "#000000",
-                            fontStyle: "bold"
+                            fontFamily: 'font1'
                         }
                     ).setOrigin(0.5);
 
@@ -1370,8 +1370,8 @@ var levelselect = new Phaser.Class({
 
 
                 //text
-                this.add.text(460,575, 'Press H to return to the Title', {fontSize: '18px', fill: '#000', fontStyle: 'bold'});
-                this.add.text(10,575, 'Press M to enable/disable audio', {fontSize: '18px', fill: '#000', fontStyle: 'bold'});
+                this.add.text(460,575, 'Press H to return to the Title', {fontSize: '18px', fill: '#000', fontFamily: 'font1'});
+                this.add.text(10,575, 'Press M to enable/disable audio', {fontSize: '18px', fill: '#000', fontFamily: 'font1'});
                 
                 //Collide Player with Platforms
                 this.physics.add.collider(player_red, platforms);
@@ -1500,7 +1500,7 @@ var tutorial1 = new Phaser.Class({
                 this.add.image(400, 568, 'ground')
             
                 //add skip text
-                skipText = this.add.text(16,550, 'Press L to skip tutorial', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
+                skipText = this.add.text(16,550, 'Press L to skip tutorial', {fontSize: '25px', fill: '#000', fontFamily: 'font1'});
             
                 platforms.create(700, 500, 'platform');
 
@@ -1572,7 +1572,7 @@ var tutorial2 = new Phaser.Class({
                 this.add.image(400, 568, 'ground')
             
                 //add skip text
-                skipText = this.add.text(16,550, 'Press L to skip tutorial', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
+                skipText = this.add.text(16,550, 'Press L to skip tutorial', {fontSize: '25px', fill: '#000', fontFamily: 'font1'});
 
                 lvl4 = this.physics.add.staticGroup();
                 lvl4.create(750,450,'door');
@@ -1650,7 +1650,7 @@ var tutorial3 = new Phaser.Class({
                 platforms.create(400, 568, 'ground')
             
             //add skip text
-                skipText = this.add.text(16,550, 'Press L to skip tutorial', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
+                skipText = this.add.text(16,550, 'Press L to skip tutorial', {fontSize: '25px', fill: '#000', fontFamily: 'font1'});
 
                 lvl4 = this.physics.add.staticGroup();
                 lvl4.create(750,450,'door');
@@ -1769,7 +1769,7 @@ var tutorial4 = new Phaser.Class({
                 this.add.image(400, 568, 'ground')
             
                 //add skip text
-                skipText = this.add.text(16,550, 'Press L to skip tutorial', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
+                skipText = this.add.text(16,550, 'Press L to skip tutorial', {fontSize: '25px', fill: '#000', fontFamily: 'font1'});
 
                 lvl4 = this.physics.add.staticGroup();
                 lvl4.create(750,450,'door');
@@ -2092,10 +2092,10 @@ var title = new Phaser.Class({
             logo.setScale(0.75);
 
             //add skip text
-            this.add.text(225,350, 'Press T for tutorial', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
-            this.add.text(200,400, 'Press L for level select', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
-            this.add.text(235,450, 'Press C for credits', {fontSize: '25px', fill: '#000', fontStyle: 'bold'});
-            this.add.text(10,575, 'Press M to enable/disable audio', {fontSize: '18px', fill: '#000', fontStyle: 'bold'});
+            this.add.text(275,350, 'Press T for Tutorial', {fontSize: '25px', fill: '#000', fontFamily: 'font1'});
+            this.add.text(250,400, 'Press L for Level Select', {fontSize: '25px', fill: '#000', fontFamily: 'font1'});
+            this.add.text(285,450, 'Press C for Credits', {fontSize: '25px', fill: '#000', fontFamily: 'font1'});
+            this.add.text(10,575, 'Press M to enable/disable audio', {fontSize: '18px', fill: '#000', fontFamily: 'font1'});
 
             
             if(loaded == false){
@@ -2208,8 +2208,8 @@ var credits = new Phaser.Class({
                 lost = false
                 this.add.image(400, 300, 'sky');
             
-                this.add.text(460,575, 'Press H to return to the Title', {fontSize: '18px', fill: '#000', fontStyle: 'bold'});
-                this.add.text(10,575, 'Press M to enable/disable audio', {fontSize: '18px', fill: '#000', fontStyle: 'bold'});
+                this.add.text(460,575, 'Press H to return to the Title', {fontSize: '18px', fill: '#000', fontFamily: 'font1'});
+                this.add.text(10,575, 'Press M to enable/disable audio', {fontSize: '18px', fill: '#000', fontFamily: 'font1'});
             
                 this.add.image(400, 300, 'credits');    
             
